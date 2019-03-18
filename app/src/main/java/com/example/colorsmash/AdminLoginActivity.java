@@ -3,6 +3,7 @@ package com.example.colorsmash;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.SyncStatusObserver;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
@@ -140,6 +141,7 @@ public class AdminLoginActivity extends AppCompatActivity implements LoaderCallb
 
     private void showData(DataSnapshot dataSnapshot) {
         List<String>keys=new ArrayList<>();
+        admins.clear();
         for(DataSnapshot ds:dataSnapshot.getChildren()){
             //keys.add(ds.getKey());
             Admin admin=ds.getValue(Admin.class);
@@ -392,6 +394,7 @@ public class AdminLoginActivity extends AppCompatActivity implements LoaderCallb
         private final String mEmail;
         private final String mPassword;
 
+
         UserLoginTask(String email, String password) {
             mEmail = email;
             mPassword = password;
@@ -419,12 +422,14 @@ public class AdminLoginActivity extends AppCompatActivity implements LoaderCallb
 
             // TODO: register the new account here.
             for (Admin ad:admins){
-                write(ad.getPassword());
-                if(ad.getUsername()==mEmail && ad.getPassword()==sha(mPassword)){
-                    write("OK!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+                if(mEmail.equals(ad.getUsername()) && sha(mPassword).equals(ad.getPassword())){
+                    write("OKKKKKKKKKKKKKKK");
+                    return true;
                 }
             }
-            return true;
+            write("BADDDDDDDDDDD");
+            return false;
         }
 
         @Override
