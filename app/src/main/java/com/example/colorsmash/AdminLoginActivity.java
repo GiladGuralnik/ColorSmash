@@ -397,6 +397,7 @@ public class AdminLoginActivity extends AppCompatActivity implements LoaderCallb
             mPassword = password;
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
@@ -417,6 +418,12 @@ public class AdminLoginActivity extends AppCompatActivity implements LoaderCallb
             }
 
             // TODO: register the new account here.
+            for (Admin ad:admins){
+                write(ad.getPassword());
+                if(ad.getUsername()==mEmail && ad.getPassword()==sha(mPassword)){
+                    write("OK!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                }
+            }
             return true;
         }
 
