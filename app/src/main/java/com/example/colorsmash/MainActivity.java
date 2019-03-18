@@ -43,18 +43,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
         else if(view == buttonRegister) {
-            Intent startGame = new Intent(MainActivity.this, RegisterActivity.class);
-            startActivity(startGame);
+            Intent act = new Intent(MainActivity.this, RegisterActivity.class);
+            startActivity(act);
         }
 
         else if(view == buttonLogin) {
-            Intent startGame = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(startGame);
+            Intent act = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(act);
         }
 
         else if (view == buttonAdminLogin) {
-            Intent startGame = new Intent(MainActivity.this, AdminLoginActivity.class);
-            startActivity(startGame);
+            Intent act = new Intent(MainActivity.this, AdminLoginActivity.class);
+            startActivity(act);
         }
         else if (view == buttonExit) {
             return;
