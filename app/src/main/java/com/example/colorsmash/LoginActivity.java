@@ -15,7 +15,7 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.view.View.OnClickListener
+import android.view.View.OnClickListener;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
