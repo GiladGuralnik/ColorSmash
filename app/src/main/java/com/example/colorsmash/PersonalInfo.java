@@ -1,5 +1,6 @@
 package com.example.colorsmash;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -44,20 +45,29 @@ public class PersonalInfo extends AppCompatActivity {
                 radioButton  = findViewById(radioId);
                 String gender = radioButton.getText().toString();
                 String name= editName.getText().toString().trim();
-                int age =  Integer.parseInt(editAge.getText().toString().trim());
-
-                updateUserData(1,"test",name,gender,age);
+                int age;
+                try {
+                    age = Integer.parseInt(editAge.getText().toString().trim());
+                }
+                catch(Exception a){ //check here convertion problems
+                    Toast.makeText(PersonalInfo.this,"Bad Input",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Intent intent = getIntent();
+                String index= intent.getStringExtra("INDEX"); ///INDEX of new user for data update
+                updateUserData(index,name,gender,age);
                 Toast.makeText(PersonalInfo.this,"Data Updated",Toast.LENGTH_SHORT).show();
+
             }
         });
 
     }
 
 
-    public void updateUserData(int index,String username,String name,String gender,int age){
-        mRef.child(Integer.toString(index)).child("name").setValue(name);
-        mRef.child(Integer.toString(index)).child("age").setValue(age);
-        mRef.child(Integer.toString(index)).child("gender").setValue(gender);
+    public void updateUserData(String index,String name,String gender,int age){
+        mRef.child(index).child("name").setValue(name);
+        mRef.child(index).child("age").setValue(age);
+        mRef.child(index).child("gender").setValue(gender);
     }
 
     public void checkButton(View v){
