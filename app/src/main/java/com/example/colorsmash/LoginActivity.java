@@ -68,11 +68,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         firebaseAuth=FirebaseAuth.getInstance();
         //checking if the user is connected
-        /*if(firebaseAuth.getCurrentUser() != null){
+        if(firebaseAuth.getCurrentUser() != null){
             finish();
-            startActivity(new Intent(getApplicationContext() , MainActivity.class));
-
-        }*/
+            startActivity(new Intent(getApplicationContext() , StartGameActivity.class));
+        }
         singinButton.setOnClickListener(this);
         registerButton.setOnClickListener(this);
 
@@ -104,7 +103,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 //GO TO MAIN ACTIVITY
                 if(task.isSuccessful()){
                     finish();
-                    startActivity(new Intent(getApplicationContext() , MainActivity.class));
+                    startActivity(new Intent(getApplicationContext() , StartGameActivity.class));
 
                 }
             }
