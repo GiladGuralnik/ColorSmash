@@ -1,5 +1,6 @@
 package com.example.colorsmash;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -61,6 +62,7 @@ public class ShowUsers extends AppCompatActivity {
         TableRow row= new TableRow(this);
         TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
         row.setLayoutParams(lp);
+        row.setBackgroundColor(Color.parseColor("#F1F1F1"));
         TextView tName = new TextView(this);
         TextView tUsername = new TextView(this);
         TextView tAge = new TextView(this);
@@ -69,6 +71,17 @@ public class ShowUsers extends AppCompatActivity {
         //This generates the caption row
         tName.setText("Name");
         tName.setPadding(3, 3, 3, 3);
+
+
+
+        //test for coloring the table  -> disable the row coloring!!@!@#!!!
+        /*
+        int id=10;
+        tName.setId(id);
+
+        tName.setBackgroundResource(R.color.colorPrimaryDark);
+        */
+
         tUsername.setText("Username");
         tUsername.setPadding(3, 3, 3, 3);
         tAge.setText("Age");
@@ -104,7 +117,16 @@ public class ShowUsers extends AppCompatActivity {
             row.addView(tUsername);
             row.addView(tAge);
             row.addView(tGender);
+            row.setBackgroundColor(Color.parseColor("#FFFFFF"));
             ll.addView(row,i+1);
+
+            //continue of the test coloring
+            /*
+            TextView tv = (TextView)findViewById(id);
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)tv.getLayoutParams();
+            params.setMargins(1, 1, 1, 1); //substitute parameters for left, top, right, bottom
+            tv.setLayoutParams(params);
+            */
         }
     }
 
