@@ -145,7 +145,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     public void createUserAccount(){
         String email = editTextEmail.getText().toString().trim();
-        String newIndex= Integer.toString(index+1);
+        String newIndex= Integer.toString(index);
         mRef.child(newIndex).child("username").setValue(email);
         mRef.child(newIndex).child("gender").setValue("none");
         mRef.child(newIndex).child("age").setValue(999);
@@ -155,10 +155,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private void findIndex(DataSnapshot dataSnapshot) {
         List<String> keys=new ArrayList<>();
+        int maxKey=0;
         for(DataSnapshot ds:dataSnapshot.getChildren()){
-            keys.add(ds.getKey());
+            if(Integer.parseInt(ds.getKey())> maxKey){
+                maxKey=Integer.parseInt(ds.getKey());
+            }
+
         }
-        index = keys.size();
+        index = maxKey+1;
     }
 
 
