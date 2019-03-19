@@ -424,7 +424,6 @@ public class AdminLoginActivity extends AppCompatActivity implements LoaderCallb
             for (Admin ad:admins){
 
                 if(mEmail.equals(ad.getUsername()) && sha(mPassword).equals(ad.getPassword())){
-                    write("OKKKKKKKKKKKKKKK");
                     return true;
                 }
             }
@@ -438,7 +437,8 @@ public class AdminLoginActivity extends AppCompatActivity implements LoaderCallb
             showProgress(false);
 
             if (success) {
-                finish();
+                Intent act = new Intent(AdminLoginActivity.this, AdminOptions.class);
+                startActivity(act);
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();

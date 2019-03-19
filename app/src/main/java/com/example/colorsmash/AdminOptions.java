@@ -23,7 +23,7 @@ public class AdminOptions extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if(v == buttonShowUsers) {
-            Intent act = new Intent(AdminOptions.this, RegisterActivity.class);
+            Intent act = new Intent(AdminOptions.this, ShowUsers.class);
             startActivity(act);
         }
     }
