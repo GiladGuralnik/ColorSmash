@@ -80,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 {
                     //user is succesfully registered and logged in
                     //we will start the profile activity here
-                    //for now we will display a TOAST only
+                    //for now we will display a TOAST only,
                     Toast.makeText(RegisterActivity.this,"Registered Succesfully", Toast.LENGTH_SHORT).show();
                 }
                 else
