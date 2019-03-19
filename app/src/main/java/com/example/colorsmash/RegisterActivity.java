@@ -114,7 +114,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     //we will start the profile activity here
                     //for now we will display a TOAST only,
                     Toast.makeText(RegisterActivity.this,"Registered Succesfully", Toast.LENGTH_SHORT).show();
-                    createUserAcoount();
+                    createUserAccount();
                 }
                 else
                 {
@@ -138,13 +138,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
 
-    public void createUserAcoount(){
+    public void createUserAccount(){
         String email = editTextEmail.getText().toString().trim();
         String newIndex= Integer.toString(index+1);
-        mRef.child(newIndex).child("Username").setValue(email);
-        mRef.child(newIndex).child("Gender").setValue("none");
-        mRef.child(newIndex).child("Age").setValue(-1);
-        mRef.child(newIndex).child("Name").setValue("none");
+        mRef.child(newIndex).child("username").setValue(email);
+        mRef.child(newIndex).child("gender").setValue("none");
+        mRef.child(newIndex).child("age").setValue(999);
+        mRef.child(newIndex).child("name").setValue("none");
 
     }
 
