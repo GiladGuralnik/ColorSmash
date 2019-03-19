@@ -162,7 +162,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             }
 
         }
-        index = maxKey+1;
+        index = maxKey;
     }
 
 
