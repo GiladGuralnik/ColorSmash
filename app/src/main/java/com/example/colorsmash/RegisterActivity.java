@@ -1,6 +1,7 @@
 package com.example.colorsmash;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -97,8 +98,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         if(view == buttonRegister)
             registerUser();
 
-        if(view == textViewSignin)
-            return; // FIX HERE FIX HERE FIX HERE
+        if(view == textViewSignin) {
+            Intent act = new Intent(this, LoginActivity.class);
+            startActivity(act);
+        }
     }
 
 
