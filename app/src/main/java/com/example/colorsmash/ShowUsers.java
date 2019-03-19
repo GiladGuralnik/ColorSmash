@@ -106,7 +106,7 @@ public class ShowUsers extends AppCompatActivity {
             row.addView(tUsername);
             row.addView(tAge);
             row.addView(tGender);
-            ll.addView(row,i);
+            ll.addView(row,i+1);
         }
     }
 

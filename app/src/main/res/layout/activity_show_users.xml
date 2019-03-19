@@ -15,11 +15,14 @@
         android:layout_marginVertical="30dp"
         android:background="#f1f1f1">
 
+    <TableRow>
+
+    </TableRow>
+
 
 
 
     </TableLayout>
-
 
 
 
