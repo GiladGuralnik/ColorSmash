@@ -116,7 +116,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     Toast.makeText(RegisterActivity.this,"Registered Succesfully", Toast.LENGTH_SHORT).show();
                     createUserAccount();
                     Intent act = new Intent(RegisterActivity.this, PersonalInfo.class);
-                    act.putExtra("INDEX", Integer.toString(index+1)); // the index of new registered user for enter his personal data
+                    act.putExtra("INDEX", Integer.toString(index)); // the index of new registered user for enter his personal data
                     startActivity(act);
 
                 }
@@ -162,7 +162,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             }
 
         }
-        index = maxKey;
+        index = maxKey+1;
     }
 
 
