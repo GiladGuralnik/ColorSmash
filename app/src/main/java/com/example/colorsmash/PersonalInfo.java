@@ -57,6 +57,8 @@ public class PersonalInfo extends AppCompatActivity {
                 String index= intent.getStringExtra("INDEX"); ///INDEX of new user for data update
                 updateUserData(index,name,gender,age);
                 Toast.makeText(PersonalInfo.this,"Data Updated",Toast.LENGTH_SHORT).show();
+                Intent act = new Intent(PersonalInfo.this, PersonalInfo.class);
+                startActivity(act);
 
             }
         });
