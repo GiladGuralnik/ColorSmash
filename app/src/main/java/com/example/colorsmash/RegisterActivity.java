@@ -16,6 +16,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
@@ -28,6 +36,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private ProgressDialog progressDialog;
 
     private FirebaseAuth firebaseAuth;
+
+    private DatabaseReference mRef;
+
+    private FirebaseDatabase mDataBase;
+
+    private int index;
+
 
 
     @Override
@@ -49,6 +64,23 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         buttonRegister.setOnClickListener(this);
         textViewSignin.setOnClickListener(this);
+
+        mDataBase=FirebaseDatabase.getInstance();
+        mRef = mDataBase.getReference("Users");
+
+        mRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                findIndex(dataSnapshot);
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void registerUser()
@@ -82,6 +114,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     //we will start the profile activity here
                     //for now we will display a TOAST only,
                     Toast.makeText(RegisterActivity.this,"Registered Succesfully", Toast.LENGTH_SHORT).show();
+                    createUserAcoount();
                 }
                 else
                 {
@@ -105,6 +138,23 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
 
+    public void createUserAcoount(){
+        String email = editTextEmail.getText().toString().trim();
+        String newIndex= Integer.toString(index+1);
+        mRef.child(newIndex).child("Username").setValue(email);
+        mRef.child(newIndex).child("Gender").setValue("none");
+        mRef.child(newIndex).child("Age").setValue(-1);
+        mRef.child(newIndex).child("Name").setValue("none");
+
+    }
+
+    private void findIndex(DataSnapshot dataSnapshot) {
+        List<String> keys=new ArrayList<>();
+        for(DataSnapshot ds:dataSnapshot.getChildren()){
+            keys.add(ds.getKey());
+        }
+        index = keys.size();
+    }
 
 
 
