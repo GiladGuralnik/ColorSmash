@@ -14,6 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".StartGameActivity"></activity>
+        <activity android:name=".PersonalInfo"></activity>
         <activity android:name=".ShowUsers" />
         <activity android:name=".AdminOptions" />
         <activity
