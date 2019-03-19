@@ -115,6 +115,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     //for now we will display a TOAST only,
                     Toast.makeText(RegisterActivity.this,"Registered Succesfully", Toast.LENGTH_SHORT).show();
                     createUserAccount();
+                    Intent act = new Intent(RegisterActivity.this, PersonalInfo.class);
+                    startActivity(act);
+
                 }
                 else
                 {
