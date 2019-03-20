@@ -102,7 +102,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         //incase both validations went well
         //show progress bar
-        progressDialog.setMessage("Registering Users please wait...");
+        progressDialog.setMessage("Registering User please wait...");
         progressDialog.show();
 
         firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
