@@ -198,14 +198,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
 
 
-        System.out.println("Array Before Bubble Sort");
-        for(int i=0; i < arr.length; i++){
-            System.out.print(arr[i] + " ");
-        }
-        System.out.println();
-
-
-
     }
 
 
