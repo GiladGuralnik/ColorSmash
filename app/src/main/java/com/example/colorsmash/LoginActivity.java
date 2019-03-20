@@ -34,10 +34,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
 
         singinButton = (Button) findViewById(R.id.singinButton);
-        registerButton = (Button) findViewById(R.id.registerButton);
         emailEditText = (EditText) findViewById(R.id.emailLogin);
         passwordEditText = (EditText) findViewById(R.id.passwordLogin);
-
         progressDialog = new ProgressDialog(this);
 
         firebaseAuth=FirebaseAuth.getInstance();
@@ -49,7 +47,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
         */
         singinButton.setOnClickListener(this);
-        registerButton.setOnClickListener(this);
 
     }
 
@@ -92,12 +89,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(view == singinButton){
             userLogin();
         }
-        if(view == registerButton){
-            finish();
-            startActivity(new Intent(getApplicationContext() , RegisterActivity.class));
-        }
-
-
 
     }
 
