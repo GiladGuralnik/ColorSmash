@@ -21,7 +21,6 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button singinButton;
-    private Button registerButton;
     private EditText emailEditText;
     private EditText passwordEditText;
 
@@ -65,7 +64,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
 
-        progressDialog.setMessage("Checking please wite ...");
+        progressDialog.setMessage("Checking User Please Wait ...");
         progressDialog.show();
         // Check for a valid email address.
 
@@ -78,6 +77,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     finish();
                     startActivity(new Intent(getApplicationContext() , StartGameActivity.class));
 
+                }
+                else{
+                    Toast.makeText(LoginActivity.this,"Could not Login...please try again", Toast.LENGTH_SHORT).show();
                 }
             }
         });

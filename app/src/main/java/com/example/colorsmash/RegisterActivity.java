@@ -108,6 +108,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                progressDialog.dismiss();
                 if(task.isSuccessful())
                 {
                     //user is succesfully registered and logged in
@@ -123,7 +124,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 else
                 {
                     Toast.makeText(RegisterActivity.this,"Could not register...please try again", Toast.LENGTH_SHORT).show();
-                    progressDialog.cancel();
                 }
             }
         });
