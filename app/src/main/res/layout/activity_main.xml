@@ -14,8 +14,12 @@
         android:layout_height="75dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
+        android:background="@color/common_google_signin_btn_text_dark_disabled"
         android:gravity="center"
-        android:text="Start Game" />
+        android:text="Start Game"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/ButtonRegister"
@@ -23,8 +27,11 @@
         android:layout_height="75dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
+        android:background="@color/common_google_signin_btn_text_dark_disabled"
         android:gravity="center"
-        android:text="Register" />
+        android:text="Register"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/ButtonLogin"
@@ -32,8 +39,11 @@
         android:layout_height="75dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
+        android:background="@color/common_google_signin_btn_text_dark_disabled"
         android:gravity="center"
-        android:text="Login" />
+        android:text="Login"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/ButtonAdminLogin"
@@ -41,8 +51,11 @@
         android:layout_height="75dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
+        android:background="@color/common_google_signin_btn_text_dark_disabled"
         android:gravity="center"
-        android:text="Admin Login" />
+        android:text="Admin Login"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/ButtonExit"
@@ -50,6 +63,10 @@
         android:layout_height="75dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
+        android:background="@color/common_google_signin_btn_text_dark_disabled"
         android:gravity="center"
-        android:text="Exit" />
+        android:text="Exit"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 </LinearLayout>
