@@ -102,12 +102,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         //incase both validations went well
         //show progress bar
-        progressDialog.setMessage("Registering Users please wait...");
+        progressDialog.setMessage("Registering User please wait...");
         progressDialog.show();
 
         firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                progressDialog.dismiss();
                 if(task.isSuccessful())
                 {
                     //user is succesfully registered and logged in
@@ -122,8 +123,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 }
                 else
                 {
-                    Toast.makeText(RegisterActivity.this,"Could not register...please try again", Toast.LENGTH_SHORT).show();
-                    return;
+                    Toast.makeText(RegisterActivity.this,"Bad email input, Please use valid mail\nOr email is already taken", Toast.LENGTH_SHORT).show();
                 }
             }
         });

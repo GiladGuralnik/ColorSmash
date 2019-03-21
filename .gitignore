@@ -82,3 +82,4 @@ gradlew
 gradlew.bat
 settings.bat
 settings.gradle
+app/.gitignore
