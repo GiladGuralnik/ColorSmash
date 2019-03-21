@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,8 +22,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button singinButton;
-    private EditText emailEditText;
-    private EditText passwordEditText;
+    public EditText emailEditText;
+    public EditText passwordEditText;
 
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
@@ -49,31 +50,65 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-    private void userLogin(){
-        String email = emailEditText.getText().toString().trim();
-        String password = passwordEditText.getText().toString().trim();
-
-        //Checking if email ane password are not empty
-        if (TextUtils.isEmpty(password)){
+    public final boolean isValidPassword(CharSequence target) {
+        if(TextUtils.isEmpty(target)){
             Toast.makeText(this,"Please enter password" , Toast.LENGTH_LONG).show();
-            return;
+            return false;
         }
-        if(TextUtils.isEmpty(email)){
-            Toast.makeText(this,"Please enter email" , Toast.LENGTH_LONG).show();
-            return;
+        if(target.length() < 8){
+            Toast.makeText(this,"The password is to short" , Toast.LENGTH_LONG).show();
+            return false;
         }
+        return true;
+
+    }
+
+
+    public final boolean isValidEmail(CharSequence target) {
+        if(TextUtils.isEmpty(target)){
+            Toast.makeText(this,"Please enter email", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches()) {
+            Toast.makeText(this,"The Email is not valid", Toast.LENGTH_LONG).show();
+            return false;
+        };
+
+        return true;
+    }
+
+    public int test(int num){
+        return num;
+    }
+
+    private void userLogin( String email ,String password ){
+
+
+        //Checking if email and password are valid
+        if(!isValidEmail(email)){
+            isValidPassword(password);
+            return ;
+        };
+
+        if(!isValidPassword(password)) {
+            isValidEmail(email);
+            return ;
+        }
+
 
 
         progressDialog.setMessage("Checking User Please Wait ...");
         progressDialog.show();
         // Check for a valid email address.
 
-        firebaseAuth.signInWithEmailAndPassword(email , password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>(){
+        Task<AuthResult> firebaseTask =  firebaseAuth.signInWithEmailAndPassword(email , password);
+
+        firebaseTask.addOnCompleteListener(this, new OnCompleteListener<AuthResult>(){
             public void onComplete(Task<AuthResult> task){
                 progressDialog.dismiss();
                 //GO TO MAIN ACTIVITY
                 if(task.isSuccessful()){
+
                     finish();
                     startActivity(new Intent(getApplicationContext() , StartGameActivity.class));
 
@@ -89,7 +124,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view){
         if(view == singinButton){
-            userLogin();
+            String email = emailEditText.getText().toString().trim();
+            String password = passwordEditText.getText().toString().trim();
+            userLogin(email ,password);
         }
 
     }
