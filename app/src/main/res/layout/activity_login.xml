@@ -18,24 +18,12 @@
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/loginTextView"
-                android:layout_width="147dp"
-                android:layout_height="78dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:lineSpacingExtra="14sp"
-
-                android:text="LOGIN"
-                android:textAllCaps="false"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="#E6306F"
-                android:textSize="50sp"
-                android:textStyle="normal|bold" />
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"><![CDATA[
 
             />
+
+            ]]>
 
             <EditText
                 android:id="@+id/emailLogin"
@@ -46,7 +34,8 @@
                 android:inputType="textEmailAddress"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
-                android:textColorLink="#E6306F" />
+                android:textColorLink="#E6306F"
+                android:textStyle="bold" />
             />
 
             <EditText
@@ -58,7 +47,8 @@
                 android:inputType="textPassword"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
-                android:textColorLink="#30E639" />
+                android:textColorLink="#30E639"
+                android:textStyle="bold" />
             />
 
 
@@ -69,12 +59,12 @@
                 android:layout_height="75dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:background="#E6306F"
                 android:text="SIGN IN"
                 android:textColor="@color/common_google_signin_btn_text_dark"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:typeface="normal"
-                android:background="#E6306F"/>
+                android:typeface="normal" />
 
         </LinearLayout>
     </ScrollView>
