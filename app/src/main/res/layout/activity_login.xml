@@ -32,7 +32,8 @@
         android:layout_margin="15dp"
         android:hint="Enter your email please"
         android:inputType="textEmailAddress"
-        android:textColorHint="#FFFFFF"/>
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF" />
     />
 
     <EditText
@@ -42,7 +43,8 @@
         android:layout_margin="15dp"
         android:hint="Enter your password"
         android:inputType="textPassword"
-        android:textColorHint="#FFFFFF"/>
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF" />
     />
 
 

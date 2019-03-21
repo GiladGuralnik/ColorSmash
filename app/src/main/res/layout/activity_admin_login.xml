@@ -43,15 +43,15 @@
                     android:inputType="textEmailAddress"
                     android:textColor="#FFFFFF" />
 
-                <EditText
-                    android:id="@+id/password"
-                    android:layout_margin="15dp"
-                    android:inputType="textPassword"
-                    android:hint="Enter your password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="#FFFFFF"
-                    />
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:hint="Enter your password"
+                android:inputType="textPassword"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF" />
 
             <Button
                 android:id="@+id/email_sign_in_button"
