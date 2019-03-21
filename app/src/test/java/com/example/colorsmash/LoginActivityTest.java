@@ -1,12 +1,8 @@
 package com.example.colorsmash;
 
-import android.widget.EditText;
-import android.text.TextUtils;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
-public class LoginActivityTest {
+public class LoginActivityTest extends junit.framework.TestCase{
 
 
     @Test
@@ -30,6 +26,7 @@ public class LoginActivityTest {
 
         assertEquals(expected,output);
     }
+    */
     @Test
     public void isValidEmail(){
         boolean expected = true;
@@ -40,7 +37,7 @@ public class LoginActivityTest {
         output=loginActivity.isValidEmail(email);
         assertEquals(expected,output);
 
-    }*/
+    }
     /*@Test
     public void onCreate() {
 
