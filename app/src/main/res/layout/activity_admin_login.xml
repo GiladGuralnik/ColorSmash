@@ -33,15 +33,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-                <AutoCompleteTextView
-                    android:id="@+id/email"
-                    android:textColorHint="#FFFFFF"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
-                    android:hint="Enter your email please"
-                    android:inputType="textEmailAddress"
-                    android:textColor="#FFFFFF" />
+            <AutoCompleteTextView
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:hint="Enter your email please"
+                android:inputType="textEmailAddress"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:textColorLink="#E6306F" />
 
             <EditText
                 android:id="@+id/password"
@@ -51,7 +52,8 @@
                 android:hint="Enter your password"
                 android:inputType="textPassword"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#FFFFFF" />
+                android:textColorHint="#FFFFFF"
+                android:textColorLink="#E6306F" />
 
             <Button
                 android:id="@+id/email_sign_in_button"
@@ -59,6 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:background="#E6306F"
                 android:text="SIGN IN"
                 android:textStyle="bold" />
 
