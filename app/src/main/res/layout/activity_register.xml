@@ -9,15 +9,14 @@
     android:background="@drawable/bricks">
 
 
-
         <EditText
-            android:layout_margin="15dp"
-            android:inputType="textEmailAddress"
-            android:hint="Enter your email please"
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="#FFFFFF"/>
+            android:layout_margin="15dp"
+            android:hint="Enter your email please"
+            android:inputType="textEmailAddress"
+            android:textColorHint="#FFFFFF" />
 
 
 
