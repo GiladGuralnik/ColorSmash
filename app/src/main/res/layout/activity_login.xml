@@ -14,19 +14,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:text="LOGIN"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="40sp"
+        android:lineSpacingExtra="14sp"
 
- />
+        android:text="LOGIN"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textSize="36sp"
+        android:textStyle="bold" />
 
     <EditText
-        android:layout_margin="15dp"
-        android:inputType="textEmailAddress"
-        android:hint="Enter your email please"
         android:id="@+id/emailLogin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:hint="Enter your email please"
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:layout_margin="15dp"
@@ -39,11 +40,15 @@
 
     <Button
         android:id="@+id/singinButton"
-        android:layout_width="127dp"
-        android:layout_height="75dp"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="220dp"
+        android:layout_height="91dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:text="SIGN IN"
-        android:textSize="24sp" />
+        android:textColor="@color/common_google_signin_btn_text_dark"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:typeface="normal" />
 
 </LinearLayout>
