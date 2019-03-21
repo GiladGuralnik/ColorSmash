@@ -123,7 +123,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 }
                 else
                 {
-                    Toast.makeText(RegisterActivity.this,"Could not register...please try again", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this,"Bad email input, Please use valid mail\nOr email is already taken", Toast.LENGTH_SHORT).show();
                 }
             }
         });
