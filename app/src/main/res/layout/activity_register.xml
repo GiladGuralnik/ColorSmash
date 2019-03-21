@@ -32,16 +32,19 @@
             />
 
         <Button
-            android:layout_margin="15dp"
             android:id="@+id/ButtonRegister"
-            android:text="Register User"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="Register User"
+            android:visibility="visible" />
 
         <TextView
             android:id="@+id/textViewSignin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:soundEffectsEnabled="true"
             android:text="Already Registered? Sign in here "
             android:textAlignment="center"
