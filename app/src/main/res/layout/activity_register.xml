@@ -8,47 +8,57 @@
     tools:context=".RegisterActivity"
     android:background="@drawable/bricks">
 
-
-        <EditText
-            android:id="@+id/editTextEmail"
+        <ScrollView
+            android:id="@+id/login_form"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:hint="Enter your email please"
-            android:inputType="textEmailAddress"
-            android:textColorHint="#FFFFFF" />
+            android:layout_height="match_parent">
 
+                <LinearLayout
 
+                    android:id="@+id/email_login_form"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-        <EditText
-            android:layout_margin="15dp"
-            android:inputType="textPassword"
-            android:hint="Enter your password"
-            android:id="@+id/editTextPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColorHint="#FFFFFF"
-            />
+                        <EditText
+                            android:id="@+id/editTextEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            android:hint="Enter your email please"
+                            android:inputType="textEmailAddress"
+                            android:textColor="#FFFFFF"
+                            android:textColorHint="#FFFFFF" />
+                 <EditText
+                            android:id="@+id/editTextPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            android:hint="Enter your password"
+                            android:inputType="textPassword"
+                            android:textColor="#FFFFFF"
+                            android:textColorHint="#FFFFFF" />
 
-        <Button
-            android:id="@+id/ButtonRegister"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:text="Register User"
-            android:textAppearance="@style/TextAppearance.AppCompat.Button"
-            android:visibility="visible" />
+                        <Button
+                            android:id="@+id/ButtonRegister"
+                            style="@style/Widget.AppCompat.Button.Colored"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            android:text="Register User"
+                            android:visibility="visible" />
 
-        <TextView
-            android:id="@+id/textViewSignin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:soundEffectsEnabled="true"
-            android:text="Already Registered? Sign in here "
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF" />
+                        <TextView
+                            android:id="@+id/textViewSignin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:soundEffectsEnabled="true"
+                            android:text="Already Registered? Sign in here "
+                            android:textAlignment="center"
+                            android:textAllCaps="false"
+                            android:textColor="#FFFFFF" />
 
+                </LinearLayout>
+        </ScrollView>
 </LinearLayout>
