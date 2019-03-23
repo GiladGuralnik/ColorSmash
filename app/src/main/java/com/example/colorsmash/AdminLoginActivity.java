@@ -153,7 +153,7 @@ public class AdminLoginActivity extends AppCompatActivity implements LoaderCallb
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private String sha(String originalString){
+    public String sha(String originalString){
         MessageDigest digest = null;
         try {
             digest = MessageDigest.getInstance("SHA-256");
@@ -234,12 +234,12 @@ public class AdminLoginActivity extends AppCompatActivity implements LoaderCallb
         }
     }
 
-    private boolean isEmailValid(String email) {
+    public boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
         return email.contains("@");
     }
 
-    private boolean isPasswordValid(String password) {
+    public boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
         return password.length() > 4;
     }
@@ -376,7 +376,6 @@ public class AdminLoginActivity extends AppCompatActivity implements LoaderCallb
                     return true;
                 }
             }
-            write("BADDDDDDDDDDD");
             return false;
         }
 
