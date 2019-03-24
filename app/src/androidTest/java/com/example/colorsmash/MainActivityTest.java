@@ -58,12 +58,59 @@ public class MainActivityTest {
     }
 
     @Test
+    public void testLaunchOfRegisterActivityOnButtonClick()
+    {
+        assertNotNull(mainActivity.findViewById(R.id.ButtonRegister));
+
+        onView(withId(R.id.ButtonRegister)).perform(click()); // mock a click on a button
+
+        Activity RegisterActivity = getInstrumentation().waitForMonitorWithTimeout(monitor,5000);
+
+        assertNotNull(RegisterActivity);
+
+        RegisterActivity.finish();
+
+    }
+
+    @Test
+    public void testLaunchOfAdminLoginActivityOnButtonClick()
+    {
+        assertNotNull(mainActivity.findViewById(R.id.ButtonAdminLogin));
+
+        onView(withId(R.id.ButtonAdminLogin)).perform(click()); // mock a click on a button
+
+        Activity AdminLoginActivity = getInstrumentation().waitForMonitorWithTimeout(monitor,5000);
+
+        assertNotNull(AdminLoginActivity);
+
+        AdminLoginActivity.finish();
+
+    }
+
+
+    @Test
+    public void testLaunchOfStartGameActivityOnButtonClick()
+    {
+        assertNotNull(mainActivity.findViewById(R.id.ButtonStartGame));
+
+        onView(withId(R.id.ButtonStartGame)).perform(click()); // mock a click on a button
+
+        Activity StartGameActivity  = getInstrumentation().waitForMonitorWithTimeout(monitor,5000);
+
+        assertNull(StartGameActivity);
+
+
+    }
+
+    @Test
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("com.example.colorsmash", appContext.getPackageName());
     }
+
+
 
     @After
     public void tearDown() throws Exception {
