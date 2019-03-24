@@ -2,6 +2,8 @@ package com.example.colorsmash;
 
 import android.app.Activity;
 import android.app.Instrumentation;
+import android.content.Context;
+import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 
 import org.junit.After;
@@ -53,6 +55,14 @@ public class MainActivityTest {
 
         LoginActivity.finish();
 
+    }
+
+    @Test
+    public void useAppContext() {
+        // Context of the app under test.
+        Context appContext = InstrumentationRegistry.getTargetContext();
+
+        assertEquals("com.example.colorsmash", appContext.getPackageName());
     }
 
     @After
