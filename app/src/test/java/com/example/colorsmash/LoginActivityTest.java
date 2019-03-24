@@ -1,56 +1,45 @@
 package com.example.colorsmash;
 
+import org.junit.Before;
 import org.junit.Test;
+
+//@RunWith(MockitoJUnitRunner.class)
 
 public class LoginActivityTest extends junit.framework.TestCase{
 
+    LoginActivity loginActivity ;
+
+    //@Mock
+    //LoginActivity view;
+    @Before
+    public void  setUp(){
+        loginActivity = new LoginActivity();
+        //loginActivity.onCreate(null);
+
+    }
+
 
     @Test
-    public void test(){
-        int num =2;
-        int out;
-        int expected = 2;
-        LoginActivity loginActivity = new LoginActivity();
-        out=loginActivity.test(num);
-        assertEquals(expected,out);
-
+    public void test_correctEmailAddress() {
+        assertTrue(loginActivity.isEmailValid("name@email.com"));
     }
-    /*@Test
-    public void isValidPassword(){
-        boolean expected = true;
-        boolean output;
-        String password = "12345678";
 
-        LoginActivity loginActivity = new LoginActivity();
-        output=loginActivity.isValidPassword(password);
-
-        assertEquals(expected,output);
-    }
-    */
     @Test
-    public void isValidEmail(){
-        boolean expected = true;
-        boolean output;
-        String email = "Yoel@gmail.com";
-
-        LoginActivity loginActivity = new LoginActivity();
-        output=loginActivity.isValidEmail(email);
-        assertEquals(expected,output);
-
+    public void test_incorrectEmailAddress() {
+        assertFalse(loginActivity.isEmailValid("nameabecemail.com"));
     }
-    /*@Test
-    public void onCreate() {
+
+    @Test
+    public void test_correctPasswordLength() {
+        assertTrue(loginActivity.isPasswordValid("a1b2c3d4e5"));
+    }
+
+    @Test
+    public void test_incorrectPasswordLength() {
+        assertFalse(loginActivity.isPasswordValid("1"));
+    }
 
 
-        LoginActivity loginActivity = new LoginActivity();
 
 
-        assertEquals(true,loginActivity.isValidPassword(email));
-
-    }*/
-
-
-    //@Test
-    //public void onClick() {
-   // }
 }
