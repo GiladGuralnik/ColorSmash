@@ -3,27 +3,25 @@ package com.example.colorsmash;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class AdminLoginTest {
-
-    private AdminLoginActivity act;
+public class RegisterActivityTest {
+    private RegisterActivity act;
 
     @Before
     public void pre(){
-        act = new AdminLoginActivity();
+        act = new RegisterActivity();
     }
 
     @Test
     public void test_correctEmailAddress() {
-        assertTrue(act.isEmailValid("ABCDS@gmail.com"));
+        assertTrue(act.isEmailValid("name@email.com"));
     }
 
     @Test
     public void test_incorrectEmailAddress() {
-        assertFalse(act.isEmailValid("12342134.com"));
+        assertFalse(act.isEmailValid("nameabcemail.com"));
     }
 
     @Test
@@ -33,14 +31,9 @@ public class AdminLoginTest {
 
     @Test
     public void test_incorrectPasswordLength() {
-        assertFalse(act.isPasswordValid(""));
+        assertFalse(act.isPasswordValid("1"));
     }
 
-    @Test
-    public void test_shaFunctionHashLength() {
-        int realLen=act.sha("1").length();
-        int expectedLen=64;
-        assertEquals(realLen,expectedLen);
-    }
+
+
 }
-
