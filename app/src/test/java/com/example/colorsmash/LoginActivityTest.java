@@ -1,56 +1,67 @@
 package com.example.colorsmash;
 
+import android.view.inputmethod.EditorInfo;
+
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+//@RunWith(MockitoJUnitRunner.class)
 
 public class LoginActivityTest extends junit.framework.TestCase{
 
+    LoginActivity loginActivity ;
 
-    @Test
-    public void test(){
-        int num =2;
-        int out;
-        int expected = 2;
-        LoginActivity loginActivity = new LoginActivity();
-        out=loginActivity.test(num);
-        assertEquals(expected,out);
+    //@Mock
+    //LoginActivity view;
+    @Before
+    public void  setUp(){
+        loginActivity = new LoginActivity();
+        //loginActivity.onCreate(null);
 
     }
+
+
+    @Test
+    public void test_correctEmailAddress() {
+        assertTrue(loginActivity.isEmailValid("name@email.com"));
+    }
+
+    @Test
+    public void test_incorrectEmailAddress() {
+        assertFalse(loginActivity.isEmailValid("nameabcemail.com"));
+    }
+
+    @Test
+    public void test_correctPasswordLength() {
+        assertTrue(loginActivity.isPasswordValid("a1b2c3d4e5"));
+    }
+
+    @Test
+    public void test_incorrectPasswordLength() {
+        assertFalse(loginActivity.isPasswordValid("1"));
+    }
+
     /*@Test
-    public void isValidPassword(){
-        boolean expected = true;
-        boolean output;
-        String password = "12345678";
-
-        LoginActivity loginActivity = new LoginActivity();
-        output=loginActivity.isValidPassword(password);
-
-        assertEquals(expected,output);
-    }
-    */
-    @Test
-    public void isValidEmail(){
-        boolean expected = true;
-        boolean output;
+    public void emailEditTextUpdatesTextView(){
         String email = "Yoel@gmail.com";
+        loginActivity.emailEditText.setText(email);
 
-        LoginActivity loginActivity = new LoginActivity();
-        output=loginActivity.isValidEmail(email);
-        assertEquals(expected,output);
+        loginActivity.emailEditText.onEditorAction(EditorInfo.IME_ACTION_DONE);
 
-    }
-    /*@Test
-    public void onCreate() {
+        String actualString = loginActivity.emailEditText.getText().toString();
 
-
-        LoginActivity loginActivity = new LoginActivity();
-
-
-        assertEquals(true,loginActivity.isValidPassword(email));
+        assertEquals(email,actualString);
+        Mockito.verify(view).emailEditText
 
     }*/
 
 
-    //@Test
-    //public void onClick() {
-   // }
+
 }
