@@ -57,7 +57,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(act);
         }
         else if (view == buttonExit) {
-            System.exit(1);
+            this.finish();
+            System.exit(0);
         }
     }
 
