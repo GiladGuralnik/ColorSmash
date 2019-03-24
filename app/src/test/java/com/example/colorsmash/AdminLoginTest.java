@@ -18,12 +18,12 @@ public class AdminLoginTest {
 
     @Test
     public void test_correctEmailAddress() {
-        assertTrue(act.isEmailValid("ABCDS@gmail.com"));
+        assertTrue(act.isEmailValid("name@email.com"));
     }
 
     @Test
     public void test_incorrectEmailAddress() {
-        assertFalse(act.isEmailValid("12342134.com"));
+        assertFalse(act.isEmailValid("nameabcemail.com"));
     }
 
     @Test
@@ -33,7 +33,7 @@ public class AdminLoginTest {
 
     @Test
     public void test_incorrectPasswordLength() {
-        assertFalse(act.isPasswordValid(""));
+        assertFalse(act.isPasswordValid("1"));
     }
 
     @Test

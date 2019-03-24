@@ -25,7 +25,10 @@ public class MainActivityTest {
 
     private MainActivity mainActivity = null;
 
-    Instrumentation.ActivityMonitor monitor = getInstrumentation().addMonitor(LoginActivity.class.getName(),null,false);
+    Instrumentation.ActivityMonitor monitorLogin = getInstrumentation().addMonitor(LoginActivity.class.getName(),null,false);
+    Instrumentation.ActivityMonitor monitorAdminLogin = getInstrumentation().addMonitor(AdminLoginActivity.class.getName(),null,false);
+    Instrumentation.ActivityMonitor monitorRegister = getInstrumentation().addMonitor(RegisterActivity.class.getName(),null,false);
+    Instrumentation.ActivityMonitor monitorStartGame = getInstrumentation().addMonitor(StartGameActivity.class.getName(),null,false);
 
     @Before
     public void setUp() throws Exception {
@@ -49,7 +52,7 @@ public class MainActivityTest {
 
         onView(withId(R.id.ButtonLogin)).perform(click()); // mock a click on a button
 
-        Activity LoginActivity = getInstrumentation().waitForMonitorWithTimeout(monitor,5000);
+        Activity LoginActivity = getInstrumentation().waitForMonitorWithTimeout(monitorLogin,5000);
 
         assertNotNull(LoginActivity);
 
@@ -64,7 +67,7 @@ public class MainActivityTest {
 
         onView(withId(R.id.ButtonRegister)).perform(click()); // mock a click on a button
 
-        Activity RegisterActivity = getInstrumentation().waitForMonitorWithTimeout(monitor,5000);
+        Activity RegisterActivity = getInstrumentation().waitForMonitorWithTimeout(monitorRegister,5000);
 
         assertNotNull(RegisterActivity);
 
@@ -79,7 +82,7 @@ public class MainActivityTest {
 
         onView(withId(R.id.ButtonAdminLogin)).perform(click()); // mock a click on a button
 
-        Activity AdminLoginActivity = getInstrumentation().waitForMonitorWithTimeout(monitor,5000);
+        Activity AdminLoginActivity = getInstrumentation().waitForMonitorWithTimeout(monitorAdminLogin,5000);
 
         assertNotNull(AdminLoginActivity);
 
@@ -95,7 +98,7 @@ public class MainActivityTest {
 
         onView(withId(R.id.ButtonStartGame)).perform(click()); // mock a click on a button
 
-        Activity StartGameActivity  = getInstrumentation().waitForMonitorWithTimeout(monitor,5000);
+        Activity StartGameActivity  = getInstrumentation().waitForMonitorWithTimeout(monitorStartGame,5000);
 
         assertNull(StartGameActivity);
 
