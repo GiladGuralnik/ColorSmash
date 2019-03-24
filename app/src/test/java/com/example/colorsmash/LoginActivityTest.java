@@ -43,7 +43,4 @@ public class LoginActivityTest extends junit.framework.TestCase{
 
 
 
-
-
-
 }
