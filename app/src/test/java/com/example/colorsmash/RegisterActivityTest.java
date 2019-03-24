@@ -21,7 +21,7 @@ public class RegisterActivityTest {
 
     @Test
     public void test_incorrectEmailAddress() {
-        assertFalse(act.isEmailValid("nameabcemail.com"));
+        assertFalse(act.isEmailValid("namebcemail.com"));
     }
 
     @Test
