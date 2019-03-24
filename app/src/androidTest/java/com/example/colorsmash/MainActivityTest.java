@@ -102,7 +102,16 @@ public class MainActivityTest {
 
         assertNull(StartGameActivity);
 
+    }
 
+    @Test
+    public void testExitGameOnButtonClick()
+    {
+        assertNotNull(mainActivity.findViewById(R.id.ButtonExit));
+
+        onView(withId(R.id.ButtonExit)).perform(click()); // mock a click on a button
+
+        assertNull(mainActivity);
     }
 
     @Test
@@ -112,7 +121,6 @@ public class MainActivityTest {
 
         assertEquals("com.example.colorsmash", appContext.getPackageName());
     }
-
 
 
     @After
