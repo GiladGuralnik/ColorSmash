@@ -29,6 +29,7 @@ public class MainActivityTest {
     Instrumentation.ActivityMonitor monitorAdminLogin = getInstrumentation().addMonitor(AdminLoginActivity.class.getName(),null,false);
     Instrumentation.ActivityMonitor monitorRegister = getInstrumentation().addMonitor(RegisterActivity.class.getName(),null,false);
     Instrumentation.ActivityMonitor monitorStartGame = getInstrumentation().addMonitor(StartGameActivity.class.getName(),null,false);
+    Instrumentation.ActivityMonitor monitorMainActivity = getInstrumentation().addMonitor(MainActivity.class.getName(),null,false);
 
     @Before
     public void setUp() throws Exception {
@@ -111,7 +112,9 @@ public class MainActivityTest {
 
         onView(withId(R.id.ButtonExit)).perform(click()); // mock a click on a button
 
-        assertNull(mainActivity);
+        Activity MainActivity  = getInstrumentation().waitForMonitorWithTimeout(monitorMainActivity,5000);
+
+        assertNull(MainActivity);
     }
 
     @Test
