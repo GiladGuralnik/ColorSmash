@@ -48,19 +48,6 @@ public class LoginActivityTest extends junit.framework.TestCase{
         assertFalse(loginActivity.isPasswordValid("1"));
     }
 
-    /*@Test
-    public void emailEditTextUpdatesTextView(){
-        String email = "Yoel@gmail.com";
-        loginActivity.emailEditText.setText(email);
-
-        loginActivity.emailEditText.onEditorAction(EditorInfo.IME_ACTION_DONE);
-
-        String actualString = loginActivity.emailEditText.getText().toString();
-
-        assertEquals(email,actualString);
-        Mockito.verify(view).emailEditText
-
-    }*/
 
 
 
