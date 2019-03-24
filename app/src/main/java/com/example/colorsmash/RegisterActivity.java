@@ -99,6 +99,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             Toast.makeText(this, "Plase enter password", Toast.LENGTH_LONG).show();
             return;
         }
+        if (!isEmailValid(email)) {
+            //bad email
+            Toast.makeText(this, "Plase enter valid email", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(!isPasswordValid(password)){
+            //bad password
+            Toast.makeText(this, "Plase enter at least 8 characters password", Toast.LENGTH_LONG).show();
+            return;
+        }
+
 
         //incase both validations went well
         //show progress bar
@@ -165,5 +176,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         index = maxKey+1;
     }
 
+    public boolean isEmailValid(String email) {
+        return email.contains("@") && email.contains(".");
+    }
+
+    public boolean isPasswordValid(String password) {
+        return password.length() > 7;
+    }
 
 }
