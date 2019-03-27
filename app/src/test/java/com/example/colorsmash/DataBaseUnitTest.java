@@ -10,6 +10,7 @@ public class DataBaseUnitTest extends junit.framework.TestCase {
 
     @Test
     public void test(){
+        //test
         DatabaseReference mRef;
         FirebaseDatabase mDataBase;
         mDataBase=FirebaseDatabase.getInstance();
