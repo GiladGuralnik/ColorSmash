@@ -1,0 +1,35 @@
+//Just for demo.
+pipeline {
+    agent { docker { image 'maven:3.6.0-jdk-8-alpine' } }
+    stages {
+    stage('Git') {
+      // Get some code from a GitHub repository
+      steps{
+          checkout scm
+      }
+   }
+   stage('Build'){
+          steps{
+               sh "mvn -Dmaven.test.skip=true clean package"
+          }
+    }
+    stage('Unit Test'){
+          steps{
+               sh "mvn -Dmaven.test.failure.ignore clean test"
+          }
+    }
+    stage('Integrational Test'){
+          steps{
+               sh "mvn -Dmaven.test.failure.ignore clean install"
+          }
+    }
+     stage('Results') {
+     //Publish results
+       steps{
+      junit '**/target/surefire-reports/TEST-*.xml'
+      step( [ $class: 'JacocoPublisher' ] )
+       }
+     }
+     //fun comment.
+}
+}
