@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -56,21 +55,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return false;
         }
         if(target.length() < 8){
-            Toast.makeText(this,"The password is to short" , Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"The password is too short" , Toast.LENGTH_LONG).show();
             return false;
         }
         return true;
 
-    }
-
-    public boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
-    }
-
-    public boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
     }
 
     public final boolean isValidEmail(CharSequence target) {

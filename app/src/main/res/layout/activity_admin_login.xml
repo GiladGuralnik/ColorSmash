@@ -42,7 +42,8 @@
                 android:inputType="textEmailAddress"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
-                android:textColorLink="#E6306F" />
+                android:textColorLink="#E6306F"
+                android:textStyle="bold"/>
 
             <EditText
                 android:id="@+id/password"
@@ -53,7 +54,8 @@
                 android:inputType="textPassword"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
-                android:textColorLink="#E6306F" />
+                android:textColorLink="#E6306F"
+                android:textStyle="bold"/>
 
             <Button
                 android:id="@+id/email_sign_in_button"

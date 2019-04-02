@@ -28,7 +28,8 @@
                 android:hint="Enter your email please"
                 android:inputType="textEmailAddress"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#FFFFFF" />
+                android:textColorHint="#FFFFFF"
+                android:textStyle="bold"/>
 
             <EditText
                 android:id="@+id/editTextPassword"
@@ -38,7 +39,8 @@
                 android:hint="Enter your password"
                 android:inputType="textPassword"
                 android:textColor="#FFFFFF"
-                android:textColorHint="#FFFFFF" />
+                android:textColorHint="#FFFFFF"
+                android:textStyle="bold"/>
 
             <Button
                 android:id="@+id/ButtonRegister"
