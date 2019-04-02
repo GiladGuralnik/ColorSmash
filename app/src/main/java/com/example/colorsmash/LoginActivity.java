@@ -45,7 +45,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             startActivity(new Intent(getApplicationContext() , StartGameActivity.class));
         }
         */
-        singinButton.setOnClickListener(this);
 
     }
 
@@ -55,13 +54,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return false;
         }
         if(target.length() < 8){
-            Toast.makeText(this,"The password is to short" , Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"The password is too short" , Toast.LENGTH_LONG).show();
             return false;
         }
         return true;
 
     }
-
 
     public final boolean isValidEmail(CharSequence target) {
         if(TextUtils.isEmpty(target)){
