@@ -47,5 +47,5 @@ public class User {
         this.gender = gender;
     }
 
-    private String gender;
+    private String gender; //gender
 }
