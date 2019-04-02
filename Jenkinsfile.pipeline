@@ -1,35 +1,22 @@
-//Just for demo.
-pipeline {
-    agent { docker { image 'maven:3.6.0-jdk-8-alpine' } }
-    stages {
-    stage('Git') {
-      // Get some code from a GitHub repository
-      steps{
-          checkout scm
-      }
-   }
-   stage('Build'){
-          steps{
-               sh "mvn -Dmaven.test.skip=true clean package"
-          }
-    }
-    stage('Unit Test'){
-          steps{
-               sh "mvn -Dmaven.test.failure.ignore clean test"
-          }
-    }
-    stage('Integrational Test'){
-          steps{
-               sh "mvn -Dmaven.test.failure.ignore clean install"
-          }
-    }
-     stage('Results') {
-     //Publish results
-       steps{
-      junit '**/target/surefire-reports/TEST-*.xml'
-      step( [ $class: 'JacocoPublisher' ] )
-       }
-     }
-     //fun comment.
-}
+node {
+    // Get Artifactory server instance, defined in the Artifactory Plugin administration page.
+    def server = Artifactory.server "SERVER_ID"
+    // Create an Artifactory Gradle instance.
+    def rtGradle = Artifactory.newGradleBuild()
+
+    stage 'Clone sources'
+        git url: 'https://github.com/GiladGuralnik/ColorSmash'
+
+    stage 'Artifactory configuration'
+        // Tool name from Jenkins configuration
+        rtGradle.tool = "Gradle-2.4"
+        // Set Artifactory repositories for dependencies resolution and artifacts deployment.
+        rtGradle.deployer repo:'ext-release-local', server: server
+        rtGradle.resolver repo:'remote-repos', server: server
+
+    stage 'Gradle build'
+        def buildInfo = rtGradle.run rootDir: "gradle-examples/4/gradle-example-ci-server/", buildFile: 'build.gradle', tasks: 'clean artifactoryPublish'
+
+    stage 'Publish build info'
+        server.publishBuildInfo buildInfo
 }
