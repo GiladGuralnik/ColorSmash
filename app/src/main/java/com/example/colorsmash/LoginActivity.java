@@ -45,7 +45,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             startActivity(new Intent(getApplicationContext() , StartGameActivity.class));
         }
         */
-        ll
 
     }
 
