@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return false;
         };
 
-        return true;
+        return true; //end
     }
 
     public int test(int num){
