@@ -1,13 +1,39 @@
 pipeline {
-    agent any
-    tools {
-        jdk 'jdk8' 
-    }
+    agent { docker { image 'python:3-alpine' } }
     stages {
-        stage('Example') {
-            steps {
-                sh './gradlew build'
+        stage('Git') {
+            steps{
+                // echo 'Getting the code from GitHub...'
+                git 'https://github.com/GiladGuralnik/ColorSmash.git'
+            }
+        }
+        
+        stage('Run Tests'){
+            steps{
+                // echo 'Testing User app...'
+		withEnv(["HOME=${env.WORKSPACE}"]) {
+	 	      bat "call gradlew.bat"
+
+			}
+            }
+        }
+        stage('Results') {
+            steps{
+                echo 'Printing test results...'
+                withEnv(["HOME=${env.WORKSPACE}"]) {
+                 junit '**/nosetests.xml'
+                }
+            }
+        }
+	stage('Run site'){
+            steps{
+                // echo 'Testing User app...'
+		withEnv(["HOME=${env.WORKSPACE}"]) {
+	 	        sh "python3.7 website.py &"
+
+			}
             }
         }
     }
 }
+
