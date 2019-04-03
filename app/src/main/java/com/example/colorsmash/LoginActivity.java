@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             startActivity(new Intent(getApplicationContext() , StartGameActivity.class));
         }
         */
+        singinButton.setOnClickListener(this);
 
     }
 
@@ -77,6 +78,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public int test(int num){
         return num;
     }
+
+    public boolean isEmailValid(String email) {
+        return email.contains("@");
+    }
+
+    public boolean isPasswordValid(String password) {
+        return password.length() > 4;
+    }
+
 
     private void userLogin( String email ,String password ){
 
