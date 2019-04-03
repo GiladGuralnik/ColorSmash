@@ -17,6 +17,7 @@ pipeline {
     }*/
         stage('Run app on ubunto'){
           steps{
+            sh "gradlew"
                sh "./gradlew"
           }
     }
