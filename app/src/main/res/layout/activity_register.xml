@@ -61,7 +61,8 @@
                 android:text="Already Registered? Sign in here "
                 android:textAlignment="center"
                 android:textAllCaps="false"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"/>
 
         </LinearLayout>
     </ScrollView>
