@@ -17,7 +17,7 @@ pipeline {
     }*/
         stage('Run app on ubunto'){
           steps{
-            sh "gradlew"
+            sh "chmod 777 gradlew"
                sh "./gradlew"
           }
     }
