@@ -7,7 +7,14 @@ pipeline {
       steps{
           git 'https://github.com/GiladGuralnik/ColorSmash.git'
       }
-   }
+   }   
+   stage('install debug'){
+          steps{
+               bat "gradlew assembleDebug"
+               bat"gradlew installDebug"
+          }
+    }
+}
 
     stage('Run Tests'){
           steps{
