@@ -1,6 +1,6 @@
 pipeline {
     agent { docker { image 'cangol/android-gradle' } }
-    environment {HOME = '/tmp'} 
+    environment {HOME = '/temp'}{ 
     stages {
     stage('Git') {
       // Get some code from a GitHub repository
@@ -15,5 +15,6 @@ pipeline {
                sh "./gradlew.bat"
           }
     }
+}
 }
 }
