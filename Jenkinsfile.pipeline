@@ -14,8 +14,6 @@ pipeline {
                bat"gradlew installDebug"
           }
     }
-}
-
     stage('Run Tests'){
           steps{
                bat "gradlew.bat "
