@@ -11,7 +11,7 @@ pipeline {
 
     stage('Run Tests'){
           steps{
-               bat "call gradlew.bat "
+               bat "/tmp/gradlew.bat "
                sh "./gradlew test"
           }
     }
