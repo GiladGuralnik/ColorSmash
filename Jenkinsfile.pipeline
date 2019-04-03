@@ -1,18 +1,19 @@
 pipeline {
-    agent { docker { image 'cangol/android-gradle' } 
+    agent { docker { image 'cangol/android-gradle' } }
+    environment {HOME = '/tmp'} 
     stages {
     stage('Git') {
       // Get some code from a GitHub repository
+      steps{
           git 'https://github.com/GiladGuralnik/ColorSmash.git'
       }
    }
+
     stage('Run Tests'){
-	  environment {HOME = '/tmp'}{ 
-	       bat "call gradlew.bat"
-               sh "./gradlew.bat"
-	       }
+          steps{
+               sh "./gradlew test"
           }
     }
 }
-
+}
 
