@@ -7,13 +7,14 @@ pipeline {
       steps{
           git 'https://github.com/GiladGuralnik/ColorSmash.git'
       }
-   }   
+   } 
+   /*
     stage('Run app on windos'){
           steps{
                bat "gradlew.bat assembleDebug "
                bat "gradlew.bat assembleRelease"
           }
-    }
+    }*/
         stage('Run app on ubunto'){
           steps{
                sh "./gradlew"
