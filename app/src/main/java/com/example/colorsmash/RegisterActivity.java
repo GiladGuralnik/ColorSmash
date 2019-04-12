@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -161,8 +162,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         mRef.child(newIndex).child("gender").setValue("none");
         mRef.child(newIndex).child("age").setValue(999);
         mRef.child(newIndex).child("name").setValue("none");
-        mRef.child(newIndex).child("scores").setValue("none");
-        mRef.child(newIndex).child("badColors").setValue("none");
+        mRef.child(newIndex).child("scores").setValue(new HashMap<String,String>());
+        mRef.child(newIndex).child("badColors").setValue(new HashMap<String,String>());
 
     }
 
