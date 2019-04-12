@@ -13,8 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StartGameActivity"></activity>
-        <activity android:name=".PersonalInfo"></activity>
+        <activity android:name=".LeaderBoardActivity"></activity>
+        <activity android:name=".StartGameActivity" />
+        <activity android:name=".PersonalInfo" />
         <activity android:name=".ShowUsers" />
         <activity android:name=".AdminOptions" />
         <activity
