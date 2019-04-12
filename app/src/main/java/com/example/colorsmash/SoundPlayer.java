@@ -15,6 +15,7 @@ public class SoundPlayer {
     private static int hitOrangeSound;
     private static int hitPinkSound;
     private static int hitBlackSound;
+    private static int gameOverSound;
 
     public SoundPlayer(Context context)
     {
@@ -34,6 +35,7 @@ public class SoundPlayer {
         hitOrangeSound = soundPool.load(context,R.raw.orange,1);
         hitBlackSound = soundPool.load(context,R.raw.black,1);
         hitPinkSound = soundPool.load(context,R.raw.pink,1);
+        gameOverSound = soundPool.load(context,R.raw.gameover,1);
     }
 
     public void playHitOrangeSound()
@@ -49,5 +51,10 @@ public class SoundPlayer {
     public void playHitPinkSound()
     {
         soundPool.play(hitPinkSound,1.0f,1.0f,1,0,1.0f);
+    }
+
+    public void playGameOverSound()
+    {
+        soundPool.play(gameOverSound,1.0f,1.0f,1,0,1.0f);
     }
 }
