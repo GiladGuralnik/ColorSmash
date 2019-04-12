@@ -31,9 +31,83 @@
         >
 
         <ImageView
+            android:id="@+id/box"
             android:layout_width="44dp"
             android:layout_height="44dp"
-            android:src="@drawable/box"/>
+            android:src="@drawable/box"
+            android:layout_gravity="bottom"
+            android:visibility="invisible"
+            />
+
+        <ImageView
+            android:id="@+id/black"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/black"
+            android:visibility="invisible"
+            />
+        
+        <ImageView
+            android:id="@+id/orange"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/orange"
+            android:visibility="invisible"
+            />
+
+        <ImageView
+            android:id="@+id/pink"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/pink"
+            android:visibility="invisible"
+            />
+
+        <LinearLayout
+            android:id="@+id/startLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Color Smash"
+                android:textSize="24sp"
+                android:layout_marginTop="20dp" />
+
+            <TextView
+                android:id="@+id/highScoreLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="High Score: 300"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginTop="80dp"
+                android:textColor="@android:color/black"/>
+            
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="START"
+                android:layout_marginTop="60dp"
+                android:background="#E9E6306F"
+                android:onClick="startGame"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EXIT"
+                android:layout_marginTop="20dp"
+                android:background="#F2FFEB3B"
+                android:onClick="exitGame"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
 
 
     </FrameLayout>
