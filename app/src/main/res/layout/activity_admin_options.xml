@@ -10,11 +10,11 @@
 
     <Button
         android:id="@+id/ButtonShowUsers"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
         android:layout_gravity="center"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="show users"
@@ -25,9 +25,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonResetLeaderBoard"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:id="@+id/ButtonResetLeaderBoard"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
         android:layout_gravity="center"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="8dp"
@@ -35,9 +35,9 @@
         android:textSize="36sp" />
 
     <Button
-        android:id="@+id/buttonChangeUserColors"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:id="@+id/ButtonChangeUserColors"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
         android:layout_gravity="center"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="8dp"
