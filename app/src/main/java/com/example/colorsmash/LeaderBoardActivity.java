@@ -59,15 +59,15 @@ public class LeaderBoardActivity extends AppCompatActivity {
         for(DataSnapshot ds:dataSnapshot.getChildren()){
             LeaderBoardScore score = new LeaderBoardScore(ds.getKey(),(String)ds.getValue());
             scores.add(score);
-            views[scoreCounter].setText(String.valueOf(scoreCounter+1)+". " +ds.getKey()+" " +(String)ds.getValue());
-            scoreCounter++;
+            //views[scoreCounter].setText(String.valueOf(scoreCounter+1)+". " +ds.getKey()+" " +(String)ds.getValue());
+            //scoreCounter++;
 
         }
 
         Collections.sort(scores, new SortByValue());
 
         //scores = sortScores(scores);
-        for (int i=0;i<scores.size();i++){
+        for (int i=0;i<scores.size() && i<5 ;i++){
             views[i].setText(String.valueOf(i+1)+". " +scores.get(i).name +" " +scores.get(i).getValue());
         }
     }

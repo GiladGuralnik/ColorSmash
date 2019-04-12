@@ -20,10 +20,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // DELETE ///////
-        Intent i = new Intent(this,LeaderBoardActivity.class);
-        startActivity(i);
-
 
         buttonExit = (Button) findViewById(R.id.ButtonExit);
         buttonLogin = (Button) findViewById(R.id.ButtonLogin);
