@@ -41,10 +41,10 @@ public class ChangeUserColorsActivity extends AppCompatActivity implements View.
         buttonResetUserColor = (Button)findViewById(R.id.ButtonResetUserColors) ;
         buttonResetUserColor.setOnClickListener(this);
 
-        mRef.addValueEventListener(new ValueEventListener() {
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
+                users.clear();
                 showData(dataSnapshot);
                 showUsers();
             }
@@ -138,7 +138,7 @@ public class ChangeUserColorsActivity extends AppCompatActivity implements View.
             if(flag){
                 mRef.child(String.valueOf(index+1)).child("badColors").removeValue();
                 Toast.makeText(this, userMail+" colors has been cleared!", Toast.LENGTH_LONG).show();
-                //this.recreate();
+                this.recreate();
             }
             else{
                 Toast.makeText(this, "BAD USERNAME!", Toast.LENGTH_LONG).show();
