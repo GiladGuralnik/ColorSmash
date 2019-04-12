@@ -80,6 +80,29 @@ public class StartGameActivity extends AppCompatActivity {
     public void changePos()
     {
 
+        //orange Box
+        orangeY +=12;
+
+        float orangeCenterX = orangeX + orange.getWidth() / 2;
+        float orangeCenterY = orangeY  + orange.getHeight() / 2;
+
+        //if we Smash the orange box
+        if(hitCheck(orangeCenterX,orangeCenterY))
+        {
+            orangeY = frameHeight + 100;
+            score += 10; // update score
+
+        }
+
+        if(orangeY > frameHeight)
+        {
+            orangeY = -50; // speed of fall
+            orangeX = (float) Math.floor(Math.random() * (frameWidth - orange.getWidth())); //Randomize number between 0 and frameWidth
+        }
+
+        orange.setX(orangeX);
+        orange.setY(orangeY);
+
         //Move Box
         if(action_flg)
         {
@@ -109,6 +132,16 @@ public class StartGameActivity extends AppCompatActivity {
         box.setX(boxX);
     }
 
+    public boolean hitCheck(float x, float y)
+    {
+        if(boxX <= x && x <= boxX + boxSize && boxY <= y && y<= frameHeight)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if(start_flg)
@@ -125,6 +158,7 @@ public class StartGameActivity extends AppCompatActivity {
 
         return true;
     }
+
 
     public void startGame(View view)
     {
