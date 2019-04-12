@@ -28,10 +28,6 @@ public class StartGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_game);
 
-        startGameButton = (Button) findViewById(R.id.SGAstartGameButton);
-        logoutButton = (Button) findViewById(R.id.SGALogoutButton);
-        scoreViewText = (TextView) findViewById(R.id.SGAscoreNumber);
-
         //firebaseAuth=FirebaseAuth.getInstance();
 
         startGameButton.setOnClickListener(new View.OnClickListener(){
