@@ -1,7 +1,9 @@
 package com.example.colorsmash;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 public class StartGameActivity extends AppCompatActivity {
 
@@ -45,6 +48,7 @@ public class StartGameActivity extends AppCompatActivity {
     //Score
     private TextView scoreLabel,highScoreLabel;
     private int score,highScore,timeCount; //Those values will be sent to the DB
+    private SharedPreferences settings; // Local High Score -- will be moved to DB
 
     //Class
     private Timer timer;
@@ -74,6 +78,12 @@ public class StartGameActivity extends AppCompatActivity {
 
         imageBoxLeft = getResources().getDrawable(R.drawable.box_left);
         imageBoxRight = getResources().getDrawable(R.drawable.box_right);
+
+        //High Score
+        settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE);
+        highScore = settings.getInt("HIGH_SCORE", 0);
+        highScoreLabel.setText("High Score : " + highScore);
+
 
 
     }
@@ -231,13 +241,33 @@ public class StartGameActivity extends AppCompatActivity {
         timer = null;
         start_flg = false;
 
+        //Before Showing startLayout sleep for 1 second
+        try{
+            TimeUnit.SECONDS.sleep(1);
+        }catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+
         changeFrameWidth(initialFrameWidth);
+
         startLayout.setVisibility(View.VISIBLE);
         box.setVisibility(View.INVISIBLE);
         pink.setVisibility(View.INVISIBLE);
         orange.setVisibility(View.INVISIBLE);
         black.setVisibility(View.INVISIBLE);
 
+        //Update High Score Field
+        if(score > highScore)
+        {
+            highScore = score;
+            highScoreLabel.setText("High Score : " + highScore);
+
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putInt("HIGH_SCORE", highScore);
+            editor.commit();
+
+        }
     }
 
     @Override
@@ -272,6 +302,8 @@ public class StartGameActivity extends AppCompatActivity {
             boxSize = box.getHeight();
             boxX = box.getX();
             boxY = box.getY();
+
+            frameWidth = initialFrameWidth;
 
             box.setX(0.0f); //initial location bottom-left
             black.setY(3000.0f);
