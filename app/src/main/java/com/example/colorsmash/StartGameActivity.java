@@ -53,6 +53,7 @@ public class StartGameActivity extends AppCompatActivity {
     //Class
     private Timer timer;
     private Handler handler = new Handler();
+    private SoundPlayer soundPlayer;
 
     //Status
     private boolean start_flg = false;
@@ -84,6 +85,9 @@ public class StartGameActivity extends AppCompatActivity {
         highScore = settings.getInt("HIGH_SCORE", 0);
         highScoreLabel.setText("High Score : " + highScore);
 
+        //SoundPlayer
+        soundPlayer = new SoundPlayer(this);
+
 
 
     }
@@ -104,6 +108,7 @@ public class StartGameActivity extends AppCompatActivity {
         {
             orangeY = frameHeight + 100;
             score += 10; // update score
+            soundPlayer.playHitOrangeSound();
 
         }
 
@@ -138,6 +143,7 @@ public class StartGameActivity extends AppCompatActivity {
             {
                 pinkY = frameHeight + 30;
                 score += 30;
+                soundPlayer.playHitPinkSound();
 
                 //Change Frame Width ( pink bonus )
                 if(initialFrameWidth > frameWidth * 110/100) //if the frame got shrunk
@@ -168,6 +174,7 @@ public class StartGameActivity extends AppCompatActivity {
             //Change Frame Width
             frameWidth = frameWidth * 80/100; // 80% of original size
             changeFrameWidth(frameWidth);
+            soundPlayer.playHitBlackSound();
 
             if(frameWidth <= boxSize) // End of Game
             {
