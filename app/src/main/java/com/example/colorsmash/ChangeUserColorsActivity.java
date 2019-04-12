@@ -4,9 +4,14 @@ import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -17,13 +22,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChangeUserColorsActivity extends AppCompatActivity {
+public class ChangeUserColorsActivity extends AppCompatActivity implements View.OnClickListener{
 
     private DatabaseReference mRef;
-
     private FirebaseDatabase mDataBase;
-
     private List<User> users =  new ArrayList<>();
+    private Button buttonResetUserColor;
+    private EditText editTextUserToResetColors;
 
 
     @Override
@@ -32,7 +37,9 @@ public class ChangeUserColorsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_change_user_color);
         mDataBase= FirebaseDatabase.getInstance();
         mRef = mDataBase.getReference("Users");
-
+        editTextUserToResetColors = (EditText)findViewById(R.id.editTextUserToResetColors);
+        buttonResetUserColor = (Button)findViewById(R.id.ButtonResetUserColors) ;
+        buttonResetUserColor.setOnClickListener(this);
 
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -112,4 +119,32 @@ public class ChangeUserColorsActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        if(v==buttonResetUserColor){
+            boolean flag =false;
+            int index = -1;
+            String userMail = editTextUserToResetColors.getText().toString();
+            if(userMail!="") {
+                for (User us : users) {
+                    index ++;
+                    if (us.getUsername().equals(userMail)) {
+                        flag = true;
+                        break;
+                    }
+                }
+            }
+
+            if(flag){
+                mRef.child(String.valueOf(index+1)).child("badColors").removeValue();
+                Toast.makeText(this, userMail+" colors has been cleared!", Toast.LENGTH_LONG).show();
+                //this.recreate();
+            }
+            else{
+                Toast.makeText(this, "BAD USERNAME!", Toast.LENGTH_LONG).show();
+
+            }
+
+        }
+    }
 }
