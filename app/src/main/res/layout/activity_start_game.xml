@@ -75,16 +75,32 @@
                 android:layout_marginTop="20dp" />
 
             <TextView
-                android:id="@+id/highScore"
+                android:id="@+id/highScoreLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="High Score: 300"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_marginTop="80dp"/>
+                android:layout_marginTop="80dp"
+                android:textColor="@android:color/black"/>
+            
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="START"
+                android:layout_marginTop="60dp"
+                android:background="#E9E6306F"
+                android:onClick="startGame"
+                android:textStyle="bold" />
 
-
-
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EXIT"
+                android:layout_marginTop="20dp"
+                android:background="#F2FFEB3B"
+                android:onClick="exitGame"
+                android:textStyle="bold"/>
 
         </LinearLayout>
 
