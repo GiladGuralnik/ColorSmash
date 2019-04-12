@@ -17,18 +17,19 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChangeUserColosActivity extends AppCompatActivity {
+public class ChangeUserColorsActivity extends AppCompatActivity {
 
     private DatabaseReference mRef;
+
     private FirebaseDatabase mDataBase;
+
     private List<User> users =  new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_users);
-
-
+        setContentView(R.layout.activity_change_user_color);
         mDataBase= FirebaseDatabase.getInstance();
         mRef = mDataBase.getReference("Users");
 
@@ -47,16 +48,12 @@ public class ChangeUserColosActivity extends AppCompatActivity {
 
             }
         });
-
-
-
     }
-
     //Initiates the table
     public void showUsers(){
 
         //This part defines the layout to be used for creating new rows
-        TableLayout ll = (TableLayout) findViewById(R.id.UsersTable);
+        TableLayout ll = (TableLayout) findViewById(R.id.usersListToChangeColor);
         TableRow row= new TableRow(this);
         TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
         row.setLayoutParams(lp);
@@ -64,17 +61,14 @@ public class ChangeUserColosActivity extends AppCompatActivity {
         TextView tUsername = new TextView(this);
         TextView tColors = new TextView(this);
 
+
         //This generates the caption row
         tUsername.setText("Username");
-        tUsername.setPadding(3, 3, 3, 3);
-
-
-        tColors.setText("Bad colors");
-        tColors.setPadding(3, 3, 3, 3);
-
+        tUsername.setPadding(3, 3, 5, 3);
+        tColors.setText("Bad Colors");
+        tColors.setPadding(3, 3, 5, 3);
         row.addView(tUsername);
         row.addView(tColors);
-
         ll.addView(row,0);
 
         //This loop adds the database content to the table (using hardcoded values here for demonstration)
@@ -85,17 +79,21 @@ public class ChangeUserColosActivity extends AppCompatActivity {
             row.setLayoutParams(lp);
             tUsername = new TextView(this);
             tColors = new TextView(this);
-
             tUsername.setText(users.get(i).getUsername());
-            tUsername.setPadding(3, 3, 3, 3);
+            tUsername.setPadding(3, 3, 5, 3);
             ArrayList<String> arr = users.get(i).getBadColors();
+            if(arr!=null){
+                tColors.setText(users.get(i).getBadColors().toString());
+            }
+            else{
+                tColors.setText("None");
 
-            tColors.setText(arr.toString());
-            tColors.setPadding(3, 3, 3, 3);
-
+            }
+            tColors.setPadding(3, 3, 5, 3);
 
             row.addView(tUsername);
             row.addView(tColors);
+
             row.setBackgroundColor(Color.parseColor("#FFFFFF"));
             ll.addView(row,i+1);
 
@@ -113,5 +111,5 @@ public class ChangeUserColosActivity extends AppCompatActivity {
 
         }
     }
-}
 
+}

@@ -47,7 +47,7 @@ public class AdminOptions extends AppCompatActivity implements View.OnClickListe
 
         }
         else if (v == buttonChangeUserColors){
-            Intent act = new Intent(AdminOptions.this, ChangeUserColosActivity.class);
+            Intent act = new Intent(AdminOptions.this, ChangeUserColorsActivity.class);
             startActivity(act);
         }
     }
