@@ -130,6 +130,11 @@ public class StartGameActivity extends AppCompatActivity {
                 score += 30;
 
                 //Change Frame Width ( pink bonus )
+                if(initialFrameWidth > frameWidth * 110/100) //if the frame got shrunk
+                {
+                    frameWidth = frameWidth * 110/100;
+                    changeFrameWidth(frameWidth);
+                }
             }
 
             if(pinkY > frameHeight )
@@ -153,6 +158,11 @@ public class StartGameActivity extends AppCompatActivity {
             //Change Frame Width
             frameWidth = frameWidth * 80/100; // 80% of original size
             changeFrameWidth(frameWidth);
+
+            if(frameWidth <= boxSize) // End of Game
+            {
+                gameOver();
+            }
         }
 
         if(blackY > frameHeight )
@@ -213,6 +223,21 @@ public class StartGameActivity extends AppCompatActivity {
         ViewGroup.LayoutParams params = gameFrame.getLayoutParams();
         params.width = frameWidth;
         gameFrame.setLayoutParams(params);
+    }
+
+    public void gameOver(){
+        //Stop Time
+        timer.cancel();
+        timer = null;
+        start_flg = false;
+
+        changeFrameWidth(initialFrameWidth);
+        startLayout.setVisibility(View.VISIBLE);
+        box.setVisibility(View.INVISIBLE);
+        pink.setVisibility(View.INVISIBLE);
+        orange.setVisibility(View.INVISIBLE);
+        black.setVisibility(View.INVISIBLE);
+
     }
 
     @Override
