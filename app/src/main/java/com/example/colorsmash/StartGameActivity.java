@@ -1,12 +1,15 @@
 package com.example.colorsmash;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.view.View;
@@ -20,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 public class StartGameActivity extends AppCompatActivity {
 
@@ -43,7 +47,8 @@ public class StartGameActivity extends AppCompatActivity {
 
     //Score
     private TextView scoreLabel,highScoreLabel;
-    private int score,highScore,timeCount;
+    private int score,highScore,timeCount; //Those values will be sent to the DB
+    private SharedPreferences settings; // Local High Score -- will be moved to DB
 
     //Class
     private Timer timer;
@@ -74,13 +79,21 @@ public class StartGameActivity extends AppCompatActivity {
         imageBoxLeft = getResources().getDrawable(R.drawable.box_left);
         imageBoxRight = getResources().getDrawable(R.drawable.box_right);
 
+        //High Score
+        settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE);
+        highScore = settings.getInt("HIGH_SCORE", 0);
+        highScoreLabel.setText("High Score : " + highScore);
+
+
 
     }
 
     public void changePos()
     {
+        //Add Time Count
+        timeCount += 20;
 
-        //orange Box
+        //_______________________________________________Orange Box_______________________________
         orangeY +=12;
 
         float orangeCenterX = orangeX + orange.getWidth() / 2;
@@ -102,6 +115,76 @@ public class StartGameActivity extends AppCompatActivity {
 
         orange.setX(orangeX);
         orange.setY(orangeY);
+
+
+        //_______________________________________________Pink_______________________________
+
+        if(!pink_flg && timeCount%10000 == 0 ) // timer for pink to appear
+        {
+            pink_flg = true;
+            pinkY = -20;
+            pinkX = (float) Math.floor(Math.random() * (frameWidth - pink.getWidth()));
+
+        }
+
+        if(pink_flg){
+
+            pinkY += 20;
+
+            float pinkCenterX = pinkX + pink.getWidth() / 2;
+            float pinkCenterY = pinkY + pink.getHeight() / 2;
+
+            if(hitCheck(pinkCenterX,pinkCenterY))
+            {
+                pinkY = frameHeight + 30;
+                score += 30;
+
+                //Change Frame Width ( pink bonus )
+                if(initialFrameWidth > frameWidth * 110/100) //if the frame got shrunk
+                {
+                    frameWidth = frameWidth * 110/100;
+                    changeFrameWidth(frameWidth);
+                }
+            }
+
+            if(pinkY > frameHeight )
+                pink_flg = false;
+
+            pink.setX(pinkX);
+            pink.setY(pinkY);
+
+        }
+
+        //_______________________________________________Black Box_______________________________
+        blackY += 18;
+
+        float blackCenterX = blackX +black.getWidth() / 2;
+        float blackCenterY = blackY +black.getHeight() / 2;
+
+        if(hitCheck(blackCenterX,blackCenterY))
+        {
+            blackY = frameHeight + 100;
+
+            //Change Frame Width
+            frameWidth = frameWidth * 80/100; // 80% of original size
+            changeFrameWidth(frameWidth);
+
+            if(frameWidth <= boxSize) // End of Game
+            {
+                gameOver();
+            }
+        }
+
+        if(blackY > frameHeight )
+        {
+            blackY = -100;
+            blackX = (float)Math.floor(Math.random() * (frameWidth - black.getWidth()));
+
+        }
+
+        black.setX(blackX);
+        black.setY(blackY);
+
 
         //Move Box
         if(action_flg)
@@ -130,6 +213,8 @@ public class StartGameActivity extends AppCompatActivity {
         }
 
         box.setX(boxX);
+        scoreLabel.setText("Score : " + score); //update score
+
     }
 
     public boolean hitCheck(float x, float y)
@@ -140,6 +225,49 @@ public class StartGameActivity extends AppCompatActivity {
         }
 
         return false;
+    }
+
+
+    public void changeFrameWidth(int frameWidth)
+    {
+        ViewGroup.LayoutParams params = gameFrame.getLayoutParams();
+        params.width = frameWidth;
+        gameFrame.setLayoutParams(params);
+    }
+
+    public void gameOver(){
+        //Stop Time
+        timer.cancel();
+        timer = null;
+        start_flg = false;
+
+        //Before Showing startLayout sleep for 1 second
+        try{
+            TimeUnit.SECONDS.sleep(1);
+        }catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+
+        changeFrameWidth(initialFrameWidth);
+
+        startLayout.setVisibility(View.VISIBLE);
+        box.setVisibility(View.INVISIBLE);
+        pink.setVisibility(View.INVISIBLE);
+        orange.setVisibility(View.INVISIBLE);
+        black.setVisibility(View.INVISIBLE);
+
+        //Update High Score Field
+        if(score > highScore)
+        {
+            highScore = score;
+            highScoreLabel.setText("High Score : " + highScore);
+
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putInt("HIGH_SCORE", highScore);
+            editor.commit();
+
+        }
     }
 
     @Override
@@ -174,6 +302,8 @@ public class StartGameActivity extends AppCompatActivity {
             boxSize = box.getHeight();
             boxX = box.getX();
             boxY = box.getY();
+
+            frameWidth = initialFrameWidth;
 
             box.setX(0.0f); //initial location bottom-left
             black.setY(3000.0f);
