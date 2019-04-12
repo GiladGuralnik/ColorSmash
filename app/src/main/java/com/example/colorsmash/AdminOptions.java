@@ -37,9 +37,7 @@ public class AdminOptions extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if(v == buttonShowUsers) {
-            //Intent act = new Intent(AdminOptions.this, ShowUsers.class);
-            Intent act = new Intent(AdminOptions.this, LeaderBoardActivity.class);
-
+            Intent act = new Intent(AdminOptions.this, ShowUsers.class);
             startActivity(act);
         }
         else if ( v == buttonResetLeaderBoard){
@@ -49,11 +47,8 @@ public class AdminOptions extends AppCompatActivity implements View.OnClickListe
 
         }
         else if (v == buttonChangeUserColors){
-            DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("LeaderBoard");
-            HashMap<String,String> arr =new HashMap<String,String> () ;
-            arr.put("gilad","123");
-            arr.put("eli","65");
-            mRef.setValue(arr);
+            Intent act = new Intent(AdminOptions.this, ChangeUserColosActivity.class);
+            startActivity(act);
         }
     }
 }
