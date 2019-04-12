@@ -247,6 +247,7 @@ public class StartGameActivity extends AppCompatActivity {
         timer.cancel();
         timer = null;
         start_flg = false;
+        soundPlayer.playGameOverSound();
 
         //Before Showing startLayout sleep for 1 second
         try{
