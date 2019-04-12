@@ -40,7 +40,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view)
     {
         if(view==buttonStartGame) {
-            return;
+            Intent act = new Intent (MainActivity.this,StartGameActivity.class);
+            startActivity(act);
         }
         else if(view == buttonRegister) {
             Intent act = new Intent(MainActivity.this, RegisterActivity.class);
