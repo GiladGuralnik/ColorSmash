@@ -19,7 +19,7 @@ import java.util.Comparator;
 public class LeaderBoardActivity extends AppCompatActivity {
 
     private ArrayList<LeaderBoardScore> scores;
-    private DatabaseReference mRef;
+    private DatabaseReference mRef,mRef2;
     TextView [] views = new TextView [5];
 
 
@@ -67,7 +67,24 @@ public class LeaderBoardActivity extends AppCompatActivity {
         Collections.sort(scores, new SortByValue());
 
         for (int i=0;i<scores.size() && i<5 ;i++){
-            views[i].setText(String.valueOf(i+1)+". " +scores.get(i).name +" " +scores.get(i).getValue());
+
+            mRef2 = FirebaseDatabase.getInstance().getReference("Users").child(scores.get(i).name);
+            final int index = i;
+            mRef2.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String name = (String)dataSnapshot.child("username").getValue();
+                    views[index].setText(String.valueOf(index+1)+". " +name +" " +scores.get(index).getValue());
+
+                }
+
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
         }
     }
 
