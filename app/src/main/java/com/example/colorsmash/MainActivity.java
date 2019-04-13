@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Intent i = new Intent(this,ShowPreviousScoresActivity.class);
+        startActivity(i);
 
         buttonExit = (Button) findViewById(R.id.ButtonExit);
         buttonLogin = (Button) findViewById(R.id.ButtonLogin);
