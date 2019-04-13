@@ -127,7 +127,7 @@ public class UserTest {
         badColors.add("GREEN");
         badColors.add("BLUE");
         act.setBadColors(badColors);
-        assertEquals("RED",act.getBadColors().get(1));
+        assertNotEquals("RED",act.getBadColors().get(1));
     }
 
 
