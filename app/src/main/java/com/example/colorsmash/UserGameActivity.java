@@ -31,6 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
@@ -72,6 +73,7 @@ public class UserGameActivity extends AppCompatActivity {
 
     //Active User
     private String uID;
+    private FirebaseUser user;
 
 
 
@@ -94,7 +96,7 @@ public class UserGameActivity extends AppCompatActivity {
 
         //////////////////////////////// PULL LOGGED IN USER FROM FIREBASE //////////////////////////////////////
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user = FirebaseAuth.getInstance().getCurrentUser();
         uID = "";
         if (user != null) {
             uID = user.getUid();
@@ -351,7 +353,43 @@ public class UserGameActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     HashMap<String,String> leaders = (HashMap<String,String>)dataSnapshot.getValue();
-                    //Log.d("TTTT",dataSnapshot.toString());
+                    if(leaders==null){
+                        leaders = new HashMap<String,String>();
+                    }
+                    if(leaders.size()<5){
+                        leaders.put(user.getUid(),String.valueOf(score));
+                        mRef2.setValue(leaders);
+                    }
+                    else if(leaders.size()==5) {
+                        double min = Double.POSITIVE_INFINITY;
+                        for (String value : leaders.values()) {
+                            if (Integer.parseInt(value) < min) {
+                                min = Integer.parseInt(value);
+                            }
+                        }
+
+                        if ( score > (int) min) {
+
+                            String val = "";
+                            String key = "";
+
+                            for (Map.Entry<String, String> entry : leaders.entrySet()) {
+                                key = entry.getKey();
+                                val = entry.getValue();
+                                if (Integer.parseInt(val) == (int) min) {
+                                    break;
+                                }
+                            }
+
+                            Log.d("TTTT",String.valueOf(min));
+                            leaders.remove(key);
+                            leaders.put(user.getUid(),String.valueOf(score));
+
+                            mRef2.setValue(leaders);
+
+                        }
+
+                    }
                 }
 
                 @Override
