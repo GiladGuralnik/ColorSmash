@@ -66,7 +66,6 @@ public class LeaderBoardActivity extends AppCompatActivity {
 
         Collections.sort(scores, new SortByValue());
 
-        //scores = sortScores(scores);
         for (int i=0;i<scores.size() && i<5 ;i++){
             views[i].setText(String.valueOf(i+1)+". " +scores.get(i).name +" " +scores.get(i).getValue());
         }
