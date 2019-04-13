@@ -13,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LeaderBoardActivity"></activity>
+        <activity android:name=".ChangeUserColorsActivity"></activity>
+        <activity android:name=".ChangeUserColosActivity" />
+        <activity android:name=".LeaderBoardActivity" />
         <activity android:name=".StartGameActivity" />
         <activity android:name=".PersonalInfo" />
         <activity android:name=".ShowUsers" />
