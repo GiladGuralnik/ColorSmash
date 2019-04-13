@@ -11,36 +11,36 @@ import android.widget.Toast;
 
 public class UserOptionsActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button buttonShowUsers;
-    private Button buttonResetLeaderBoard;
-    private Button buttonChangeUserColors;
+    private Button buttonStartGame;
+    private Button buttonShowLeaderBoard;
+    private Button buttonShowHighscore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_options);
 
-        buttonShowUsers = (Button) findViewById(R.id.ButtonShowUsers);
-        buttonResetLeaderBoard = (Button) findViewById(R.id.ButtonResetLeaderBoard);
-        buttonChangeUserColors = (Button) findViewById(R.id.ButtonChangeUserColors);
+        buttonStartGame = (Button) findViewById(R.id.ButtonShowUsers);
+        buttonShowLeaderBoard = (Button) findViewById(R.id.ButtonResetLeaderBoard);
+        buttonShowHighscore = (Button) findViewById(R.id.ButtonChangeUserColors);
 
-        buttonShowUsers.setOnClickListener(this);
-        buttonResetLeaderBoard.setOnClickListener(this);
-        buttonChangeUserColors.setOnClickListener(this);
+        buttonStartGame.setOnClickListener(this);
+        buttonShowLeaderBoard.setOnClickListener(this);
+        buttonShowHighscore.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
-        if(v == buttonShowUsers) {
+        if(v == buttonStartGame) {
             Intent act = new Intent(UserOptionsActivity.this, StartGameActivity.class);
             startActivity(act);
         }
-        else if ( v == buttonResetLeaderBoard){
+        else if ( v == buttonShowLeaderBoard){
             Intent act = new Intent(UserOptionsActivity.this, LeaderBoardActivity.class);
             startActivity(act);
         }
-        else if (v == buttonChangeUserColors){
+        else if (v == buttonShowHighscore){
             Intent act = new Intent(UserOptionsActivity.this, ChangeUserColorsActivity.class);
             startActivity(act);
         }
