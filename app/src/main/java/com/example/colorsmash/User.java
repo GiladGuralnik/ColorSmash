@@ -6,6 +6,7 @@ import java.util.HashMap;
 public class User {
     private String username;
     private String name;
+    private String highscore;
     private int age;
     private ArrayList<String>scores;
     private ArrayList<String>  badColors;
@@ -71,4 +72,12 @@ public class User {
     }
 
     private String gender;
+
+    public String getHighscore() {
+        return highscore;
+    }
+
+    public void setHighscore(String highscore) {
+        this.highscore = highscore;
+    }
 }

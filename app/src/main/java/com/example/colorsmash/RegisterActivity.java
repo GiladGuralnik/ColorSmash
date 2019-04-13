@@ -156,6 +156,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         mRef.child(uID).child("age").setValue(999);
         mRef.child(uID).child("name").setValue("none");
         mRef.child(uID).child("scores").setValue(new HashMap<String,String>());
+        mRef.child(uID).child("scores").setValue("0");
         mRef.child(uID).child("badColors").setValue(new HashMap<String,String>());
 
     }
