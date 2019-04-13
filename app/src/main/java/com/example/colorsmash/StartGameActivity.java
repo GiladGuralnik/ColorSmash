@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -24,8 +25,6 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 public class StartGameActivity extends AppCompatActivity {
-
-    // https://stackoverflow.com/questions/37873608/how-do-i-detect-if-a-user-is-already-logged-in-firebase
 
     //GameFrame
     private FrameLayout gameFrame;
@@ -62,12 +61,10 @@ public class StartGameActivity extends AppCompatActivity {
 
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_game);
-
 
         gameFrame = findViewById(R.id.gameFrame);
         startLayout = findViewById(R.id.startLayout);
@@ -88,8 +85,6 @@ public class StartGameActivity extends AppCompatActivity {
 
         //SoundPlayer
         soundPlayer = new SoundPlayer(this);
-
-
 
     }
 
@@ -296,6 +291,17 @@ public class StartGameActivity extends AppCompatActivity {
         return true;
     }
 
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            this.onDestroy();
+            Intent act = new Intent(StartGameActivity.this, MainActivity.class);
+            startActivity(act);
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
 
     public void startGame(View view)
     {
@@ -357,7 +363,9 @@ public class StartGameActivity extends AppCompatActivity {
 
     public void exitGame(View view)
     {
-
+        this.finish();
+        Intent act = new Intent(StartGameActivity.this, MainActivity.class);
+        startActivity(act);
     }
 
 
