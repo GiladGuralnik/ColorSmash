@@ -58,7 +58,7 @@ public class PersonalInfo extends AppCompatActivity {
 
                 updateUserData(name,gender,age);
                 Toast.makeText(PersonalInfo.this,"Data Updated",Toast.LENGTH_SHORT).show();
-                Intent act = new Intent(PersonalInfo.this, StartGameActivity.class);
+                Intent act = new Intent(PersonalInfo.this, UserOptionsActivity.class);
                 startActivity(act);
 
             }
