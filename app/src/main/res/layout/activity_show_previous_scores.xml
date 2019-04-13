@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bricks"
     android:orientation="vertical"
-    android:id="@+id/llayout"
     tools:context=".ShowPreviousScoresActivity">
 
     <TextView
@@ -14,8 +15,10 @@
         android:layout_height="42dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
+        android:background="#9580D8FF"
         android:gravity="center"
         android:text="Previous Scores"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textStyle="bold" />
 </LinearLayout>
