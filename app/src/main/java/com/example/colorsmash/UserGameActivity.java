@@ -362,8 +362,8 @@ public class UserGameActivity extends AppCompatActivity {
     {
         if ((keyCode == KeyEvent.KEYCODE_BACK))
         {
-            this.onDestroy();
-            Intent act = new Intent(UserGameActivity.this, MainActivity.class);
+            this.finish();
+            Intent act = new Intent(UserGameActivity.this, UserOptionsActivity.class);
             startActivity(act);
         }
         return super.onKeyDown(keyCode, event);
@@ -449,7 +449,7 @@ public class UserGameActivity extends AppCompatActivity {
     public void exitGame(View view)
     {
         this.finish();
-        Intent act = new Intent(UserGameActivity.this, MainActivity.class);
+        Intent act = new Intent(UserGameActivity.this, UserOptionsActivity.class);
         startActivity(act);
     }
 
