@@ -84,9 +84,18 @@ public class UserGameActivity extends AppCompatActivity {
         imageBoxLeft = getResources().getDrawable(R.drawable.box_left);
         imageBoxRight = getResources().getDrawable(R.drawable.box_right);
 
+        //////////////////////////////// PULL LOGGED IN USER FROM FIREBASE //////////////////////////////////////
+
+        // כאן תשמור את השם משתמש
+
+
+        /////////////////////////////// PULL HIGH SCORE FROM FIRE BASE BY USER NAME //////////////////////////////
         //High Score
         settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE);
         highScore = settings.getInt("HIGH_SCORE", 0);
+
+
+
         highScoreLabel.setText("High Score : " + highScore);
 
         //SoundPlayer
@@ -273,6 +282,9 @@ public class UserGameActivity extends AppCompatActivity {
             highScore = score;
             highScoreLabel.setText("High Score : " + highScore);
 
+
+
+////////////////////// DELETE SHARED PREFERENCES AND INSERT THE NEW HIGH SCORE TO FIREBASE ////////////////////////////////
             SharedPreferences.Editor editor = settings.edit();
             editor.putInt("HIGH_SCORE", highScore);
             editor.commit();
