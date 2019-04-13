@@ -506,6 +506,11 @@ public class UserGameActivity extends AppCompatActivity {
 
     }
 
+    public void viewScores(View view)
+    {
+        Intent act = new Intent(UserGameActivity.this, UserOptionsActivity.class);
+        startActivity(act);
+    }
 
     public void exitGame(View view)
     {
