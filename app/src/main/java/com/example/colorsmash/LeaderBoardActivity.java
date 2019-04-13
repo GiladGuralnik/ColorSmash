@@ -74,7 +74,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     String name = (String)dataSnapshot.child("username").getValue();
-                    views[index].setText(String.valueOf(index+1)+". " +name +" " +scores.get(index).getValue());
+                    views[index].setText(String.valueOf(index+1)+". " +name +" : " +scores.get(index).getValue());
 
                 }
 
