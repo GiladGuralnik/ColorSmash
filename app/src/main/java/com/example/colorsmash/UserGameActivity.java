@@ -28,6 +28,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
@@ -297,18 +299,44 @@ public class UserGameActivity extends AppCompatActivity {
         orange.setVisibility(View.INVISIBLE);
         black.setVisibility(View.INVISIBLE);
 
+
+        // Get user ref from db
+        final DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users").child(uID);
+        mRef.child("scores").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<String> scores = new ArrayList<>();
+                for(DataSnapshot ds:dataSnapshot.getChildren()){
+                    String sc=ds.getValue(String.class);
+                    scores.add(sc);
+                }
+
+                // add the new score
+                scores.add(String.valueOf(score));
+
+                //add the score to users scores list
+                mRef.child("scores").setValue(scores);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
         //Update High Score Field
         if(score > highScore)
         {
             highScore = score;
             highScoreLabel.setText("High Score : " + highScore);
 
-
-
 ////////////////////// DELETE SHARED PREFERENCES AND INSERT THE NEW HIGH SCORE TO FIREBASE ////////////////////////////////
-            SharedPreferences.Editor editor = settings.edit();
-            editor.putInt("HIGH_SCORE", highScore);
-            editor.commit();
+
+            //update users highscore
+            mRef.child("highscore").setValue(String.valueOf(highScore));
 
         }
     }
