@@ -17,8 +17,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Timer;
@@ -26,6 +24,8 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 public class StartGameActivity extends AppCompatActivity {
+
+    // https://stackoverflow.com/questions/37873608/how-do-i-detect-if-a-user-is-already-logged-in-firebase
 
     //GameFrame
     private FrameLayout gameFrame;
@@ -59,6 +59,7 @@ public class StartGameActivity extends AppCompatActivity {
     private boolean start_flg = false;
     private boolean action_flg = false;
     private boolean pink_flg = false;
+
 
 
 
