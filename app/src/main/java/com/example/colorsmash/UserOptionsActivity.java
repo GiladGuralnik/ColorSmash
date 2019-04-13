@@ -31,10 +31,12 @@ public class UserOptionsActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         if(v == buttonStartGame) {
+            this.finish();
             Intent act = new Intent(UserOptionsActivity.this, UserGameActivity.class);
             startActivity(act);
         }
         else if ( v == buttonShowLeaderBoard){
+            this.finish();
             Intent act = new Intent(UserOptionsActivity.this, LeaderBoardActivity.class);
             startActivity(act);
         }
