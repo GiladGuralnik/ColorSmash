@@ -107,7 +107,12 @@ public class UserGameActivity extends AppCompatActivity {
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                highScore = Integer.parseInt((String)dataSnapshot.getValue());
+                if(dataSnapshot.getValue()==null){
+                    highScore = 0;
+                }
+                else {
+                    highScore = Integer.parseInt((String) dataSnapshot.getValue());
+                }
                 highScoreLabel.setText("High Score : " + highScore);
 
             }
@@ -308,7 +313,9 @@ public class UserGameActivity extends AppCompatActivity {
                 ArrayList<String> scores = new ArrayList<>();
                 for(DataSnapshot ds:dataSnapshot.getChildren()){
                     String sc=ds.getValue(String.class);
-                    scores.add(sc);
+                    if(sc!=null) {
+                        scores.add(sc);
+                    }
                 }
 
                 // add the new score
@@ -376,12 +383,12 @@ public class UserGameActivity extends AppCompatActivity {
         startLayout.setVisibility(View.INVISIBLE);
 
         ////////////////////// update db -> games counter //////////////////////////////
-        final DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Counter");
-        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        final DatabaseReference mRef2 = FirebaseDatabase.getInstance().getReference("Counter");
+        mRef2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String counter = (String)dataSnapshot.getValue();
-                mRef.setValue(String.valueOf(Integer.parseInt(counter)+1));
+                mRef2.setValue(String.valueOf(Integer.parseInt(counter)+1));
 
             }
 
