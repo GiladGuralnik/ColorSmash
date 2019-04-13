@@ -295,7 +295,9 @@ public class StartGameActivity extends AppCompatActivity {
     {
         if ((keyCode == KeyEvent.KEYCODE_BACK))
         {
-            finish();
+            this.onDestroy();
+            Intent act = new Intent(StartGameActivity.this, MainActivity.class);
+            startActivity(act);
         }
         return super.onKeyDown(keyCode, event);
     }
