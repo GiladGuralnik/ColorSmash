@@ -18,11 +18,11 @@ public class UserOptionsActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_options);
+        setContentView(R.layout.activity_user_options);
 
-        buttonStartGame = (Button) findViewById(R.id.ButtonShowUsers);
-        buttonShowLeaderBoard = (Button) findViewById(R.id.ButtonResetLeaderBoard);
-        buttonShowHighscore = (Button) findViewById(R.id.ButtonChangeUserColors);
+        buttonStartGame = (Button) findViewById(R.id.ButtonStartGameForRegisteredUser);
+        buttonShowLeaderBoard = (Button) findViewById(R.id.ButtonShowLeaderBoard);
+        buttonShowHighscore = (Button) findViewById(R.id.ButtonShowHighscore);
 
         buttonStartGame.setOnClickListener(this);
         buttonShowLeaderBoard.setOnClickListener(this);
@@ -41,7 +41,7 @@ public class UserOptionsActivity extends AppCompatActivity implements View.OnCli
             startActivity(act);
         }
         else if (v == buttonShowHighscore){
-            Intent act = new Intent(UserOptionsActivity.this, ChangeUserColorsActivity.class);
+            Intent act = new Intent(UserOptionsActivity.this, ShowHighscoreActivity.class);
             startActivity(act);
         }
     }

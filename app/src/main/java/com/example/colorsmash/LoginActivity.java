@@ -117,7 +117,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if(task.isSuccessful()){
 
                     finish();
-                    startActivity(new Intent(getApplicationContext() , StartGameActivity.class));
+                    startActivity(new Intent(getApplicationContext() , UserOptionsActivity.class));
 
                 }
                 else{

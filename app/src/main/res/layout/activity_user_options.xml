@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     android:background="@drawable/bricks7"
     android:orientation="vertical"
-    tools:context=".AdminOptions">
+    tools:context=".UserOptionsActivity">
 
     <Button
-        android:id="@+id/ButtonStartGame"
+        android:id="@+id/ButtonStartGameForRegisteredUser"
         android:layout_width="280dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
@@ -37,7 +37,7 @@
         android:textSize="36sp" />
 
     <Button
-        android:id="@+id/ButtonHighscore"
+        android:id="@+id/ButtonShowHighscore"
         android:layout_width="280dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
