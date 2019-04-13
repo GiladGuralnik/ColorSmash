@@ -102,6 +102,15 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="View Previous Scores"
+                android:layout_marginTop="20dp"
+                android:background="#E94BE630"
+                android:onClick="viewScores"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="EXIT"
                 android:layout_marginTop="20dp"
                 android:background="#F2FFEB3B"
