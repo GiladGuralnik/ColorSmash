@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -65,6 +67,9 @@ public class UserGameActivity extends AppCompatActivity {
     private boolean action_flg = false;
     private boolean pink_flg = false;
 
+    //Active User
+    private String uID;
+
 
 
     @Override
@@ -86,17 +91,33 @@ public class UserGameActivity extends AppCompatActivity {
 
         //////////////////////////////// PULL LOGGED IN USER FROM FIREBASE //////////////////////////////////////
 
-        // כאן תשמור את השם משתמש
-
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        uID = "";
+        if (user != null) {
+            uID = user.getUid();
+        } else {
+            // No user is signed in ?? add Exception ??
+        }
 
         /////////////////////////////// PULL HIGH SCORE FROM FIRE BASE BY USER NAME //////////////////////////////
         //High Score
+        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users").child(uID).child("highscore");
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                highScore = Integer.parseInt((String)dataSnapshot.getValue());
+                highScoreLabel.setText("High Score : " + highScore);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE);
-        highScore = settings.getInt("HIGH_SCORE", 0);
 
-
-
-        highScoreLabel.setText("High Score : " + highScore);
 
         //SoundPlayer
         soundPlayer = new SoundPlayer(this);
