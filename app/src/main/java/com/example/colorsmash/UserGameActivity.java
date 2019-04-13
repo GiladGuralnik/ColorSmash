@@ -274,5 +274,100 @@ public class UserGameActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if(start_flg)
+        {
+            if(event.getAction() == MotionEvent.ACTION_DOWN)
+            {
+                action_flg = true;
+            }
+            else if (event.getAction() == MotionEvent.ACTION_UP)
+            {
+                action_flg = false;
+            }
+        }
+
+        return true;
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            this.onDestroy();
+            Intent act = new Intent(UserGameActivity.this, MainActivity.class);
+            startActivity(act);
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+
+    public void startGame(View view)
+    {
+        start_flg = true;
+        startLayout.setVisibility(View.INVISIBLE);
+
+        if( frameHeight == 0 )
+        {
+            frameHeight = gameFrame.getHeight();
+            frameWidth = gameFrame.getWidth();
+            initialFrameWidth = frameWidth;
+
+            boxSize = box.getHeight();
+            boxX = box.getX();
+            boxY = box.getY();
+
+            frameWidth = initialFrameWidth;
+
+            box.setX(0.0f); //initial location bottom-left
+            black.setY(3000.0f);
+            orange.setY(3000.0f);
+            pink.setY(3000.0f);
+
+            blackY = black.getY();
+            orangeY = orange.getY();
+            pinkY = pink.getY();
+
+
+            box.setVisibility(View.VISIBLE);
+            black.setVisibility(View.VISIBLE);
+            orange.setVisibility(View.VISIBLE);
+            pink.setVisibility(View.VISIBLE);
+
+            timeCount = 0;
+            score = 0;
+            scoreLabel.setText("Score : 0");
+
+            timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    if(start_flg)
+                    {
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                changePos();
+                            }
+                        });
+                    }
+                }
+            },0,20);
+        }
+
+
+
+    }
+
+
+    public void exitGame(View view)
+    {
+        this.finish();
+        Intent act = new Intent(UserGameActivity.this, MainActivity.class);
+        startActivity(act);
+    }
+
+
 
 }
