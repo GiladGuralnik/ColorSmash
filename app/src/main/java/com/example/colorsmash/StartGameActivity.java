@@ -297,6 +297,12 @@ public class StartGameActivity extends AppCompatActivity {
         return true;
     }
 
+    public FrameLayout getGameFrame() //Dont delete, Used for tests
+    {
+        return gameFrame;
+    }
+
+
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
         if ((keyCode == KeyEvent.KEYCODE_BACK))

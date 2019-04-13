@@ -398,12 +398,12 @@ public class UserGameActivity extends AppCompatActivity {
                 }
             });
 
-
         }
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+
         if(start_flg)
         {
             if(event.getAction() == MotionEvent.ACTION_DOWN)
