@@ -508,7 +508,7 @@ public class UserGameActivity extends AppCompatActivity {
 
     public void viewScores(View view)
     {
-        Intent act = new Intent(UserGameActivity.this, UserOptionsActivity.class);
+        Intent act = new Intent(UserGameActivity.this, ShowPreviousScoresActivity.class);
         startActivity(act);
     }
 
