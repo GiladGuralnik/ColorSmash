@@ -25,7 +25,6 @@ public class UserOptionsActivity extends AppCompatActivity implements View.OnCli
 
         buttonStartGame.setOnClickListener(this);
         buttonShowLeaderBoard.setOnClickListener(this);
-        buttonShowHighscore.setOnClickListener(this);
 
     }
 
@@ -37,10 +36,6 @@ public class UserOptionsActivity extends AppCompatActivity implements View.OnCli
         }
         else if ( v == buttonShowLeaderBoard){
             Intent act = new Intent(UserOptionsActivity.this, LeaderBoardActivity.class);
-            startActivity(act);
-        }
-        else if (v == buttonShowHighscore){
-            Intent act = new Intent(UserOptionsActivity.this, ShowHighscoreActivity.class);
             startActivity(act);
         }
     }

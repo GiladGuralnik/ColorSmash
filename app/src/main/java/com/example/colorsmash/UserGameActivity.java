@@ -29,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -334,16 +335,31 @@ public class UserGameActivity extends AppCompatActivity {
 
 
 
+
         //Update High Score Field
         if(score > highScore)
         {
             highScore = score;
             highScoreLabel.setText("High Score : " + highScore);
 
-////////////////////// DELETE SHARED PREFERENCES AND INSERT THE NEW HIGH SCORE TO FIREBASE ////////////////////////////////
-
             //update users highscore
             mRef.child("highscore").setValue(String.valueOf(highScore));
+
+            //check it need to update the leaderboard
+            final DatabaseReference mRef2 = FirebaseDatabase.getInstance().getReference("LeaderBoard");
+            mRef2.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    HashMap<String,String> leaders = (HashMap<String,String>)dataSnapshot.getValue();
+                    //Log.d("TTTT",dataSnapshot.toString());
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
 
         }
     }
