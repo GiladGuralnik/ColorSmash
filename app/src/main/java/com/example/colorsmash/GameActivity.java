@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,6 +44,7 @@ public class GameActivity extends AppCompatActivity {
     private int boxSize;
 
     //Position
+    private FirebaseAuth firebaseAuth;
     private float boxX,boxY;
     private float blackX,blackY;
     private float orangeX,orangeY;
@@ -390,6 +392,12 @@ public class GameActivity extends AppCompatActivity {
     }
 
 
+    public void camperScore(){
+        int max=firebaseAuth.getCurrentUser();
+        if(score > max){
+            firebaseAuth.setFirebaseUIVersion(score);
+        }
+    }
     public void exitGame(View view)
     {
         this.finish();
