@@ -429,9 +429,6 @@ public class GameActivity extends AppCompatActivity {
     } else {
         // No user is signed in ?? add Exception ??
     }
-
-    final LinearLayout layout = (LinearLayout) findViewById(R.id.llayout);
-
     mRef = FirebaseDatabase.getInstance().getReference("Users").child(uID).child("scores");
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
         @Override
@@ -453,5 +450,8 @@ public class GameActivity extends AppCompatActivity {
                 layout.addView(score);
             }
         }
+    final LinearLayout layout = (LinearLayout) findViewById(R.id.llayout);
+
+
 
     }
