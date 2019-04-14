@@ -387,7 +387,10 @@ public class StartGameActivity extends AppCompatActivity {
             },0,20);
         }
 
+
+
     }
+
 
     public void exitGame(View view)
     {
@@ -395,5 +398,6 @@ public class StartGameActivity extends AppCompatActivity {
         Intent act = new Intent(StartGameActivity.this, MainActivity.class);
         startActivity(act);
     }
+
 
 }

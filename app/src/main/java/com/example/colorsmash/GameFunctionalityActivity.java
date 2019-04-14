@@ -124,4 +124,7 @@ public class GameFunctionalityActivity extends AppCompatActivity {
     public int getLocation(){
         return player.getLocation();
     }
+    public void setLocation(int loc){
+        player.setLocation(loc);
+    }
 }

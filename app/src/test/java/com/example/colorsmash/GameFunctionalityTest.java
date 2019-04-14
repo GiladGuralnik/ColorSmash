@@ -45,5 +45,14 @@ public class GameFunctionalityTest {
         assertEquals(act.getLocation(),INITIALLOCATION);
     }
 
+    @Test
+    public void test_checkChangelLocation() {
+        int LOCATION=50;
+        act.setLocation(LOCATION);
+        assertEquals(act.getLocation(),LOCATION);
+    }
+
+
+
 
 }
