@@ -398,6 +398,38 @@ public class StartGameActivity extends AppCompatActivity {
         Intent act = new Intent(StartGameActivity.this, MainActivity.class);
         startActivity(act);
     }
+    public String updataPoints( float CenterX  , float CenterY )
+    {
+        if(CenterX == AOUT || CenterY == AOUT){
+            return "Outside the court";
+
+        }
+        float blackCenterX = blackX +black.getWidth() / 2;
+        float blackCenterY = blackY +black.getHeight() / 2;
+        if(blackCenterX == CenterX || blackCenterY == CenterY){
+            blackY = frameHeight + 100;
+
+            //Change Frame Width
+            frameWidth = frameWidth * 80/100; // 80% of original size
+            changeFrameWidth(frameWidth);
+            soundPlayer.playHitBlackSound();
+
+        }
+        float pinkCenterX = pinkX + pink.getWidth() / 2;
+        float pinkCenterY = pinkY + pink.getHeight() / 2;
+        if(pinkCenterX == CenterX || pinkCenterY == CenterY){
+            pinkY = frameHeight + 30;
+            score += 30;
+            soundPlayer.playHitPinkSound();
+
+            //Change Frame Width ( pink bonus )
+            if(initialFrameWidth > frameWidth * 110/100) //if the frame got shrunk
+            {
+                frameWidth = frameWidth * 110/100;
+                changeFrameWidth(frameWidth);
+            }
+        }
+    }
 
 
 }
