@@ -283,7 +283,9 @@ public class GameActivity extends AppCompatActivity {
         //Update High Score Field--------------
         if(score > highScore)
         {
+
             highScore = score;
+
             highScoreLabel.setText("High Score : " + highScore);
 
             SharedPreferences.Editor editor = settings.edit();
