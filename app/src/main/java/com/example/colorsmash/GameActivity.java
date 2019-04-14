@@ -36,7 +36,7 @@ import java.util.concurrent.TimeUnit;
 public class GameActivity extends AppCompatActivity {
 
     private Button resultsButton ;
-
+    int count;
     private String uID;
     private FirebaseUser user;
     private DatabaseReference mRef;
@@ -83,8 +83,9 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start_game);
 
+        setContentView(R.layout.activity_start_game);
+        count=0;
         gameFrame = findViewById(R.id.gameFrame);
         startLayout = findViewById(R.id.startLayout);
         box = findViewById(R.id.box);
@@ -431,14 +432,14 @@ public class GameActivity extends AppCompatActivity {
 
 
 
-    user = FirebaseAuth.getInstance().getCurrentUser();
-    uID = "";
-        if (user != null) {
+    User user = FirebaseAuth.getInstance().getCurrentUser();
+    String uID = "";
+    if (user != null) {
         uID = user.getUid();
     } else {
         // No user is signed in ?? add Exception ??
     }
-    mRef = FirebaseDatabase.getInstance().getReference("Users").child(uID).child("scores");
+    FirebaseAuth mRef = FirebaseDatabase.getInstance().getReference("Users").child(uID).child("scores");
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -458,6 +459,7 @@ public class GameActivity extends AppCompatActivity {
                 score.setBackgroundColor(Color.parseColor("#9580D8FF"));
                 layout.addView(score);
                 UpdataMaxScore(score);
+                count= timeCount;
             }
         }
     final LinearLayout layout = (LinearLayout) findViewById(R.id.llayout);
