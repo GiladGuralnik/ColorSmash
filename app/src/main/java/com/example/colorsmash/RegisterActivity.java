@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -67,20 +70,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         mDataBase=FirebaseDatabase.getInstance();
         mRef = mDataBase.getReference("Users");
-
-        mRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                findIndex(dataSnapshot);
-            }
-
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
     }
 
     private void registerUser()
@@ -128,7 +117,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     Toast.makeText(RegisterActivity.this,"Registered Succesfully", Toast.LENGTH_SHORT).show();
                     createUserAccount();
                     Intent act = new Intent(RegisterActivity.this, PersonalInfo.class);
-                    act.putExtra("INDEX", Integer.toString(index)); // the index of new registered user for enter his personal data
                     startActivity(act);
 
                 }
@@ -155,25 +143,22 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
 
     public void createUserAccount(){
-        String email = editTextEmail.getText().toString().trim();
-        String newIndex= Integer.toString(index);
-        mRef.child(newIndex).child("username").setValue(email);
-        mRef.child(newIndex).child("gender").setValue("none");
-        mRef.child(newIndex).child("age").setValue(999);
-        mRef.child(newIndex).child("name").setValue("none");
-
-    }
-
-    private void findIndex(DataSnapshot dataSnapshot) {
-        List<String> keys=new ArrayList<>();
-        int maxKey=0;
-        for(DataSnapshot ds:dataSnapshot.getChildren()){
-            if(Integer.parseInt(ds.getKey())> maxKey){
-                maxKey=Integer.parseInt(ds.getKey());
-            }
-
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uID = "";
+        if (user != null) {
+            uID = user.getUid();
+        } else {
+            // No user is signed in
         }
-        index = maxKey+1;
+        String email = editTextEmail.getText().toString().trim();
+        mRef.child(uID).child("username").setValue(email);
+        mRef.child(uID).child("gender").setValue("none");
+        mRef.child(uID).child("age").setValue(999);
+        mRef.child(uID).child("name").setValue("none");
+        mRef.child(uID).child("scores").setValue(new HashMap<String,String>());
+        mRef.child(uID).child("highscore").setValue("0");
+        mRef.child(uID).child("badColors").setValue(new HashMap<String,String>());
+
     }
 
     public boolean isEmailValid(String email) {

@@ -10,6 +10,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -53,11 +55,10 @@ public class PersonalInfo extends AppCompatActivity {
                     Toast.makeText(PersonalInfo.this,"Bad Input",Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Intent intent = getIntent();
-                String index= intent.getStringExtra("INDEX"); ///INDEX of new user for data update
-                updateUserData(index,name,gender,age);
+
+                updateUserData(name,gender,age);
                 Toast.makeText(PersonalInfo.this,"Data Updated",Toast.LENGTH_SHORT).show();
-                Intent act = new Intent(PersonalInfo.this, StartGameActivity.class);
+                Intent act = new Intent(PersonalInfo.this, UserOptionsActivity.class);
                 startActivity(act);
 
             }
@@ -66,10 +67,17 @@ public class PersonalInfo extends AppCompatActivity {
     }
 
 
-    public void updateUserData(String index,String name,String gender,int age){
-        mRef.child(index).child("name").setValue(name);
-        mRef.child(index).child("age").setValue(age);
-        mRef.child(index).child("gender").setValue(gender);
+    public void updateUserData(String name,String gender,int age){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uID = "";
+        if (user != null) {
+            uID = user.getUid();
+        } else {
+            // No user is signed in
+        }
+        mRef.child(uID).child("name").setValue(name);
+        mRef.child(uID).child("age").setValue(age);
+        mRef.child(uID).child("gender").setValue(gender);
     }
 
     public void checkButton(View v){

@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
@@ -20,17 +21,22 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
-public class StartGameActivity extends AppCompatActivity {
+public class UserGameActivity extends AppCompatActivity {
 
     //GameFrame
     private FrameLayout gameFrame;
@@ -65,12 +71,16 @@ public class StartGameActivity extends AppCompatActivity {
     private boolean action_flg = false;
     private boolean pink_flg = false;
 
+    //Active User
+    private String uID;
+    private FirebaseUser user;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start_game);
+        setContentView(R.layout.activity_user_game);
 
         gameFrame = findViewById(R.id.gameFrame);
         startLayout = findViewById(R.id.startLayout);
@@ -84,10 +94,40 @@ public class StartGameActivity extends AppCompatActivity {
         imageBoxLeft = getResources().getDrawable(R.drawable.box_left);
         imageBoxRight = getResources().getDrawable(R.drawable.box_right);
 
+        //////////////////////////////// PULL LOGGED IN USER FROM FIREBASE //////////////////////////////////////
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        uID = "";
+        if (user != null) {
+            uID = user.getUid();
+        } else {
+            // No user is signed in ?? add Exception ??
+        }
+
+        /////////////////////////////// PULL HIGH SCORE FROM FIRE BASE BY USER NAME //////////////////////////////
         //High Score
+        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users").child(uID).child("highscore");
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.getValue()==null){
+                    highScore = 0;
+                }
+                else {
+                    highScore = Integer.parseInt((String) dataSnapshot.getValue());
+                }
+                highScoreLabel.setText("High Score : " + highScore);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE);
-        highScore = settings.getInt("HIGH_SCORE", 0);
-        highScoreLabel.setText("High Score : " + highScore);
+
 
         //SoundPlayer
         soundPlayer = new SoundPlayer(this);
@@ -267,21 +307,103 @@ public class StartGameActivity extends AppCompatActivity {
         orange.setVisibility(View.INVISIBLE);
         black.setVisibility(View.INVISIBLE);
 
+
+        // Get user ref from db
+        final DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users").child(uID);
+        mRef.child("scores").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<String> scores = new ArrayList<>();
+                for(DataSnapshot ds:dataSnapshot.getChildren()){
+                    String sc=ds.getValue(String.class);
+                    if(sc!=null) {
+                        scores.add(sc);
+                    }
+                }
+
+                // add the new score
+                scores.add(String.valueOf(score));
+
+                //add the score to users scores list
+                mRef.child("scores").setValue(scores);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+
         //Update High Score Field
         if(score > highScore)
         {
             highScore = score;
             highScoreLabel.setText("High Score : " + highScore);
 
-            SharedPreferences.Editor editor = settings.edit();
-            editor.putInt("HIGH_SCORE", highScore);
-            editor.commit();
+            //update users highscore
+            mRef.child("highscore").setValue(String.valueOf(highScore));
+
+            //check it need to update the leaderboard
+            final DatabaseReference mRef2 = FirebaseDatabase.getInstance().getReference("LeaderBoard");
+            mRef2.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    HashMap<String,String> leaders = (HashMap<String,String>)dataSnapshot.getValue();
+                    if(leaders==null){
+                        leaders = new HashMap<String,String>();
+                    }
+                    if(leaders.size()<5){
+                        leaders.put(user.getUid(),String.valueOf(score));
+                        mRef2.setValue(leaders);
+                    }
+                    else if(leaders.size()==5) {
+                        double min = Double.POSITIVE_INFINITY;
+                        for (String value : leaders.values()) {
+                            if (Integer.parseInt(value) < min) {
+                                min = Integer.parseInt(value);
+                            }
+                        }
+
+                        if ( score > (int) min) {
+
+                            String val = "";
+                            String key = "";
+
+                            for (Map.Entry<String, String> entry : leaders.entrySet()) {
+                                key = entry.getKey();
+                                val = entry.getValue();
+                                if (Integer.parseInt(val) == (int) min) {
+                                    break;
+                                }
+                            }
+
+                            Log.d("TTTT",String.valueOf(min));
+                            leaders.remove(key);
+                            leaders.put(user.getUid(),String.valueOf(score));
+
+                            mRef2.setValue(leaders);
+
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
 
         }
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+
         if(start_flg)
         {
             if(event.getAction() == MotionEvent.ACTION_DOWN)
@@ -297,18 +419,12 @@ public class StartGameActivity extends AppCompatActivity {
         return true;
     }
 
-    public FrameLayout getGameFrame() //Dont delete, Used for tests
-    {
-        return gameFrame;
-    }
-
-
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
         if ((keyCode == KeyEvent.KEYCODE_BACK))
         {
-            this.onDestroy();
-            Intent act = new Intent(StartGameActivity.this, MainActivity.class);
+            this.finish();
+            Intent act = new Intent(UserGameActivity.this, UserOptionsActivity.class);
             startActivity(act);
         }
         return super.onKeyDown(keyCode, event);
@@ -321,12 +437,12 @@ public class StartGameActivity extends AppCompatActivity {
         startLayout.setVisibility(View.INVISIBLE);
 
         ////////////////////// update db -> games counter //////////////////////////////
-        final DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Counter");
-        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        final DatabaseReference mRef2 = FirebaseDatabase.getInstance().getReference("Counter");
+        mRef2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String counter = (String)dataSnapshot.getValue();
-                mRef.setValue(String.valueOf(Integer.parseInt(counter)+1));
+                mRef2.setValue(String.valueOf(Integer.parseInt(counter)+1));
 
             }
 
@@ -337,7 +453,6 @@ public class StartGameActivity extends AppCompatActivity {
         });
 
         /////////////////////////
-
 
         if( frameHeight == 0 )
         {
@@ -391,13 +506,19 @@ public class StartGameActivity extends AppCompatActivity {
 
     }
 
+    public void viewScores(View view)
+    {
+        Intent act = new Intent(UserGameActivity.this, ShowPreviousScoresActivity.class);
+        startActivity(act);
+    }
 
     public void exitGame(View view)
     {
         this.finish();
-        Intent act = new Intent(StartGameActivity.this, MainActivity.class);
+        Intent act = new Intent(UserGameActivity.this, UserOptionsActivity.class);
         startActivity(act);
     }
+
 
 
 }
