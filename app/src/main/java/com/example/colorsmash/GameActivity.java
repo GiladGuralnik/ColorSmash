@@ -1,5 +1,6 @@
 package com.example.colorsmash;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,6 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -40,7 +42,12 @@ public class GameActivity extends AppCompatActivity {
     private String uID;
     private FirebaseUser user;
     private DatabaseReference mRef;
+    private Button singinButton;
+    public EditText emailEditText;
+    public EditText passwordEditText;
 
+    private FirebaseAuth firebaseAuth;
+    private ProgressDialog progressDialog;
 
 
 
@@ -425,20 +432,24 @@ public class GameActivity extends AppCompatActivity {
         startActivity(act);
     }
 
-    void UpdataMaxScore(String highScore ){
-        highScoreLabel.setText("High Score : " + highScore);
 
+
+
+    void saveHighScore(User user){
+        firebaseAuth=FirebaseAuth.getInstance();
+        firebaseAuth.setValue()
     }
+}
 
-
-
-    User user = FirebaseAuth.getInstance().getCurrentUser();
-    String uID = "";
+    user = FirebaseAuth.getInstance().getCurrentUser();
+    saveHighScore(user);
+    uID = "";
     if (user != null) {
         uID = user.getUid();
     } else {
         // No user is signed in ?? add Exception ??
     }
+    //geting uesr score
     FirebaseAuth mRef = FirebaseDatabase.getInstance().getReference("Users").child(uID).child("scores");
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
         @Override
