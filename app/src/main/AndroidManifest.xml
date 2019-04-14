@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShowPreviousScoresActivity"></activity>
+        <activity android:name=".GameFunctionalityActivity"></activity>
+        <activity android:name=".ShowPreviousScoresActivity" />
         <activity android:name=".UserGameActivity" />
         <activity android:name=".UserOptionsActivity" />
         <activity android:name=".ChangeUserColorsActivity" />
