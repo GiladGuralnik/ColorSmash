@@ -143,7 +143,6 @@ public class GameActivity extends AppCompatActivity {
             pinkX = (float) Math.floor(Math.random() * (frameWidth - pink.getWidth()));
 
         }
-
         if(pink_flg){
 
             pinkY += 20;
@@ -164,6 +163,9 @@ public class GameActivity extends AppCompatActivity {
                     changeFrameWidth(frameWidth);
                 }
             }
+
+
+
 
             if(pinkY > frameHeight )
                 pink_flg = false;
@@ -244,6 +246,7 @@ public class GameActivity extends AppCompatActivity {
         }
 
         return false;
+
     }
 
 
@@ -277,7 +280,7 @@ public class GameActivity extends AppCompatActivity {
         orange.setVisibility(View.INVISIBLE);
         black.setVisibility(View.INVISIBLE);
 
-        //Update High Score Field
+        //Update High Score Field--------------
         if(score > highScore)
         {
             highScore = score;
@@ -288,6 +291,7 @@ public class GameActivity extends AppCompatActivity {
             editor.commit();
 
         }
+        //-----------------------------------------
     }
 
     @Override
@@ -448,6 +452,7 @@ public class GameActivity extends AppCompatActivity {
                 score.setTypeface(null, Typeface.BOLD);
                 score.setBackgroundColor(Color.parseColor("#9580D8FF"));
                 layout.addView(score);
+                UpdataMaxScore(score);
             }
         }
     final LinearLayout layout = (LinearLayout) findViewById(R.id.llayout);
