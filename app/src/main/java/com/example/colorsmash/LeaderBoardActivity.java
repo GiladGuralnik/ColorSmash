@@ -28,6 +28,9 @@ public class LeaderBoardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leader_board);
 
+
+
+
         scores = new ArrayList<LeaderBoardScore>();
 
         views[0] = findViewById(R.id.textViewScore1);
@@ -49,6 +52,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
 
             }
         });
+
 
     }
 
