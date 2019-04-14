@@ -41,6 +41,9 @@ public class GameActivity extends AppCompatActivity {
     private FirebaseUser user;
     private DatabaseReference mRef;
 
+
+
+
     //GameFrame
     private FrameLayout gameFrame;
     private int frameHeight,frameWidth,initialFrameWidth;
