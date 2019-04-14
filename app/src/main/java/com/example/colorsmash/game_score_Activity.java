@@ -66,7 +66,5 @@ public class game_score_Activity extends AppCompatActivity {
             }
         }
 
-
-
         }
 }
