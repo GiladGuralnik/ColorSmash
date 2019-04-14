@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".RegisterActivity"
-    android:background="@drawable/bricks">
+    android:background="@drawable/iconbricks">
 
     <ScrollView
         android:id="@+id/login_form"
