@@ -13,6 +13,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -136,7 +137,8 @@ public class ChangeUserColorsActivity extends AppCompatActivity implements View.
             }
 
             if(flag){
-                mRef.child(String.valueOf(index+1)).child("badColors").removeValue();
+
+                mRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("badColors").removeValue();
                 Toast.makeText(this, userMail+" colors has been cleared!", Toast.LENGTH_LONG).show();
                 this.recreate();
             }
