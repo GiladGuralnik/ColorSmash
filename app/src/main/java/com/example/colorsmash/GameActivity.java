@@ -3,6 +3,8 @@ package com.example.colorsmash;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -19,12 +21,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
@@ -32,6 +36,10 @@ import java.util.concurrent.TimeUnit;
 public class GameActivity extends AppCompatActivity {
 
     private Button resultsButton ;
+
+    private String uID;
+    private FirebaseUser user;
+    private DatabaseReference mRef;
 
     //GameFrame
     private FrameLayout gameFrame;
@@ -410,9 +418,40 @@ public class GameActivity extends AppCompatActivity {
     void UpdataMaxScore(String highScore ){
         highScoreLabel.setText("High Score : " + highScore);
 
-
-
     }
 
 
-}
+
+    user = FirebaseAuth.getInstance().getCurrentUser();
+    uID = "";
+        if (user != null) {
+        uID = user.getUid();
+    } else {
+        // No user is signed in ?? add Exception ??
+    }
+
+    final LinearLayout layout = (LinearLayout) findViewById(R.id.llayout);
+
+    mRef = FirebaseDatabase.getInstance().getReference("Users").child(uID).child("scores");
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            ArrayList<String> scores = (ArrayList<String>)dataSnapshot.getValue();
+            if(scores==null){
+                scores = new ArrayList<String>();
+            }
+            for(int i=0;i<scores.size();i++){
+                TextView score = new TextView(getBaseContext());
+                score.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT));
+                score.setText(i+1+" : "+scores.get(i));
+                score.setTextSize(30);
+                score.setTextColor(getResources().getColor(android.R.color.black));
+                score.setPadding(20, 20, 20, 20);
+                score.setTypeface(null, Typeface.BOLD);
+                score.setBackgroundColor(Color.parseColor("#9580D8FF"));
+                layout.addView(score);
+            }
+        }
+
+    }
