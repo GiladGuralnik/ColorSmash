@@ -10,7 +10,7 @@ pipeline {
    } 
    stage("build") {
             steps{
-                chmod=+x ./gradlew
+                sh "chmod 777 gradlew"
                 sh '''./gradlew build clean'''
                 echo "The build stage passed..."
             }
