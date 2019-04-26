@@ -13,7 +13,7 @@ pipeline {
                 echo "$USER"
                 sh "chmod 777 gradlew"
                 //sh "chmod a+x /android-sdk-linux/tools/android"
-                // sh './gradlew'
+                 sh './gradlew'
             }
     }
 }
