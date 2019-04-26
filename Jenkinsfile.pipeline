@@ -11,6 +11,7 @@ pipeline {
    stage("build") {
             steps{
                 git update-index --chmod=+x ./gradlew
+                chmod=+x ./gradlew
                 sh '''./gradlew build clean'''
                 echo "The build stage passed..."
             }
