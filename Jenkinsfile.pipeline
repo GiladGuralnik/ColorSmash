@@ -12,6 +12,7 @@ pipeline {
             steps{
                 sh "chmod 777 gradlew"
                 sh "chmod a+x /usr/local/android-sdk-linux/tools/android"
+                // try
                 sh './gradlew'
             }
     }
