@@ -13,7 +13,7 @@ pipeline {
                 sh "chmod 777 gradlew"
                 //sh "chmod a+x /android-sdk-linux/tools/android"
                 // try
-                //sh './gradlew'
+                sh './gradlew'
             }
     }
 }
