@@ -5,14 +5,23 @@ pipeline {
     stage('Git') {
       // Get some code from a GitHub repository
       steps{
-          git 'https://github.com/markrity/android-unit-test-example.git'
+          git 'https://github.com/GiladGuralnik/ColorSmash.git'
       }
-   }
-
-    stage('Run Tests'){
+   } 
+   /*
+    stage('Run app on windos'){
           steps{
+               bat "gradlew.bat assembleDebug "
+               bat "gradlew.bat assembleRelease"
+          }
+    }*/
+        stage('Run app on ubunto'){
+          steps{
+            sh "chmod 777 gradlew"
                sh "./gradlew"
+               sh "./gradlew assembleDevelopDebug --offline"
           }
     }
 }
 }
+
