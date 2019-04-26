@@ -11,9 +11,7 @@ pipeline {
    stage("build") {
             steps{
                 sh "chmod 777 gradlew"
-                sh "sudo chown -R jenkins:jenkins /opt/android-sdk/"
-                sh '''./gradlew build clean'''
-                echo "The build stage passed..."
+                sh './gradlew compileDebugSources'
             }
     }
 }
