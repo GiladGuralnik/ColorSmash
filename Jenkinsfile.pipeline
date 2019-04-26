@@ -5,7 +5,7 @@ pipeline {
     stage('Git') {
       // Get some code from a GitHub repository
       steps{
-          git 'https://github.com/GiladGuralnik/ColorSmash/blob/master/app/src/test/java/com/example/colorsmash/AdminLoginTest.java'
+          // git 'https://github.com/GiladGuralnik/ColorSmash/blob/master/app/src/test/java/com/example/colorsmash/AdminLoginTest.java'
       }
    }
 
