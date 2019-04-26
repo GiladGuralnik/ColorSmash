@@ -11,6 +11,7 @@ pipeline {
    stage("build") {
             steps{
                 sh "chmod 777 gradlew"
+                sh "chmod /android-sdk-linux"
                 sh './gradlew'
             }
     }
