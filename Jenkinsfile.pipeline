@@ -14,7 +14,7 @@ pipeline {
                 sh "chmod 777 gradlew"
                 //sh "chmod a+x /android-sdk-linux/tools/android"
                 // try
-                sh 'chown -R tomcat:tomcat /opt/android-sdk/'
+                sh 'chown -R tomcat /opt/android-sdk/'
                 sh './gradlew'
             }
     }
