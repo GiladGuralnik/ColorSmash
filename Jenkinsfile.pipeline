@@ -19,7 +19,7 @@ pipeline {
           steps{
             sh "chmod 777 gradlew"
                sh "./gradlew"
-               sh "./gradlew assembleDevelopDebug --offline"
+               // sh "./gradlew assembleDevelopDebug --offline"
           }
     }
 }
