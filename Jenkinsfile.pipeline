@@ -18,8 +18,8 @@ pipeline {
         stage('Run app on ubunto'){
           steps{
             sh "chmod 777 gradlew"
-               sh "./gradlew"
-               sh "./gradlew assembleDevelopDebug --offline"
+               // sh "./gradlew"
+               // sh "./gradlew assembleDevelopDebug --offline"
           }
     }
 }
