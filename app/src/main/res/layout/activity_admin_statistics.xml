@@ -4,14 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminStatisticsActivity"
-    android:orientation="vertical">
+    android:background="@drawable/bricks1"
+    android:orientation="vertical"
+    tools:context=".AdminStatisticsActivity">
 
 
     <TextView
         android:id="@+id/textViewAverageAge"
         android:layout_width="match_parent"
         android:layout_height="18dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="100dp"
         android:layout_weight="1"
         android:background="#9580D8FF"
         android:gravity="center"
@@ -24,6 +27,7 @@
         android:id="@+id/textViewMostCommonGender"
         android:layout_width="match_parent"
         android:layout_height="18dp"
+        android:layout_marginBottom="100dp"
         android:layout_weight="1"
         android:background="#9580D8FF"
         android:gravity="center"
@@ -33,13 +37,14 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textViewGamesCounter"
+        android:id="@+id/textViewMostCommonColors"
         android:layout_width="match_parent"
         android:layout_height="18dp"
+        android:layout_marginBottom="100dp"
         android:layout_weight="1"
         android:background="#9580D8FF"
         android:gravity="center"
-        android:text="NUMBER OF GAMES :"
+        android:text="MOST COMMON COLORS :"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="25sp"
         android:textStyle="bold" />

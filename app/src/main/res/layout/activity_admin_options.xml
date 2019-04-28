@@ -31,7 +31,7 @@
 
     <Button
         android:id="@+id/ButtonShowUsers"
-        android:layout_width="250dp"
+        android:layout_width="280dp"
         android:layout_height="120dp"
         android:layout_gravity="center"
         android:layout_marginStart="8dp"
@@ -47,7 +47,7 @@
 
     <Button
         android:id="@+id/ButtonResetLeaderBoard"
-        android:layout_width="250dp"
+        android:layout_width="280dp"
         android:layout_height="120dp"
         android:layout_gravity="center"
         android:layout_marginTop="12dp"
@@ -57,7 +57,7 @@
 
     <Button
         android:id="@+id/ButtonChangeUserColors"
-        android:layout_width="250dp"
+        android:layout_width="280dp"
         android:layout_height="120dp"
         android:layout_gravity="center"
         android:layout_marginTop="12dp"
@@ -67,7 +67,7 @@
 
     <Button
         android:id="@+id/buttonStatistics"
-        android:layout_width="250dp"
+        android:layout_width="280dp"
         android:layout_height="120dp"
         android:layout_gravity="center"
         android:layout_marginTop="12dp"
