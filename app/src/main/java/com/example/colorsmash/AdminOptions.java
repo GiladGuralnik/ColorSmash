@@ -1,10 +1,9 @@
 package com.example.colorsmash;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,14 +15,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public class AdminOptions extends AppCompatActivity implements View.OnClickListener {
 
     private Button buttonShowUsers;
     private Button buttonResetLeaderBoard;
     private Button buttonChangeUserColors;
+    private Button buttonStatistics;
     private TextView textViewGamesCounter;
 
     @Override
@@ -34,11 +31,13 @@ public class AdminOptions extends AppCompatActivity implements View.OnClickListe
         buttonShowUsers = (Button) findViewById(R.id.ButtonShowUsers);
         buttonResetLeaderBoard = (Button) findViewById(R.id.ButtonResetLeaderBoard);
         buttonChangeUserColors = (Button) findViewById(R.id.ButtonChangeUserColors);
+        buttonStatistics = (Button)findViewById(R.id.ButtonStatistics);
         textViewGamesCounter = (TextView)findViewById(R.id.textViewGamesCounter);
 
         buttonShowUsers.setOnClickListener(this);
         buttonResetLeaderBoard.setOnClickListener(this);
         buttonChangeUserColors.setOnClickListener(this);
+        buttonStatistics.setOnClickListener(this);
 
         DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Counter");
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -71,6 +70,11 @@ public class AdminOptions extends AppCompatActivity implements View.OnClickListe
         }
         else if (v == buttonChangeUserColors){
             Intent act = new Intent(AdminOptions.this, ChangeUserColorsActivity.class);
+            startActivity(act);
+        }
+
+        else  if (v == buttonStatistics){
+            Intent act = new Intent(AdminOptions.this, AdminStatisticsActivity.class);
             startActivity(act);
         }
     }
