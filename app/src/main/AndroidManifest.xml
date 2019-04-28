@@ -13,6 +13,10 @@
         android:roundIcon="@drawable/iconbricks"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".MyDiagnosisActivity"
+            android:label="@string/title_activity_my_diagnosis"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".GameFunctionalityActivity" />
         <activity android:name=".ShowPreviousScoresActivity" />
         <activity android:name=".UserGameActivity" />

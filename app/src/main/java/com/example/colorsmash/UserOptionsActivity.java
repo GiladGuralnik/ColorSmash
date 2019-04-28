@@ -22,6 +22,7 @@ public class UserOptionsActivity extends AppCompatActivity implements View.OnCli
 
         buttonStartGame = (Button) findViewById(R.id.ButtonStartGameForRegisteredUser);
         buttonShowLeaderBoard = (Button) findViewById(R.id.ButtonShowLeaderBoard);
+        buttonShowLeaderBoard = (Button) findViewById(R.id.ButtonMyDiagnosis);
 
         buttonStartGame.setOnClickListener(this);
         buttonShowLeaderBoard.setOnClickListener(this);
