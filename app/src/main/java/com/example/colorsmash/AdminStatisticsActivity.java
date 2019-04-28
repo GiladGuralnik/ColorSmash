@@ -84,6 +84,28 @@ public class AdminStatisticsActivity extends AppCompatActivity {
 
 
                 // calc common gender
+                int mCount = 0,fCount = 0;
+                String gender = "None";
+
+                if(colorblidUsers.size()>0) {
+                    for (User u : colorblidUsers) {
+                        if (u.getGender().equals("Male")) {
+                            mCount++;
+                        } else if (u.getGender().equals("Female")) {
+                            fCount++;
+                        }
+                    }
+
+                    if (mCount > fCount) {
+                        gender = "Male";
+                    }
+                    else{
+                        gender = "Female";
+                    }
+                }
+
+                // print most common gender
+                textViewMostCommonGender.setText(textViewMostCommonGender.getText()+" "+ gender);
 
                 // calc common colors
                 for (User u : colorblidUsers) {
@@ -100,10 +122,10 @@ public class AdminStatisticsActivity extends AppCompatActivity {
                     badColors="";
                     for (Map.Entry<String, Integer> entry : colors.entrySet()) {
                         if ( entry.getValue() == maxColor){
-                            badColors += " " + entry.getKey();
+                            badColors += ", " + entry.getKey();
                         }
                     }
-                    badColors.replace(" ",", ");
+                    badColors = badColors.substring(2);
                 }
 
                 // print bad colors
