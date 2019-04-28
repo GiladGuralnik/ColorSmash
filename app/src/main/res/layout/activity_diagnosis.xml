@@ -37,7 +37,7 @@
                 android:src="@drawable/number_16" />
 
             <EditText
-                android:id="@+id/emailLogin"
+                android:id="@+id/editTextQuestion1Diagnosis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
@@ -50,7 +50,183 @@
             />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/buttonQuestion1Diagnosis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_red_light"
+                android:text="don't see a number"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:text="question 2:"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="250dp"
+                android:src="@drawable/number_16" />
+
+            <EditText
+                android:id="@+id/editTextQuestion2Diagnosis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:hint="Enter the number you see?"
+                android:inputType="number"
+                android:textColor="@android:color/darker_gray"
+                android:textColorHint="#E6306F"
+                android:textColorLink="#E6306F"
+                android:textStyle="bold" />
+            />
+
+            <Button
+                android:id="@+id/buttonQuestion2Diagnosis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_red_light"
+                android:text="don't see a number"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:text="question 3:"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="250dp"
+                android:src="@drawable/number_16" />
+
+            <EditText
+                android:id="@+id/editTextQuestion3Diagnosis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:hint="Enter the number you see?"
+                android:inputType="number"
+                android:textColor="@android:color/darker_gray"
+                android:textColorHint="#E6306F"
+                android:textColorLink="#E6306F"
+                android:textStyle="bold" />
+            />
+
+            <Button
+                android:id="@+id/buttonQuestion3Diagnosis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_red_light"
+                android:text="don't see a number"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:text="question 4:"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="250dp"
+                android:src="@drawable/number_16" />
+
+            <EditText
+                android:id="@+id/editTextQuestion4Diagnosis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:hint="Enter the number you see?"
+                android:inputType="number"
+                android:textColor="@android:color/darker_gray"
+                android:textColorHint="#E6306F"
+                android:textColorLink="#E6306F"
+                android:textStyle="bold" />
+            />
+
+            <Button
+                android:id="@+id/buttonQuestion4Diagnosis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_red_light"
+                android:text="don't see a number"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:text="question 5:"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="250dp"
+                android:src="@drawable/number_16" />
+
+            <EditText
+                android:id="@+id/editTextQuestion5Diagnosis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:hint="Enter the number you see?"
+                android:inputType="number"
+                android:textColor="@android:color/darker_gray"
+                android:textColorHint="#E6306F"
+                android:textColorLink="#E6306F"
+                android:textStyle="bold" />
+            />
+
+            <Button
+                android:id="@+id/buttonQuestion5Diagnosis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_red_light"
+                android:text="don't see a number"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:text="question 6:"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="250dp"
+                android:src="@drawable/number_16" />
+
+            <EditText
+                android:id="@+id/editTextQuestion6Diagnosis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:hint="Enter the number you see?"
+                android:inputType="number"
+                android:textColor="@android:color/darker_gray"
+                android:textColorHint="#E6306F"
+                android:textColorLink="#E6306F"
+                android:textStyle="bold" />
+            />
+
+            <Button
+                android:id="@+id/buttonQuestion6Diagnosis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/holo_red_light"
