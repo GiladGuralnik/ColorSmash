@@ -12,6 +12,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class AdminStatisticsActivity extends AppCompatActivity {
@@ -22,6 +23,7 @@ public class AdminStatisticsActivity extends AppCompatActivity {
     private TextView textViewMostCommonColors;
     private TextView textViewColorblindUsers;
     private ArrayList<User> users;
+    private HashMap<String,Integer> colors;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,16 @@ public class AdminStatisticsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_statistics);
 
         users = new ArrayList<User>();
+        colors = new HashMap<String,Integer>();
+        colors.put("RED",0);
+        colors.put("ORANGE",0);
+        colors.put("YELLOW",0);
+        colors.put("GREEN",0);
+        colors.put("BLUE",0);
+        colors.put("PURPLE",0);
+        colors.put("BROWN",0);
+        colors.put("PINK",0);
+        colors.put("GRAY",0);
         textViewAverageAge = (TextView)findViewById(R.id.textViewAverageAge);
         textViewMostCommonGender = (TextView)findViewById(R.id.textViewMostCommonGender);
         textViewMostCommonColors = (TextView)findViewById(R.id.textViewMostCommonColors);
@@ -72,6 +84,16 @@ public class AdminStatisticsActivity extends AppCompatActivity {
                 // calc common gender
 
                 // calc common colors
+                if(colorblidUsers.size()>0) {
+                    for (User u : colorblidUsers) {
+                        age += Integer.valueOf(u.getAge());
+                    }
+                    age = age / colorblidUsers.size();
+                }
+
+
+                // CHECK IF ALL IS 0 SO PRINT NONE
+
 
             }
 
