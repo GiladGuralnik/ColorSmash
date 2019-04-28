@@ -18,7 +18,7 @@
         <activity android:name=".UserGameActivity" />
         <activity android:name=".UserOptionsActivity" />
         <activity android:name=".ChangeUserColorsActivity" />
-        <activity android:name=".ChangeUserColosActivity" />
+        <activity android:name=".AdminStatisticsActivity" />
         <activity android:name=".LeaderBoardActivity" />
         <activity android:name=".StartGameActivity" />
         <activity android:name=".PersonalInfo" />
