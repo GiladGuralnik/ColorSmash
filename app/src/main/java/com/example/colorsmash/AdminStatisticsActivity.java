@@ -12,8 +12,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AdminStatisticsActivity extends AppCompatActivity {
 
@@ -84,16 +86,26 @@ public class AdminStatisticsActivity extends AppCompatActivity {
                 // calc common gender
 
                 // calc common colors
-                if(colorblidUsers.size()>0) {
-                    for (User u : colorblidUsers) {
-                        age += Integer.valueOf(u.getAge());
+                for (User u : colorblidUsers) {
+                    ArrayList<String> badColors = u.getBadColors();
+                    for (String color : badColors) {
+                        colors.put(color, colors.get(color) + 1);
                     }
-                    age = age / colorblidUsers.size();
                 }
 
+                int maxColor = Collections.max(colors.values());
+                String badColors = "";
 
-                // CHECK IF ALL IS 0 SO PRINT NONE
+                if (maxColor!=0){
+                    for (Map.Entry<String, Integer> entry : colors.entrySet()) {
+                        if ( entry.getValue() == maxColor){
+                            badColors += ", "+entry.getKey();
+                        }
+                        String key = entry.getKey();
+                        Int value = entry.getValue();
 
+                    }
+                }
 
             }
 
