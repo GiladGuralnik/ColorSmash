@@ -20,6 +20,7 @@ public class AdminStatisticsActivity extends AppCompatActivity {
     private TextView textViewAverageAge;
     private TextView textViewMostCommonGender;
     private TextView textViewMostCommonColors;
+    private TextView textViewColorblindUsers;
     private ArrayList<User> users;
 
     @Override
@@ -31,6 +32,7 @@ public class AdminStatisticsActivity extends AppCompatActivity {
         textViewAverageAge = (TextView)findViewById(R.id.textViewAverageAge);
         textViewMostCommonGender = (TextView)findViewById(R.id.textViewMostCommonGender);
         textViewMostCommonColors = (TextView)findViewById(R.id.textViewMostCommonColors);
+        textViewColorblindUsers = (TextView)findViewById(R.id.textViewColorblindUsers);
 
         DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users");
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -51,6 +53,9 @@ public class AdminStatisticsActivity extends AppCompatActivity {
                     }
                 }
 
+                // print amount of diagnosed color blindness users
+                textViewColorblindUsers.setText(textViewColorblindUsers.getText()+" "+ colorblidUsers.size());
+
                 // calc age average
                 float age = 0;
                 if(colorblidUsers.size()>0) {
@@ -60,6 +65,7 @@ public class AdminStatisticsActivity extends AppCompatActivity {
                     age = age / colorblidUsers.size();
                 }
 
+                // print age average
                 textViewAverageAge.setText(textViewAverageAge.getText()+" "+ age);
 
 
