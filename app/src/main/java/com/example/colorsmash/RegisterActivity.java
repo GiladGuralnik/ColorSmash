@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,15 +17,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
@@ -157,6 +151,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         mRef.child(uID).child("name").setValue("none");
         mRef.child(uID).child("scores").setValue(new HashMap<String,String>());
         mRef.child(uID).child("highscore").setValue("0");
+        mRef.child(uID).child("colorblind").setValue("false");
         mRef.child(uID).child("badColors").setValue(new HashMap<String,String>());
 
     }
