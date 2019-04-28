@@ -36,4 +36,15 @@
         android:text="SHOW LEADERBOARD"
         android:textSize="36sp" />
 
+    <Button
+        android:id="@+id/ButtonMyDiagnosis"
+        android:layout_width="280dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"
+        android:background="#E9E6906F"
+        android:text="MY DIAGNOSIS"
+        android:textSize="36sp" />
+
 </LinearLayout>

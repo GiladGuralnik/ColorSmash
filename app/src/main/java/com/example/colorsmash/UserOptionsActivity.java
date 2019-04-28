@@ -13,7 +13,7 @@ public class UserOptionsActivity extends AppCompatActivity implements View.OnCli
 
     private Button buttonStartGame;
     private Button buttonShowLeaderBoard;
-    private Button buttonShowHighscore;
+    private Button buttonMyDiagnosis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
