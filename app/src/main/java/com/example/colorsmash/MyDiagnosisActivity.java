@@ -1,5 +1,7 @@
 package com.example.colorsmash;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Debug;
 import android.support.annotation.NonNull;
@@ -9,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,12 +24,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MyDiagnosisActivity extends AppCompatActivity {
+public class MyDiagnosisActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView TVname ;
     private TextView TVresults ;
     private String name ;
-    private ArrayList<String> colorBlindnessTypes ;
+    private Button FullTest ;
 
 
 
@@ -37,7 +40,8 @@ public class MyDiagnosisActivity extends AppCompatActivity {
 
         TVname=(TextView)findViewById(R.id.textViewNameMyDiagnosis);
         TVresults=(TextView)findViewById(R.id.textViewTestResultsMyDiagnosis);
-
+        FullTest=(Button) findViewById(R.id.textViewFullTestMyDiagnosis);
+        FullTest.setOnClickListener(this);
 
         // get current user uID
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -70,33 +74,39 @@ public class MyDiagnosisActivity extends AppCompatActivity {
         });
 
 
+    }
+    @Override
+    public void onClick(View view){
+        if(view == FullTest){
+            String url = "https://enchroma.com/pages/test";
 
-
-
-
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
+        }
 
     }
-
     String DiagnosisResults(ArrayList<String> type){
         String msg ="";
         if (type != null) {
             if(type.contains("PROTAN")){
-                msg=msg+"You may have Protans color blindness," +
+                msg=msg+"You may have Protans color blindness,\n" +
                         " people with Protanomaly, have a type of red-green color blindness in which the red cones are not" +
                         "absent but do not detect enough red and are too sensitive to greens, yellows, and oranges." +
                         "As a result, greens, yellows, oranges, reds, and browns may appear similar, especially in low light." +
                         "Red and black might be hard to tell apart, especially when red text is against a black background.\n\n";
             }
             if(type.contains("DEUTAN")){
-                msg=msg+"You may have Deutans color blindness," +
+                if(!msg.equals("")){msg=msg+"\nOR\n";}
+                msg=msg+"You may have Deutans color blindness,\n" +
                         "people with Deuteranomaly, have a type of red-green color blindness in which green cones are not" +
                         "absent but do not detect enough green and are too sensitive to yellows, oranges, and reds." +
                         "As a result, greens, yellows, oranges, reds, and browns may appear similar, especially in low light. " +
                         " It can also be difficult to tell the difference between blues and purples, or pinks and grays.\n\n";
             }
             if(type.contains("TRITAN")){
-
-                msg=msg+"You may have Tritan color blindness," +
+                if(!msg.equals("")){msg=msg+"\nOR\n";}
+                msg=msg+"You may have Tritan color blindness,\n" +
                         "causing reduced blue sensitivity and Tritanopia, resulting in no blue sensitivity, " +
                         "can be inherited or acquired; the inherited form is a rare autosomal recessive condition." +
                         "More commonly, tritanomaly is acquired later in life due to age-related or environmental factors. " +
@@ -107,7 +117,7 @@ public class MyDiagnosisActivity extends AppCompatActivity {
         }
 
         else{
-            msg="No color blindness / not tested";
+            msg="\nNo color blindness / not tested\n";
         }
 
         return msg;
