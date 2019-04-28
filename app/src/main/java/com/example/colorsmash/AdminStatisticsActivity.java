@@ -94,18 +94,20 @@ public class AdminStatisticsActivity extends AppCompatActivity {
                 }
 
                 int maxColor = Collections.max(colors.values());
-                String badColors = "";
+                String badColors = "None";
 
                 if (maxColor!=0){
+                    badColors="";
                     for (Map.Entry<String, Integer> entry : colors.entrySet()) {
                         if ( entry.getValue() == maxColor){
-                            badColors += ", "+entry.getKey();
+                            badColors += " " + entry.getKey();
                         }
-                        String key = entry.getKey();
-                        Int value = entry.getValue();
-
                     }
+                    badColors.replace(" ",", ");
                 }
+
+                // print bad colors
+                textViewMostCommonColors.setText(textViewMostCommonColors.getText()+" "+ badColors);
 
             }
 
