@@ -15,4 +15,5 @@
     </string>
     <string name="title_activity_admin_login">Sign in</string>
     <string name="title_activity_show_users">ShowUsers</string>
+    <string name="title_activity_my_diagnosis">MyDiagnosisActivity</string>
 </resources>

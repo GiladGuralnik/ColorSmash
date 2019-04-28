@@ -13,7 +13,6 @@
         android:roundIcon="@drawable/iconbricks"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminStatisticsActivity"></activity>
         <activity android:name=".GameFunctionalityActivity" />
         <activity android:name=".ShowPreviousScoresActivity" />
         <activity android:name=".UserGameActivity" />
