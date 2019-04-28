@@ -22,6 +22,7 @@
         <activity android:name=".LeaderBoardActivity" />
         <activity android:name=".StartGameActivity" />
         <activity android:name=".PersonalInfo" />
+        <activity android:name=".MyDiagnosisActivity" />
         <activity android:name=".ShowUsers" />
         <activity android:name=".AdminOptions" />
         <activity

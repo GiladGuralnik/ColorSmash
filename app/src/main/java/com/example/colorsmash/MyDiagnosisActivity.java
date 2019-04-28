@@ -23,6 +23,7 @@ public class MyDiagnosisActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_diagnosis);
+
         TVname=(TextView)findViewById(R.id.textViewNameMyDiagnosis);
         TVresults=(TextView)findViewById(R.id.textViewTestResultsMyDiagnosis);
 
