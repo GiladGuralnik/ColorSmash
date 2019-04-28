@@ -22,10 +22,11 @@ public class UserOptionsActivity extends AppCompatActivity implements View.OnCli
 
         buttonStartGame = (Button) findViewById(R.id.ButtonStartGameForRegisteredUser);
         buttonShowLeaderBoard = (Button) findViewById(R.id.ButtonShowLeaderBoard);
-        buttonShowLeaderBoard = (Button) findViewById(R.id.ButtonMyDiagnosis);
+        buttonMyDiagnosis = (Button) findViewById(R.id.ButtonMyDiagnosis);
 
         buttonStartGame.setOnClickListener(this);
         buttonShowLeaderBoard.setOnClickListener(this);
+        buttonMyDiagnosis.setOnClickListener(this);
 
     }
 
@@ -39,6 +40,11 @@ public class UserOptionsActivity extends AppCompatActivity implements View.OnCli
         else if ( v == buttonShowLeaderBoard){
             this.finish();
             Intent act = new Intent(UserOptionsActivity.this, LeaderBoardActivity.class);
+            startActivity(act);
+        }
+        else if ( v == buttonMyDiagnosis){
+            this.finish();
+            Intent act = new Intent(UserOptionsActivity.this, MyDiagnosisActivity.class);
             startActivity(act);
         }
     }
