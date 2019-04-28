@@ -34,15 +34,9 @@ public class AdminStatisticsActivity extends AppCompatActivity {
 
         users = new ArrayList<User>();
         colors = new HashMap<String,Integer>();
-        colors.put("RED",0);
-        colors.put("ORANGE",0);
-        colors.put("YELLOW",0);
-        colors.put("GREEN",0);
-        colors.put("BLUE",0);
-        colors.put("PURPLE",0);
-        colors.put("BROWN",0);
-        colors.put("PINK",0);
-        colors.put("GRAY",0);
+        colors.put("PROTAN",0);
+        colors.put("DEUTAN",0);
+        colors.put("TRITAN",0);
         textViewAverageAge = (TextView)findViewById(R.id.textViewAverageAge);
         textViewMostCommonGender = (TextView)findViewById(R.id.textViewMostCommonGender);
         textViewMostCommonColors = (TextView)findViewById(R.id.textViewMostCommonColors);
