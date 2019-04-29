@@ -139,6 +139,84 @@ public class StartGameActivity extends AppCompatActivity {
 
     }
 
+    public void changePos()
+    {
+        //Add Time Count
+        timeCount += 1;
+
+        //orangeBox
+        orangeBox();
+
+        //pinkBox
+        pinkBox();
+
+        //blackBox
+        blackBox();
+
+        //bonusBox
+        bonusBox();
+
+        //purple
+        purpleBox();
+
+        //blue
+        blueBox();
+
+        //red
+        redBox();
+
+        //gray
+        grayBox();
+
+        //yellow
+        yellowBox();
+
+        //green
+        greenBox();
+
+        //_______________________________________________Main Player Box_______________________________
+        mainPlayerBox();
+
+        increaseGameDifficulty(); //make the game harder by time
+
+        scoreLabel.setText("Score : " + score); //update score
+
+    }
+
+    private void initializeColors()
+    {
+        boxColors.put("PINK",new ArrayList<Integer>(){
+            {
+                add(R.drawable.pinkbox_left);
+                add(R.drawable.pinkbox_right);
+            }
+
+        });
+
+        boxColors.put("BLUE",new ArrayList<Integer>(){
+            {
+                add(R.drawable.box_left);
+                add(R.drawable.box_right);
+            }
+
+        });
+
+        boxColors.put("ORANGE",new ArrayList<Integer>(){
+            {
+                add(R.drawable.orangebox_left);
+                add(R.drawable.orangebox_right);
+            }
+
+        });
+
+        boxColors.put("TURQUOISE",new ArrayList<Integer>(){
+            {
+                add(R.drawable.turquoisebox_left);
+                add(R.drawable.turquoisebox_right);
+            }
+
+        });
+    }
 
 
 

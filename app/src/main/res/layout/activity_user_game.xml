@@ -59,7 +59,7 @@
             android:id="@+id/pink"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/pink"
+            android:src="@drawable/bonus"
             android:visibility="invisible"
             />
 
