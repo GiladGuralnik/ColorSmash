@@ -257,7 +257,7 @@ public class StartGameActivity extends AppCompatActivity {
     }
 
     private String randomizeColor() {
-        int r = rand.nextInt(4);
+        int r = rand.nextInt(9);
 
         switch (r) {
             case 0: {
