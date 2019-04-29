@@ -754,5 +754,133 @@ public class StartGameActivity extends AppCompatActivity {
         return true;
     }
 
+    public FrameLayout getGameFrame() //Dont delete, Used for tests
+    {
+        return gameFrame;
+    }
+
+
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            this.onDestroy();
+            Intent act = new Intent(StartGameActivity.this, MainActivity.class);
+            startActivity(act);
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+
+    public void startGame(View view)
+    {
+        start_flg = true;
+        startLayout.setVisibility(View.INVISIBLE);
+
+        ////////////////////// update db -> games counter //////////////////////////////
+        final DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Counter");
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String counter = (String)dataSnapshot.getValue();
+                mRef.setValue(String.valueOf(Integer.parseInt(counter)+1));
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        /////////////////////////
+
+
+        if( frameHeight == 0 )
+        {
+            frameHeight = gameFrame.getHeight();
+            frameWidth = gameFrame.getWidth();
+            initialFrameWidth = frameWidth;
+
+            boxSize = box.getHeight();
+            boxX = box.getX();
+            boxY = box.getY();
+
+            frameWidth = initialFrameWidth;
+
+            box.setX(0.0f); //initial location bottom-left
+            black.setY(3000.0f);
+            orange.setY(3000.0f);
+            pink.setY(3000.0f);
+            bonus.setY(3000.0f);
+            blue.setY(3000.0f);
+            red.setY(3000.0f);
+            gray.setY(3000.0f);
+            purple.setY(3000.0f);
+            yellow.setY(3000.0f);
+            green.setY(3000.0f);
+
+            blackY = black.getY();
+            orangeY = orange.getY();
+            pinkY = pink.getY();
+            bonusY = bonus.getY();
+            blueY = blue.getY();
+            redY = red.getY();
+            grayY = gray.getY();
+            purpleY = purple.getY();
+            yellowY = yellow.getY();
+            greenY = green.getY();
+
+
+            box.setVisibility(View.VISIBLE);
+            black.setVisibility(View.VISIBLE);
+            orange.setVisibility(View.VISIBLE);
+            pink.setVisibility(View.VISIBLE);
+            bonus.setVisibility(View.VISIBLE);
+            blue.setVisibility(View.VISIBLE);
+            red.setVisibility(View.VISIBLE);
+            gray.setVisibility(View.VISIBLE);
+            purple.setVisibility(View.VISIBLE);
+            yellow.setVisibility(View.VISIBLE);
+            green.setVisibility(View.VISIBLE);
+
+            timeCount = 0;
+            score = 0;
+            scoreLabel.setText("Score : 0");
+
+            timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    if(start_flg)
+                    {
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                changePos();
+                            }
+                        });
+                    }
+                }
+            },0,20);
+        }
+
+
+
+    }
+
+
+    public void exitGame(View view)
+    {
+        this.finish();
+        Intent act = new Intent(StartGameActivity.this, MainActivity.class);
+        startActivity(act);
+    }
+
 
 }
+
+
+
+
+
