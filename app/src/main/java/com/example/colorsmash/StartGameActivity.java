@@ -673,5 +673,25 @@ public class StartGameActivity extends AppCompatActivity {
     }
 
 
+    public boolean hitCheck(float x, float y)
+    {
+        if(boxX <= x && x <= boxX + boxSize && boxY <= y && y<= frameHeight)
+        {
+            setNewPlayerColor(); //REMOVE THIS FUNCTION FROM HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+            return true;
+        }
+
+        return false;
+    }
+
+
+    public void changeFrameWidth(int frameWidth)
+    {
+        ViewGroup.LayoutParams params = gameFrame.getLayoutParams();
+        params.width = frameWidth;
+        gameFrame.setLayoutParams(params);
+    }
+
+
 
 }
