@@ -439,6 +439,10 @@ public class StartGameActivity extends AppCompatActivity {
     {
         decreaseWindowSize();
         soundPlayer.playHitBlackSound();
+        if(frameWidth <= black.getWidth()*2)
+        {
+            gameOver();
+        }
     }
 
 
@@ -739,7 +743,6 @@ public class StartGameActivity extends AppCompatActivity {
     {
         frameWidth = frameWidth * 80/100; // 80% of original size
         changeFrameWidth(frameWidth);
-        soundPlayer.playHitBlackSound();
     }
 
     private void increaseWindowSize()
