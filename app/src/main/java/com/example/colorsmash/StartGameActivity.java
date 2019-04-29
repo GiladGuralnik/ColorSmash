@@ -362,8 +362,8 @@ public class StartGameActivity extends AppCompatActivity {
 
             blueY += boxSpeed;
 
-            float blueCenterX = blueX + blue.getWidth() / 2;
-            float blueCenterY = blueY + blue.getHeight() / 2;
+            float blueCenterX = blueX + blue.getWidth() /2;
+            float blueCenterY = blueY + blue.getHeight()/2;
 
             if (hitCheck(blueCenterX, blueCenterY)) {
                 blueY = frameHeight + 100;
@@ -439,6 +439,7 @@ public class StartGameActivity extends AppCompatActivity {
     {
         decreaseWindowSize();
         soundPlayer.playHitBlackSound();
+        decreaseGameDifficulty();
         if(frameWidth <= black.getWidth()*2)
         {
             gameOver();
@@ -582,7 +583,7 @@ public class StartGameActivity extends AppCompatActivity {
 
         if (bonus_flg) {
 
-            bonusY += 20;
+            bonusY += 25;
 
             float bonusCenterX = bonusX + bonus.getWidth() / 2;
             float bonusCenterY = bonusY + bonus.getHeight() / 2;
@@ -786,7 +787,7 @@ public class StartGameActivity extends AppCompatActivity {
 
     private void increaseGameDifficulty()
     {
-        if(timeCount%3000 == 0)
+        if(timeCount%2000 == 0)
         {
             boxSpeed = (int)(boxSpeed * 1.2);
         }
