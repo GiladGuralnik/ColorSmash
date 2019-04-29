@@ -218,7 +218,24 @@ public class StartGameActivity extends AppCompatActivity {
         });
     }
 
+    private String randomizeColor()
+    {
+        int r = rand.nextInt(4);
 
+        switch(r)
+        {
+            case 0:
+            { return "PINK"; }
+            case 1:
+            { return "BLUE"; }
+            case 2:
+            { return "ORANGE"; }
+            case 3:
+            { return "TURQUOISE"; }
+            default:
+            { return "BLUE"; }
+        }
+    }
 
 
 
