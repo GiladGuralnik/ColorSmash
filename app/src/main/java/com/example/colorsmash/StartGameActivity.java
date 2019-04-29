@@ -516,6 +516,81 @@ public class StartGameActivity extends AppCompatActivity {
     }
 
 
+    private void pinkBox()
+    {
+
+        if(!pink_flg && timeCount%700 == (rand.nextInt(700)) ) // timer for pink to appear
+        {
+            pink_flg = true;
+            pinkY = -100;
+            pinkX = (float) Math.floor(Math.random() * (frameWidth - pink.getWidth()));
+
+        }
+
+        if(pink_flg){
+
+            pinkY += boxSpeed;
+
+            float pinkCenterX = pinkX + pink.getWidth() / 2;
+            float pinkCenterY = pinkY + pink.getHeight() / 2;
+
+            if(hitCheck(pinkCenterX,pinkCenterY))
+            {
+                pinkY = frameHeight + 30;
+                score += 10;
+                soundPlayer.playHitOrangeSound();
+
+            }
+
+            if(pinkY > frameHeight )
+                pink_flg = false;
+
+            pink.setX(pinkX);
+            pink.setY(pinkY);
+
+        }
+
+        return;
+    }
+
+    private void purpleBox()
+    {
+
+        if(!purple_flag && timeCount%700 == (rand.nextInt(700)) ) // timer for pink to appear
+        {
+            purple_flag = true;
+            purpleY = -100;
+            purpleX = (float) Math.floor(Math.random() * (frameWidth - purple.getWidth()));
+
+        }
+
+        if(purple_flag){
+
+            purpleY += boxSpeed;
+
+            float purpleCenterX = purpleX + purple.getWidth() / 2;
+            float purpleCenterY = purpleY + purple.getHeight() / 2;
+
+            if(hitCheck(purpleCenterX,purpleCenterY))
+            {
+                purpleY = frameHeight + 30;
+                score += 30;
+                soundPlayer.playHitOrangeSound();
+
+            }
+
+            if(purpleY > frameHeight )
+                purple_flag = false;
+
+            purple.setX(purpleX);
+            purple.setY(purpleY);
+
+        }
+
+        return;
 
 
-}
+
+
+
+    }
