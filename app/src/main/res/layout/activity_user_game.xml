@@ -24,7 +24,7 @@
 
     <FrameLayout
         android:id="@+id/gameFrame"
-        android:layout_width="300dp"
+        android:layout_width="360dp"
         android:layout_height="match_parent"
         android:background="@android:color/white"
         android:layout_gravity="center_horizontal"
@@ -40,23 +40,81 @@
             />
 
         <ImageView
+            android:id="@+id/yellow"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:src="@drawable/yellow"
+            android:visibility="invisible"
+            />
+
+        <ImageView
+            android:id="@+id/red"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:src="@drawable/red"
+            android:visibility="invisible"
+
+            />
+
+        <ImageView
+            android:id="@+id/pink"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:src="@drawable/pink"
+            android:visibility="invisible"
+            />
+
+        <ImageView
+            android:id="@+id/orange"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:src="@drawable/orange"
+            android:visibility="invisible"
+            />
+
+        <ImageView
+            android:id="@+id/gray"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:src="@drawable/gray"
+            android:visibility="invisible"
+            />
+
+        <ImageView
             android:id="@+id/black"
-            android:layout_width="40dp"
+            android:layout_width="80dp"
             android:layout_height="40dp"
             android:src="@drawable/black"
             android:visibility="invisible"
             />
 
         <ImageView
-            android:id="@+id/orange"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/orange"
+            android:id="@+id/purple"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:src="@drawable/purple"
             android:visibility="invisible"
             />
 
         <ImageView
-            android:id="@+id/pink"
+            android:id="@+id/blue"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:src="@drawable/blue"
+            android:visibility="invisible"
+            />
+
+        <ImageView
+            android:id="@+id/green"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:src="@drawable/green"
+            android:visibility="invisible"
+            />
+
+
+        <ImageView
+            android:id="@+id/bonus"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:src="@drawable/bonus"
