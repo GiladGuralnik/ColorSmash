@@ -93,6 +93,11 @@ public class StartGameActivity extends AppCompatActivity {
     //Difficulty levels
     private int boxSpeed = 12;
 
+    //boxColorsHashmap
+    private Map<String, List<Integer>> boxColors = new HashMap<String,List<Integer>>();
+
+    //Random variable
+    Random rand = new Random();
 
 
 
