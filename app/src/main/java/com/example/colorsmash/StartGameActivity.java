@@ -248,6 +248,43 @@ public class StartGameActivity extends AppCompatActivity {
 
     }
 
+    private void orangeBox()
+    {
+
+        if(!orange_flg && timeCount%700 == (rand.nextInt(700)) ) // timer for orange to appear
+        {
+            orange_flg = true;
+            orangeY = -100;
+            orangeX = (float) Math.floor(Math.random() * (frameWidth - orange.getWidth()));
+
+        }
+
+        if(orange_flg){
+
+            orangeY += boxSpeed;
+
+            float orangeCenterX = orangeX + orange.getWidth() / 2;
+            float orangeCenterY = orangeY + orange.getHeight() / 2;
+
+            if(hitCheck(orangeCenterX,orangeCenterY))
+            {
+                orangeY = frameHeight + 100;
+                score += 10;
+                soundPlayer.playHitOrangeSound();
+
+            }
+
+            if(orangeY > frameHeight )
+                orange_flg = false;
+
+            orange.setX(orangeX);
+            orange.setY(orangeY);
+
+        }
+
+        return;
+    }
+
 
 
 }
