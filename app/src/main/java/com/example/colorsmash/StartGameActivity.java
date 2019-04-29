@@ -93,6 +93,9 @@ public class StartGameActivity extends AppCompatActivity {
     //Difficulty levels
     private int boxSpeed = 12;
 
+    //Current Player Color
+    private String currentColor = "BLUE";
+
     //boxColorsHashmap
     private Map<String, List<Integer>> boxColors = new HashMap<String, List<Integer>>();
 
@@ -296,6 +299,7 @@ public class StartGameActivity extends AppCompatActivity {
     private void setNewPlayerColor() {
         String color = randomizeColor();
         int firstImage, secondImage;
+        currentColor = color; //update current color
         firstImage = boxColors.get(color).get(0);
         secondImage = boxColors.get(color).get(1);
         imageBoxLeft = getResources().getDrawable(firstImage);
@@ -322,8 +326,14 @@ public class StartGameActivity extends AppCompatActivity {
 
             if (hitCheck(orangeCenterX, orangeCenterY)) {
                 orangeY = frameHeight + 100;
-                score += 10;
-                soundPlayer.playHitOrangeSound();
+                if(currentColor == "ORANGE")
+                {
+                    positiveHit();
+                }
+                else
+                {
+                    negativeHit();
+                }
 
             }
 
@@ -357,9 +367,14 @@ public class StartGameActivity extends AppCompatActivity {
 
             if (hitCheck(blueCenterX, blueCenterY)) {
                 blueY = frameHeight + 100;
-                score += 10;
-                soundPlayer.playHitOrangeSound();
-
+                if(currentColor == "BLUE")
+                {
+                    positiveHit();
+                }
+                else
+                {
+                    negativeHit();
+                }
             }
 
             if (blueY > frameHeight)
@@ -392,9 +407,14 @@ public class StartGameActivity extends AppCompatActivity {
 
             if (hitCheck(greenCenterX, greenCenterY)) {
                 greenY = frameHeight + 100;
-                score += 10;
-                soundPlayer.playHitOrangeSound();
-
+                if(currentColor == "GREEN")
+                {
+                    positiveHit();
+                }
+                else
+                {
+                    negativeHit();
+                }
             }
 
             if (greenY > frameHeight)
@@ -406,6 +426,18 @@ public class StartGameActivity extends AppCompatActivity {
         }
 
         return;
+    }
+
+    private void positiveHit()
+    {
+        score += 10;
+        soundPlayer.playHitOrangeSound();
+    }
+
+    private void negativeHit()
+    {
+        decreaseWindowSize();
+        soundPlayer.playHitBlackSound();
     }
 
 
@@ -428,8 +460,14 @@ public class StartGameActivity extends AppCompatActivity {
 
             if (hitCheck(yellowCenterX, yellowCenterY)) {
                 yellowY = frameHeight + 100;
-                score += 10;
-                soundPlayer.playHitOrangeSound();
+                if(currentColor == "YELLOW")
+                {
+                    positiveHit();
+                }
+                else
+                {
+                    negativeHit();
+                }
 
             }
 
@@ -464,8 +502,14 @@ public class StartGameActivity extends AppCompatActivity {
 
             if (hitCheck(grayCenterX, grayCenterY)) {
                 grayY = frameHeight + 100;
-                score += 10;
-                soundPlayer.playHitOrangeSound();
+                if(currentColor == "GRAY")
+                {
+                    positiveHit();
+                }
+                else
+                {
+                    negativeHit();
+                }
 
             }
 
@@ -499,9 +543,14 @@ public class StartGameActivity extends AppCompatActivity {
 
             if (hitCheck(redCenterX, redCenterY)) {
                 redY = frameHeight + 100;
-                score += 10;
-                soundPlayer.playHitOrangeSound();
-
+                if(currentColor == "RED")
+                {
+                    positiveHit();
+                }
+                else
+                {
+                    negativeHit();
+                }
             }
 
             if (redY > frameHeight)
@@ -575,8 +624,14 @@ public class StartGameActivity extends AppCompatActivity {
 
             if (hitCheck(pinkCenterX, pinkCenterY)) {
                 pinkY = frameHeight + 30;
-                score += 10;
-                soundPlayer.playHitOrangeSound();
+                if(currentColor == "PINK")
+                {
+                    positiveHit();
+                }
+                else
+                {
+                    negativeHit();
+                }
 
             }
 
@@ -610,8 +665,14 @@ public class StartGameActivity extends AppCompatActivity {
 
             if (hitCheck(purpleCenterX, purpleCenterY)) {
                 purpleY = frameHeight + 30;
-                score += 30;
-                soundPlayer.playHitOrangeSound();
+                if(currentColor == "PURPLE")
+                {
+                    positiveHit();
+                }
+                else
+                {
+                    negativeHit();
+                }
 
             }
 
@@ -648,8 +709,14 @@ public class StartGameActivity extends AppCompatActivity {
             if(hitCheck(blackCenterX,blackCenterY))
             {
                 blackY = frameHeight + 30;
-                score += 30;
-                soundPlayer.playHitOrangeSound();
+                if(currentColor == "BLACK")
+                {
+                    positiveHit();
+                }
+                else
+                {
+                    negativeHit();
+                }
 
             }
 
