@@ -47,7 +47,12 @@ public class DiagnosisActivity extends AppCompatActivity implements View.OnClick
         buttonQuestion5.setOnClickListener(this);
         buttonQuestion6.setOnClickListener(this);
 
-
+        textQuestion1=(EditText)findViewById(R.id.editTextQuestion1Diagnosis);
+        textQuestion2=(EditText)findViewById(R.id.editTextQuestion2Diagnosis);
+        textQuestion3=(EditText)findViewById(R.id.editTextQuestion3Diagnosis);
+        textQuestion4=(EditText)findViewById(R.id.editTextQuestion4Diagnosis);
+        textQuestion5=(EditText)findViewById(R.id.editTextQuestion5Diagnosis);
+        textQuestion6=(EditText)findViewById(R.id.editTextQuestion6Diagnosis);
 
 
     }
@@ -57,6 +62,11 @@ public class DiagnosisActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View view){
         if(view == submit){
+            //textQuestion1.getText().toString();
+            Log.d("TTT", textQuestion1.getText().toString());
+            Log.d("TTT", textQuestion2.getText().toString());
+            Log.d("TTT", textQuestion3.getText().toString());
+            Log.d("TTT", textQuestion4.getText().toString());
 
         }
         else if(view == buttonQuestion1){
