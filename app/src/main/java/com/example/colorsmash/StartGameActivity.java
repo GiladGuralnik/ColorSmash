@@ -626,5 +626,52 @@ public class StartGameActivity extends AppCompatActivity {
     }
 
 
+    private void mainPlayerBox()
+    {
+        //Move Box
+        if(action_flg)
+        {
+            //Touch screen
+            boxX += 14;
+            box.setImageDrawable(imageBoxRight);
+        }
+        else
+        {
+            //Release touch
+            boxX -= 14;
+            box.setImageDrawable(imageBoxLeft);
+        }
+
+        //Check Box Position
+        if(boxX <= 0)
+        {
+            boxX = 0;
+            box.setImageDrawable(imageBoxRight);
+        }
+        if(frameWidth - boxSize < boxX)
+        {
+            boxX = frameWidth - boxSize;
+            box.setImageDrawable(imageBoxLeft);
+        }
+
+        box.setX(boxX);
+        return;
+    }
+
+    private void increaseGameDifficulty()
+    {
+        if(timeCount%3000 == 0)
+        {
+            boxSpeed = (int)(boxSpeed * 1.2);
+        }
+    }
+
+    private void decreaseGameDifficulty()
+    {
+        boxSpeed = (int)(boxSpeed * 0.9);
+
+    }
+
+
 
 }
