@@ -285,6 +285,43 @@ public class StartGameActivity extends AppCompatActivity {
         return;
     }
 
+    private void blueBox()
+    {
+
+        if(!blue_flg && timeCount%700 == (rand.nextInt(700)) ) // timer for blue to appear
+        {
+            blue_flg = true;
+            blueY = -100;
+            blueX = (float) Math.floor(Math.random() * (frameWidth - blue.getWidth()));
+
+        }
+
+        if(blue_flg){
+
+            blueY += boxSpeed;
+
+            float blueCenterX = blueX + blue.getWidth() / 2;
+            float blueCenterY = blueY + blue.getHeight() / 2;
+
+            if(hitCheck(blueCenterX,blueCenterY))
+            {
+                blueY = frameHeight + 100;
+                score += 10;
+                soundPlayer.playHitOrangeSound();
+
+            }
+
+            if(blueY > frameHeight )
+                blue_flg = false;
+
+            blue.setX(blueX);
+            blue.setY(blueY);
+
+        }
+
+        return;
+    }
+
 
 
 }
