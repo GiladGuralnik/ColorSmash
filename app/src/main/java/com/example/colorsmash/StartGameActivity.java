@@ -435,7 +435,85 @@ public class StartGameActivity extends AppCompatActivity {
         return;
     }
 
+    private void redBox()
+    {
 
+        if(!red_flg && timeCount%700 == (rand.nextInt(700)) ) // timer for blue to appear
+        {
+            red_flg = true;
+            redY = -100;
+            redX = (float) Math.floor(Math.random() * (frameWidth - red.getWidth()));
+
+        }
+
+        if(red_flg){
+
+            redY += boxSpeed;
+
+            float redCenterX = redX + red.getWidth() / 2;
+            float redCenterY = redY + red.getHeight() / 2;
+
+            if(hitCheck(redCenterX,redCenterY))
+            {
+                redY = frameHeight + 100;
+                score += 10;
+                soundPlayer.playHitOrangeSound();
+
+            }
+
+            if(redY > frameHeight )
+                red_flg = false;
+
+            red.setX(redX);
+            red.setY(redY);
+
+        }
+
+        return;
+    }
+
+
+
+    private void bonusBox()
+    {
+
+        if(!bonus_flg && timeCount%700 == (rand.nextInt(700)) ) // timer for bonus to appear
+        {
+            bonus_flg = true;
+            bonusY = -20;
+            bonusX = (float) Math.floor(Math.random() * (frameWidth - bonus.getWidth()));
+
+        }
+
+        if(bonus_flg){
+
+            bonusY += 20;
+
+            float bonusCenterX = bonusX + bonus.getWidth() / 2;
+            float bonusCenterY = bonusY + bonus.getHeight() / 2;
+
+            if(hitCheck(bonusCenterX,bonusCenterY))
+            {
+                bonusY = frameHeight + 100;
+                score += 50;
+                soundPlayer.playHitBonusSound();
+
+                //Change Frame Width ( bonus )
+                if(initialFrameWidth > frameWidth * 120/100) //if the frame got shrunk
+                {
+                    increaseWindowSize();
+                }
+            }
+
+            if(bonusY > frameHeight )
+                bonus_flg = false;
+
+            bonus.setX(bonusX);
+            bonus.setY(bonusY);
+
+        }
+        return;
+    }
 
 
 
