@@ -10,6 +10,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -121,6 +122,17 @@ public class MyDiagnosisActivity extends AppCompatActivity implements View.OnCli
         }
 
         return msg;
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            this.finish();
+            Intent act = new Intent(MyDiagnosisActivity.this, UserOptionsActivity.class);
+            startActivity(act);
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 }
