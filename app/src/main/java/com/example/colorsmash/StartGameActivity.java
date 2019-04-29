@@ -237,6 +237,17 @@ public class StartGameActivity extends AppCompatActivity {
         }
     }
 
+    private void setNewPlayerColor()
+    {
+        String color = randomizeColor();
+        int firstImage,secondImage;
+        firstImage = boxColors.get(color).get(0);
+        secondImage = boxColors.get(color).get(1);
+        imageBoxLeft = getResources().getDrawable(firstImage);
+        imageBoxRight = getResources().getDrawable(secondImage);
+
+    }
+
 
 
 }
