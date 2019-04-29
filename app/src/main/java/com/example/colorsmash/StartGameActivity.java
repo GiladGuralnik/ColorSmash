@@ -322,6 +322,87 @@ public class StartGameActivity extends AppCompatActivity {
         return;
     }
 
+    private void greenBox()
+    {
+
+        if(!green_flg && timeCount%700 == (rand.nextInt(700)) ) // timer for blue to appear
+        {
+            green_flg = true;
+            greenY = -100;
+            greenX = (float) Math.floor(Math.random() * (frameWidth - green.getWidth()));
+
+        }
+
+        if(green_flg){
+
+            greenY += boxSpeed;
+
+            float greenCenterX = greenX + green.getWidth() / 2;
+            float greenCenterY = greenY + green.getHeight() / 2;
+
+            if(hitCheck(greenCenterX,greenCenterY))
+            {
+                greenY = frameHeight + 100;
+                score += 10;
+                soundPlayer.playHitOrangeSound();
+
+            }
+
+            if(greenY > frameHeight )
+                green_flg = false;
+
+            green.setX(greenX);
+            green.setY(greenY);
+
+        }
+
+        return;
+    }
+
+
+    private void yellowBox()
+    {
+
+        if(!yellow_flg && timeCount%700 == (rand.nextInt(700)) ) // timer for blue to appear
+        {
+            yellow_flg = true;
+            yellowY = -100;
+            yellowX = (float) Math.floor(Math.random() * (frameWidth - yellow.getWidth()));
+
+        }
+
+        if(yellow_flg){
+
+            yellowY += boxSpeed;
+
+            float yellowCenterX = yellowX + yellow.getWidth() / 2;
+            float yellowCenterY = yellowY + yellow.getHeight() / 2;
+
+            if(hitCheck(yellowCenterX,yellowCenterY))
+            {
+                yellowY = frameHeight + 100;
+                score += 10;
+                soundPlayer.playHitOrangeSound();
+
+            }
+
+            if(yellowY > frameHeight )
+                yellow_flg = false;
+
+            yellow.setX(yellowX);
+            yellow.setY(yellowY);
+
+        }
+
+        return;
+    }
+
+
+
+
+
+
+
 
 
 }
