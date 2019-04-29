@@ -432,6 +432,7 @@ public class StartGameActivity extends AppCompatActivity {
     {
         score += 10;
         soundPlayer.playHitOrangeSound();
+        setNewPlayerColor();
     }
 
     private void negativeHit()
@@ -799,7 +800,6 @@ public class StartGameActivity extends AppCompatActivity {
     {
         if(boxX <= x && x <= boxX + boxSize && boxY <= y && y<= frameHeight)
         {
-            setNewPlayerColor(); //REMOVE THIS FUNCTION FROM HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
             return true;
         }
 
