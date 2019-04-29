@@ -40,35 +40,35 @@ public class StartGameActivity extends AppCompatActivity {
 
     //GameFrame
     private FrameLayout gameFrame;
-    private int frameHeight,frameWidth,initialFrameWidth;
+    private int frameHeight, frameWidth, initialFrameWidth;
     private LinearLayout startLayout;
 
     //Images Boxes
     private ImageView box;
     //Images Bricks
-    private ImageView black,orange,pink,blue,bonus,gray,green,purple,red,yellow;
+    private ImageView black, orange, pink, blue, bonus, gray, green, purple, red, yellow;
 
-    private Drawable imageBoxRight,imageBoxLeft;
+    private Drawable imageBoxRight, imageBoxLeft;
 
     //Size
     private int boxSize;
 
     //Position
-    private float boxX,boxY;
-    private float blackX,blackY;
-    private float orangeX,orangeY;
-    private float pinkX,pinkY;
-    private float blueX,blueY;
-    private float bonusX,bonusY;
-    private float grayX,grayY;
-    private float greenX,greenY;
-    private float purpleX,purpleY;
-    private float redX,redY;
-    private float yellowX,yellowY;
+    private float boxX, boxY;
+    private float blackX, blackY;
+    private float orangeX, orangeY;
+    private float pinkX, pinkY;
+    private float blueX, blueY;
+    private float bonusX, bonusY;
+    private float grayX, grayY;
+    private float greenX, greenY;
+    private float purpleX, purpleY;
+    private float redX, redY;
+    private float yellowX, yellowY;
 
     //Score
-    private TextView scoreLabel,highScoreLabel;
-    private int score,highScore,timeCount; //Those values will be sent to the DB
+    private TextView scoreLabel, highScoreLabel;
+    private int score, highScore, timeCount; //Those values will be sent to the DB
     private SharedPreferences settings; // Local High Score -- will be moved to DB
 
     //Class
@@ -94,7 +94,7 @@ public class StartGameActivity extends AppCompatActivity {
     private int boxSpeed = 12;
 
     //boxColorsHashmap
-    private Map<String, List<Integer>> boxColors = new HashMap<String,List<Integer>>();
+    private Map<String, List<Integer>> boxColors = new HashMap<String, List<Integer>>();
 
     //Random variable
     Random rand = new Random();
@@ -139,8 +139,7 @@ public class StartGameActivity extends AppCompatActivity {
 
     }
 
-    public void changePos()
-    {
+    public void changePos() {
         //Add Time Count
         timeCount += 1;
 
@@ -183,9 +182,8 @@ public class StartGameActivity extends AppCompatActivity {
 
     }
 
-    private void initializeColors()
-    {
-        boxColors.put("PINK",new ArrayList<Integer>(){
+    private void initializeColors() {
+        boxColors.put("PINK", new ArrayList<Integer>() {
             {
                 add(R.drawable.pinkbox_left);
                 add(R.drawable.pinkbox_right);
@@ -193,7 +191,7 @@ public class StartGameActivity extends AppCompatActivity {
 
         });
 
-        boxColors.put("BLUE",new ArrayList<Integer>(){
+        boxColors.put("BLUE", new ArrayList<Integer>() {
             {
                 add(R.drawable.box_left);
                 add(R.drawable.box_right);
@@ -201,7 +199,7 @@ public class StartGameActivity extends AppCompatActivity {
 
         });
 
-        boxColors.put("ORANGE",new ArrayList<Integer>(){
+        boxColors.put("ORANGE", new ArrayList<Integer>() {
             {
                 add(R.drawable.orangebox_left);
                 add(R.drawable.orangebox_right);
@@ -209,7 +207,7 @@ public class StartGameActivity extends AppCompatActivity {
 
         });
 
-        boxColors.put("TURQUOISE",new ArrayList<Integer>(){
+        boxColors.put("TURQUOISE", new ArrayList<Integer>() {
             {
                 add(R.drawable.turquoisebox_left);
                 add(R.drawable.turquoisebox_right);
@@ -218,29 +216,31 @@ public class StartGameActivity extends AppCompatActivity {
         });
     }
 
-    private String randomizeColor()
-    {
+    private String randomizeColor() {
         int r = rand.nextInt(4);
 
-        switch(r)
-        {
-            case 0:
-            { return "PINK"; }
-            case 1:
-            { return "BLUE"; }
-            case 2:
-            { return "ORANGE"; }
-            case 3:
-            { return "TURQUOISE"; }
-            default:
-            { return "BLUE"; }
+        switch (r) {
+            case 0: {
+                return "PINK";
+            }
+            case 1: {
+                return "BLUE";
+            }
+            case 2: {
+                return "ORANGE";
+            }
+            case 3: {
+                return "TURQUOISE";
+            }
+            default: {
+                return "BLUE";
+            }
         }
     }
 
-    private void setNewPlayerColor()
-    {
+    private void setNewPlayerColor() {
         String color = randomizeColor();
-        int firstImage,secondImage;
+        int firstImage, secondImage;
         firstImage = boxColors.get(color).get(0);
         secondImage = boxColors.get(color).get(1);
         imageBoxLeft = getResources().getDrawable(firstImage);
@@ -248,10 +248,9 @@ public class StartGameActivity extends AppCompatActivity {
 
     }
 
-    private void orangeBox()
-    {
+    private void orangeBox() {
 
-        if(!orange_flg && timeCount%700 == (rand.nextInt(700)) ) // timer for orange to appear
+        if (!orange_flg && timeCount % 700 == (rand.nextInt(700))) // timer for orange to appear
         {
             orange_flg = true;
             orangeY = -100;
@@ -259,22 +258,21 @@ public class StartGameActivity extends AppCompatActivity {
 
         }
 
-        if(orange_flg){
+        if (orange_flg) {
 
             orangeY += boxSpeed;
 
             float orangeCenterX = orangeX + orange.getWidth() / 2;
             float orangeCenterY = orangeY + orange.getHeight() / 2;
 
-            if(hitCheck(orangeCenterX,orangeCenterY))
-            {
+            if (hitCheck(orangeCenterX, orangeCenterY)) {
                 orangeY = frameHeight + 100;
                 score += 10;
                 soundPlayer.playHitOrangeSound();
 
             }
 
-            if(orangeY > frameHeight )
+            if (orangeY > frameHeight)
                 orange_flg = false;
 
             orange.setX(orangeX);
@@ -285,10 +283,9 @@ public class StartGameActivity extends AppCompatActivity {
         return;
     }
 
-    private void blueBox()
-    {
+    private void blueBox() {
 
-        if(!blue_flg && timeCount%700 == (rand.nextInt(700)) ) // timer for blue to appear
+        if (!blue_flg && timeCount % 700 == (rand.nextInt(700))) // timer for blue to appear
         {
             blue_flg = true;
             blueY = -100;
@@ -296,22 +293,21 @@ public class StartGameActivity extends AppCompatActivity {
 
         }
 
-        if(blue_flg){
+        if (blue_flg) {
 
             blueY += boxSpeed;
 
             float blueCenterX = blueX + blue.getWidth() / 2;
             float blueCenterY = blueY + blue.getHeight() / 2;
 
-            if(hitCheck(blueCenterX,blueCenterY))
-            {
+            if (hitCheck(blueCenterX, blueCenterY)) {
                 blueY = frameHeight + 100;
                 score += 10;
                 soundPlayer.playHitOrangeSound();
 
             }
 
-            if(blueY > frameHeight )
+            if (blueY > frameHeight)
                 blue_flg = false;
 
             blue.setX(blueX);
@@ -322,10 +318,9 @@ public class StartGameActivity extends AppCompatActivity {
         return;
     }
 
-    private void greenBox()
-    {
+    private void greenBox() {
 
-        if(!green_flg && timeCount%700 == (rand.nextInt(700)) ) // timer for blue to appear
+        if (!green_flg && timeCount % 700 == (rand.nextInt(700))) // timer for blue to appear
         {
             green_flg = true;
             greenY = -100;
@@ -333,22 +328,21 @@ public class StartGameActivity extends AppCompatActivity {
 
         }
 
-        if(green_flg){
+        if (green_flg) {
 
             greenY += boxSpeed;
 
             float greenCenterX = greenX + green.getWidth() / 2;
             float greenCenterY = greenY + green.getHeight() / 2;
 
-            if(hitCheck(greenCenterX,greenCenterY))
-            {
+            if (hitCheck(greenCenterX, greenCenterY)) {
                 greenY = frameHeight + 100;
                 score += 10;
                 soundPlayer.playHitOrangeSound();
 
             }
 
-            if(greenY > frameHeight )
+            if (greenY > frameHeight)
                 green_flg = false;
 
             green.setX(greenX);
@@ -360,10 +354,9 @@ public class StartGameActivity extends AppCompatActivity {
     }
 
 
-    private void yellowBox()
-    {
+    private void yellowBox() {
 
-        if(!yellow_flg && timeCount%700 == (rand.nextInt(700)) ) // timer for blue to appear
+        if (!yellow_flg && timeCount % 700 == (rand.nextInt(700))) // timer for blue to appear
         {
             yellow_flg = true;
             yellowY = -100;
@@ -371,22 +364,21 @@ public class StartGameActivity extends AppCompatActivity {
 
         }
 
-        if(yellow_flg){
+        if (yellow_flg) {
 
             yellowY += boxSpeed;
 
             float yellowCenterX = yellowX + yellow.getWidth() / 2;
             float yellowCenterY = yellowY + yellow.getHeight() / 2;
 
-            if(hitCheck(yellowCenterX,yellowCenterY))
-            {
+            if (hitCheck(yellowCenterX, yellowCenterY)) {
                 yellowY = frameHeight + 100;
                 score += 10;
                 soundPlayer.playHitOrangeSound();
 
             }
 
-            if(yellowY > frameHeight )
+            if (yellowY > frameHeight)
                 yellow_flg = false;
 
             yellow.setX(yellowX);
@@ -398,10 +390,9 @@ public class StartGameActivity extends AppCompatActivity {
     }
 
 
-    private void grayBox()
-    {
+    private void grayBox() {
 
-        if(!gray_flg && timeCount%700 == (rand.nextInt(700)) ) // timer for blue to appear
+        if (!gray_flg && timeCount % 700 == (rand.nextInt(700))) // timer for blue to appear
         {
             gray_flg = true;
             grayY = -100;
@@ -409,22 +400,21 @@ public class StartGameActivity extends AppCompatActivity {
 
         }
 
-        if(gray_flg){
+        if (gray_flg) {
 
             grayY += boxSpeed;
 
             float grayCenterX = grayX + gray.getWidth() / 2;
             float grayCenterY = grayY + gray.getHeight() / 2;
 
-            if(hitCheck(grayCenterX,grayCenterY))
-            {
+            if (hitCheck(grayCenterX, grayCenterY)) {
                 grayY = frameHeight + 100;
                 score += 10;
                 soundPlayer.playHitOrangeSound();
 
             }
 
-            if(grayY > frameHeight )
+            if (grayY > frameHeight)
                 gray_flg = false;
 
             gray.setX(grayX);
@@ -435,10 +425,9 @@ public class StartGameActivity extends AppCompatActivity {
         return;
     }
 
-    private void redBox()
-    {
+    private void redBox() {
 
-        if(!red_flg && timeCount%700 == (rand.nextInt(700)) ) // timer for blue to appear
+        if (!red_flg && timeCount % 700 == (rand.nextInt(700))) // timer for blue to appear
         {
             red_flg = true;
             redY = -100;
@@ -446,22 +435,21 @@ public class StartGameActivity extends AppCompatActivity {
 
         }
 
-        if(red_flg){
+        if (red_flg) {
 
             redY += boxSpeed;
 
             float redCenterX = redX + red.getWidth() / 2;
             float redCenterY = redY + red.getHeight() / 2;
 
-            if(hitCheck(redCenterX,redCenterY))
-            {
+            if (hitCheck(redCenterX, redCenterY)) {
                 redY = frameHeight + 100;
                 score += 10;
                 soundPlayer.playHitOrangeSound();
 
             }
 
-            if(redY > frameHeight )
+            if (redY > frameHeight)
                 red_flg = false;
 
             red.setX(redX);
@@ -473,11 +461,9 @@ public class StartGameActivity extends AppCompatActivity {
     }
 
 
+    private void bonusBox() {
 
-    private void bonusBox()
-    {
-
-        if(!bonus_flg && timeCount%700 == (rand.nextInt(700)) ) // timer for bonus to appear
+        if (!bonus_flg && timeCount % 700 == (rand.nextInt(700))) // timer for bonus to appear
         {
             bonus_flg = true;
             bonusY = -20;
@@ -485,27 +471,26 @@ public class StartGameActivity extends AppCompatActivity {
 
         }
 
-        if(bonus_flg){
+        if (bonus_flg) {
 
             bonusY += 20;
 
             float bonusCenterX = bonusX + bonus.getWidth() / 2;
             float bonusCenterY = bonusY + bonus.getHeight() / 2;
 
-            if(hitCheck(bonusCenterX,bonusCenterY))
-            {
+            if (hitCheck(bonusCenterX, bonusCenterY)) {
                 bonusY = frameHeight + 100;
                 score += 50;
                 soundPlayer.playHitBonusSound();
 
                 //Change Frame Width ( bonus )
-                if(initialFrameWidth > frameWidth * 120/100) //if the frame got shrunk
+                if (initialFrameWidth > frameWidth * 120 / 100) //if the frame got shrunk
                 {
                     increaseWindowSize();
                 }
             }
 
-            if(bonusY > frameHeight )
+            if (bonusY > frameHeight)
                 bonus_flg = false;
 
             bonus.setX(bonusX);
@@ -516,10 +501,9 @@ public class StartGameActivity extends AppCompatActivity {
     }
 
 
-    private void pinkBox()
-    {
+    private void pinkBox() {
 
-        if(!pink_flg && timeCount%700 == (rand.nextInt(700)) ) // timer for pink to appear
+        if (!pink_flg && timeCount % 700 == (rand.nextInt(700))) // timer for pink to appear
         {
             pink_flg = true;
             pinkY = -100;
@@ -527,22 +511,21 @@ public class StartGameActivity extends AppCompatActivity {
 
         }
 
-        if(pink_flg){
+        if (pink_flg) {
 
             pinkY += boxSpeed;
 
             float pinkCenterX = pinkX + pink.getWidth() / 2;
             float pinkCenterY = pinkY + pink.getHeight() / 2;
 
-            if(hitCheck(pinkCenterX,pinkCenterY))
-            {
+            if (hitCheck(pinkCenterX, pinkCenterY)) {
                 pinkY = frameHeight + 30;
                 score += 10;
                 soundPlayer.playHitOrangeSound();
 
             }
 
-            if(pinkY > frameHeight )
+            if (pinkY > frameHeight)
                 pink_flg = false;
 
             pink.setX(pinkX);
@@ -553,10 +536,9 @@ public class StartGameActivity extends AppCompatActivity {
         return;
     }
 
-    private void purpleBox()
-    {
+    private void purpleBox() {
 
-        if(!purple_flag && timeCount%700 == (rand.nextInt(700)) ) // timer for pink to appear
+        if (!purple_flag && timeCount % 700 == (rand.nextInt(700))) // timer for pink to appear
         {
             purple_flag = true;
             purpleY = -100;
@@ -564,22 +546,21 @@ public class StartGameActivity extends AppCompatActivity {
 
         }
 
-        if(purple_flag){
+        if (purple_flag) {
 
             purpleY += boxSpeed;
 
             float purpleCenterX = purpleX + purple.getWidth() / 2;
             float purpleCenterY = purpleY + purple.getHeight() / 2;
 
-            if(hitCheck(purpleCenterX,purpleCenterY))
-            {
+            if (hitCheck(purpleCenterX, purpleCenterY)) {
                 purpleY = frameHeight + 30;
                 score += 30;
                 soundPlayer.playHitOrangeSound();
 
             }
 
-            if(purpleY > frameHeight )
+            if (purpleY > frameHeight)
                 purple_flag = false;
 
             purple.setX(purpleX);
@@ -589,8 +570,48 @@ public class StartGameActivity extends AppCompatActivity {
 
         return;
 
-
-
-
-
     }
+
+    private void blackBox()
+    {
+
+        if(!black_flg && timeCount%700 == (rand.nextInt(700)) ) // timer for black to appear
+        {
+            black_flg = true;
+            blackY = -100;
+            blackX = (float) Math.floor(Math.random() * (frameWidth - black.getWidth()));
+
+        }
+
+        if(black_flg){
+
+            blackY += boxSpeed;
+
+            float blackCenterX = blackX +black.getWidth() /2 ;
+            float blackCenterY = blackY +black.getHeight() /2 ;
+
+            if(hitCheck(blackCenterX,blackCenterY))
+            {
+                blackY = frameHeight + 30;
+                score += 30;
+                soundPlayer.playHitOrangeSound();
+
+            }
+
+            if(blackY > frameHeight )
+            {
+                black_flg = false;
+
+            }
+
+            black.setX(blackX);
+            black.setY(blackY);
+
+        }
+
+        return;
+    }
+
+
+
+}
