@@ -693,5 +693,66 @@ public class StartGameActivity extends AppCompatActivity {
     }
 
 
+    public void gameOver(){
+        //Stop Time
+        timer.cancel();
+        timer = null;
+        start_flg = false;
+        soundPlayer.playGameOverSound();
+        boxSpeed = 12; //reset game speed back to original state
+
+        //Before Showing startLayout sleep for 1 second
+        try{
+            TimeUnit.SECONDS.sleep(1);
+        }catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+
+        changeFrameWidth(initialFrameWidth);
+
+        startLayout.setVisibility(View.VISIBLE);
+        box.setVisibility(View.INVISIBLE);
+        black.setVisibility(View.INVISIBLE);
+        orange.setVisibility(View.INVISIBLE);
+        pink.setVisibility(View.INVISIBLE);
+        bonus.setVisibility(View.INVISIBLE);
+        blue.setVisibility(View.INVISIBLE);
+        red.setVisibility(View.INVISIBLE);
+        gray.setVisibility(View.INVISIBLE);
+        purple.setVisibility(View.INVISIBLE);
+        yellow.setVisibility(View.INVISIBLE);
+        green.setVisibility(View.INVISIBLE);
+
+        //Update High Score Field
+        if(score > highScore)
+        {
+            highScore = score;
+            highScoreLabel.setText("High Score : " + highScore);
+
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putInt("HIGH_SCORE", highScore);
+            editor.commit();
+
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if(start_flg)
+        {
+            if(event.getAction() == MotionEvent.ACTION_DOWN)
+            {
+                action_flg = true;
+            }
+            else if (event.getAction() == MotionEvent.ACTION_UP)
+            {
+                action_flg = false;
+            }
+        }
+
+        return true;
+    }
+
 
 }
