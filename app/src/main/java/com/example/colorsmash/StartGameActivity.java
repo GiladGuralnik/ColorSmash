@@ -573,7 +573,7 @@ public class StartGameActivity extends AppCompatActivity {
 
     private void bonusBox() {
 
-        if (!bonus_flg && timeCount % 700 == (rand.nextInt(700))) // timer for bonus to appear
+        if (!bonus_flg && timeCount%850 == 0) // timer for bonus to appear
         {
             bonus_flg = true;
             bonusY = -20;
