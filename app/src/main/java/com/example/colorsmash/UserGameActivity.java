@@ -367,7 +367,7 @@ public class UserGameActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    negativeHit();
+                    negativeHit("ORANGE");
                 }
 
             }
@@ -408,7 +408,7 @@ public class UserGameActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    negativeHit();
+                    negativeHit("BLUE");
                 }
             }
 
@@ -448,7 +448,7 @@ public class UserGameActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    negativeHit();
+                    negativeHit("GREEN");
                 }
             }
 
@@ -470,11 +470,12 @@ public class UserGameActivity extends AppCompatActivity {
         setNewPlayerColor();
     }
 
-    private void negativeHit()
+    private void negativeHit(String impactColor)
     {
         decreaseWindowSize();
         soundPlayer.playHitBlackSound();
         decreaseGameDifficulty();
+        collectCollisionData(currentColor,impactColor);
         if(frameWidth <= black.getWidth()*2)
         {
             gameOver();
@@ -507,7 +508,7 @@ public class UserGameActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    negativeHit();
+                    negativeHit("YELLOW");
                 }
 
             }
@@ -549,7 +550,7 @@ public class UserGameActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    negativeHit();
+                    negativeHit("GRAY");
                 }
 
             }
@@ -590,7 +591,7 @@ public class UserGameActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    negativeHit();
+                    negativeHit("RED");
                 }
             }
 
@@ -671,7 +672,7 @@ public class UserGameActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    negativeHit();
+                    negativeHit("PINK");
                 }
 
             }
@@ -712,7 +713,7 @@ public class UserGameActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    negativeHit();
+                    negativeHit("PURPLE");
                 }
 
             }
@@ -756,7 +757,7 @@ public class UserGameActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    negativeHit();
+                    negativeHit("BLACK");
                 }
 
             }
@@ -851,6 +852,11 @@ public class UserGameActivity extends AppCompatActivity {
         ViewGroup.LayoutParams params = gameFrame.getLayoutParams();
         params.width = frameWidth;
         gameFrame.setLayoutParams(params);
+    }
+
+    public void collectCollisionData(String myColor,String smashColor)
+    {
+        return;
     }
 
 
