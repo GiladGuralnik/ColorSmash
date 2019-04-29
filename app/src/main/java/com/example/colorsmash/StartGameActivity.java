@@ -612,6 +612,19 @@ public class StartGameActivity extends AppCompatActivity {
         return;
     }
 
+    private void decreaseWindowSize()
+    {
+        frameWidth = frameWidth * 80/100; // 80% of original size
+        changeFrameWidth(frameWidth);
+        soundPlayer.playHitBlackSound();
+    }
+
+    private void increaseWindowSize()
+    {
+        frameWidth = frameWidth * 120/100;
+        changeFrameWidth(frameWidth);
+    }
+
 
 
 }
