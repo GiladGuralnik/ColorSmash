@@ -362,7 +362,7 @@ public class StartGameActivity extends AppCompatActivity {
 
             blueY += boxSpeed;
 
-            float blueCenterX = blueX + blue.getWidth() /2;
+            float blueCenterX = blueX + blue.getWidth()/2;
             float blueCenterY = blueY + blue.getHeight()/2;
 
             if (hitCheck(blueCenterX, blueCenterY)) {
@@ -795,7 +795,7 @@ public class StartGameActivity extends AppCompatActivity {
 
     private void decreaseGameDifficulty()
     {
-        boxSpeed = (int)(boxSpeed * 0.9);
+        boxSpeed = (int)(boxSpeed * 0.95);
 
     }
 
