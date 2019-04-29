@@ -185,7 +185,7 @@ public class UserGameActivity extends AppCompatActivity {
             {
                 pinkY = frameHeight + 30;
                 score += 30;
-                soundPlayer.playHitPinkSound();
+                soundPlayer.playHitBonusSound();
 
                 //Change Frame Width ( pink bonus )
                 if(initialFrameWidth > frameWidth * 110/100) //if the frame got shrunk

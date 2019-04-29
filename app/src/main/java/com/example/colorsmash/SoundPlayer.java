@@ -48,7 +48,7 @@ public class SoundPlayer {
         soundPool.play(hitBlackSound,1.0f,1.0f,1,0,1.0f);
     }
 
-    public void playHitPinkSound()
+    public void playHitBonusSound()
     {
         soundPool.play(hitPinkSound,1.0f,1.0f,1,0,1.0f);
     }
