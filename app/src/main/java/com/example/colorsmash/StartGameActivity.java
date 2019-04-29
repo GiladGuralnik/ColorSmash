@@ -90,7 +90,8 @@ public class StartGameActivity extends AppCompatActivity {
     private boolean yellow_flg = false;
     private boolean green_flg = false;
 
-
+    //Difficulty levels
+    private int boxSpeed = 12;
 
 
 
