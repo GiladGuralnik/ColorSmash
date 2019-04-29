@@ -398,7 +398,42 @@ public class StartGameActivity extends AppCompatActivity {
     }
 
 
+    private void grayBox()
+    {
 
+        if(!gray_flg && timeCount%700 == (rand.nextInt(700)) ) // timer for blue to appear
+        {
+            gray_flg = true;
+            grayY = -100;
+            grayX = (float) Math.floor(Math.random() * (frameWidth - gray.getWidth()));
+
+        }
+
+        if(gray_flg){
+
+            grayY += boxSpeed;
+
+            float grayCenterX = grayX + gray.getWidth() / 2;
+            float grayCenterY = grayY + gray.getHeight() / 2;
+
+            if(hitCheck(grayCenterX,grayCenterY))
+            {
+                grayY = frameHeight + 100;
+                score += 10;
+                soundPlayer.playHitOrangeSound();
+
+            }
+
+            if(grayY > frameHeight )
+                gray_flg = false;
+
+            gray.setX(grayX);
+            gray.setY(grayY);
+
+        }
+
+        return;
+    }
 
 
 
