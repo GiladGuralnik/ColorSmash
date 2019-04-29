@@ -91,8 +91,8 @@ public class UserGameActivity extends AppCompatActivity {
         scoreLabel = findViewById(R.id.scoreLabel);
         highScoreLabel = findViewById(R.id.highScoreLabel);
 
-        imageBoxLeft = getResources().getDrawable(R.drawable.box_left);
-        imageBoxRight = getResources().getDrawable(R.drawable.box_right);
+        imageBoxLeft = getResources().getDrawable(R.drawable.box_left_blue);
+        imageBoxRight = getResources().getDrawable(R.drawable.box_right_blue);
 
         //////////////////////////////// PULL LOGGED IN USER FROM FIREBASE //////////////////////////////////////
 

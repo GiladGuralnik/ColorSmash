@@ -123,8 +123,8 @@ public class StartGameActivity extends AppCompatActivity {
         scoreLabel = findViewById(R.id.scoreLabel);
         highScoreLabel = findViewById(R.id.highScoreLabel);
 
-        imageBoxLeft = getResources().getDrawable(R.drawable.box_left);
-        imageBoxRight = getResources().getDrawable(R.drawable.box_right);
+        imageBoxLeft = getResources().getDrawable(R.drawable.box_left_blue);
+        imageBoxRight = getResources().getDrawable(R.drawable.box_right_blue);
 
         //High Score
         settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE);
@@ -185,32 +185,72 @@ public class StartGameActivity extends AppCompatActivity {
     private void initializeColors() {
         boxColors.put("PINK", new ArrayList<Integer>() {
             {
-                add(R.drawable.pinkbox_left);
-                add(R.drawable.pinkbox_right);
+                add(R.drawable.box_left_pink);
+                add(R.drawable.box_right_pink);
             }
 
         });
 
         boxColors.put("BLUE", new ArrayList<Integer>() {
             {
-                add(R.drawable.box_left);
-                add(R.drawable.box_right);
+                add(R.drawable.box_left_blue);
+                add(R.drawable.box_right_blue);
             }
 
         });
 
         boxColors.put("ORANGE", new ArrayList<Integer>() {
             {
-                add(R.drawable.orangebox_left);
-                add(R.drawable.orangebox_right);
+                add(R.drawable.box_left_orange);
+                add(R.drawable.box_right_orange);
             }
 
         });
 
-        boxColors.put("TURQUOISE", new ArrayList<Integer>() {
+        boxColors.put("BLACK", new ArrayList<Integer>() {
             {
-                add(R.drawable.turquoisebox_left);
-                add(R.drawable.turquoisebox_right);
+                add(R.drawable.box_left_black);
+                add(R.drawable.box_right_black);
+            }
+
+        });
+
+        boxColors.put("GRAY", new ArrayList<Integer>() {
+            {
+                add(R.drawable.box_left_gray);
+                add(R.drawable.box_right_gray);
+            }
+
+        });
+
+        boxColors.put("GREEN", new ArrayList<Integer>() {
+            {
+                add(R.drawable.box_left_green);
+                add(R.drawable.box_right_green);
+            }
+
+        });
+
+        boxColors.put("PURPLE", new ArrayList<Integer>() {
+            {
+                add(R.drawable.box_left_purple);
+                add(R.drawable.box_right_purple);
+            }
+
+        });
+
+        boxColors.put("RED", new ArrayList<Integer>() {
+            {
+                add(R.drawable.box_left_red);
+                add(R.drawable.box_right_red);
+            }
+
+        });
+
+        boxColors.put("YELLOW", new ArrayList<Integer>() {
+            {
+                add(R.drawable.box_left_yellow);
+                add(R.drawable.box_right_yellow);
             }
 
         });
@@ -221,16 +261,31 @@ public class StartGameActivity extends AppCompatActivity {
 
         switch (r) {
             case 0: {
-                return "PINK";
+                return "BLACK";
             }
             case 1: {
                 return "BLUE";
             }
             case 2: {
-                return "ORANGE";
+                return "GRAY";
             }
             case 3: {
-                return "TURQUOISE";
+                return "GREEN";
+            }
+            case 4: {
+                return "ORANGE";
+            }
+            case 5: {
+                return "PINK";
+            }
+            case 6: {
+                return "PURPLE";
+            }
+            case 7: {
+                return "RED";
+            }
+            case 8: {
+                return "YELLOW";
             }
             default: {
                 return "BLUE";
