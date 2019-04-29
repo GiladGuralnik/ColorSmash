@@ -99,7 +99,45 @@ public class StartGameActivity extends AppCompatActivity {
     //Random variable
     Random rand = new Random();
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_start_game);
 
+        gameFrame = findViewById(R.id.gameFrame);
+        startLayout = findViewById(R.id.startLayout);
+
+        //Colors
+        box = findViewById(R.id.box);
+        black = findViewById(R.id.black);
+        orange = findViewById(R.id.orange);
+        pink = findViewById(R.id.pink);
+        blue = findViewById(R.id.blue);
+        bonus = findViewById(R.id.bonus);
+        gray = findViewById(R.id.gray);
+        green = findViewById(R.id.green);
+        purple = findViewById(R.id.purple);
+        red = findViewById(R.id.red);
+        yellow = findViewById(R.id.yellow);
+
+        scoreLabel = findViewById(R.id.scoreLabel);
+        highScoreLabel = findViewById(R.id.highScoreLabel);
+
+        imageBoxLeft = getResources().getDrawable(R.drawable.box_left);
+        imageBoxRight = getResources().getDrawable(R.drawable.box_right);
+
+        //High Score
+        settings = getSharedPreferences("GAME_DATA", Context.MODE_PRIVATE);
+        highScore = settings.getInt("HIGH_SCORE", 0);
+        highScoreLabel.setText("High Score : " + highScore);
+
+        //SoundPlayer
+        soundPlayer = new SoundPlayer(this);
+
+        //initializeColorsHash
+        initializeColors();
+
+    }
 
 
 
