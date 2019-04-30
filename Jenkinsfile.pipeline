@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker { image 'gradle:4.10.0-jdk8' } }
+    agent { docker { image 'cangol/android-gradle' } }
     environment {HOME = '/tmp'} 
     stages {
     stage('Git') {
