@@ -25,7 +25,8 @@
         android:layout_height="100dp"
         android:gravity="center"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/textViewScore2"
@@ -33,7 +34,8 @@
         android:layout_height="100dp"
         android:gravity="center"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/textViewScore3"
@@ -41,7 +43,8 @@
         android:layout_height="100dp"
         android:gravity="center"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/textViewScore4"
@@ -49,7 +52,8 @@
         android:layout_height="100dp"
         android:gravity="center"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/textViewScore5"
@@ -57,5 +61,6 @@
         android:layout_height="100dp"
         android:gravity="center"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textStyle="bold"/>
 </LinearLayout>
