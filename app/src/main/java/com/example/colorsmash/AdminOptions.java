@@ -75,9 +75,7 @@ public class AdminOptions extends AppCompatActivity implements View.OnClickListe
                         String key=ds.getKey();
                         mRef2.child(key).child("highscore").setValue("0");
                         mRef2.child(key).child("scores").setValue(new HashMap<String,String>());
-
                     }
-
                 }
 
                 @Override
@@ -85,7 +83,7 @@ public class AdminOptions extends AppCompatActivity implements View.OnClickListe
 
                 }
             });
-            Toast.makeText(this, "The leader score cleared!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Users scores and leader board cleared!", Toast.LENGTH_LONG).show();
 
         }
         else if (v == buttonChangeUserColors){
