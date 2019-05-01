@@ -40,9 +40,9 @@ import java.util.concurrent.TimeUnit;
 
 public class UserGameActivity extends AppCompatActivity {
     //yoel----------
-    private int blue_purple_collision=0;
-    private int yellow_green_collision=0;
-    private int pink_gray_collision=0;
+    private int protan_collision=0;
+    private int deutan_collision=0;
+    private int tritan_collision=0;
     private boolean need_diagnosis=false;
     //--------------
 
@@ -863,15 +863,18 @@ public class UserGameActivity extends AppCompatActivity {
     public void collectCollisionData(String myColor,String smashColor)
     {
         if(myColor=="BLUE"&& smashColor=="PURPLE"||myColor=="PURPLE"&& smashColor=="BLUE"){
-            blue_purple_collision++;
+            protan_collision++;
+            deutan_collision++;
         }
         if(myColor=="YELLOW"&& smashColor=="GREEN"||myColor=="GREEN"&& smashColor=="YELLOW"){
-            yellow_green_collision++;
+            protan_collision++;
         }
         if(myColor=="GRAY"&& smashColor=="PINK"||myColor=="PINK"&& smashColor=="GRAY"){
-            pink_gray_collision++;
-        }
 
+        }
+        if(myColor=="GRAY"&& smashColor=="PINK"||myColor=="PINK"&& smashColor=="GRAY"){
+
+        }
 
         return;
     }
@@ -879,18 +882,40 @@ public class UserGameActivity extends AppCompatActivity {
 
     //yoel------
     private boolean needDiagnosis(){
-        if(blue_purple_collision>2){
+        if(protan_collision>2){
             return true;
         }
-        if(yellow_green_collision>2){
+        if(deutan_collision>2){
             return true;
         }
-        if(pink_gray_collision>4){
+        if(tritan_collision>4){
             return true;
         }
         return false;
     }
     //end yoel--------
+
+    //yoel-------------
+    public ArrayList<String> getColors(User user)
+    {
+        ArrayList<String> colors = new ArrayList<String>();
+        colors.add("PURPLE");
+        colors.add("YELLOW");
+        colors.add("GRAY");
+        colors.add("BLACK");
+        if(!user.getBadColors().contains("PROTAN") || !user.getBadColors().contains("DEUTAN")){
+            colors.add("ORANGE");
+            colors.add("RED");
+        }
+
+        if(!user.getBadColors().contains("PROTAN"))
+        colors.add("PINK");
+        colors.add("BLUE");
+        colors.add("GREEN");
+
+        return;
+    }
+    //end yoel-----------
 
     public void gameOver(){
         //Stop Time
