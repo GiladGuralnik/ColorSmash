@@ -39,6 +39,12 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 public class UserGameActivity extends AppCompatActivity {
+    //yoel----------
+    private int blue_purple_collision=0;
+    private int yellow_green_collision=0;
+    private int pink_gray_collision=0;
+    private boolean need_diagnosis=false;
+    //--------------
 
     //GameFrame
     private FrameLayout gameFrame;
@@ -853,12 +859,38 @@ public class UserGameActivity extends AppCompatActivity {
         params.width = frameWidth;
         gameFrame.setLayoutParams(params);
     }
-
+    //yoel-------------
     public void collectCollisionData(String myColor,String smashColor)
     {
+        if(myColor=="BLUE"&& smashColor=="PURPLE"||myColor=="PURPLE"&& smashColor=="BLUE"){
+            blue_purple_collision++;
+        }
+        if(myColor=="YELLOW"&& smashColor=="GREEN"||myColor=="GREEN"&& smashColor=="YELLOW"){
+            yellow_green_collision++;
+        }
+        if(myColor=="GRAY"&& smashColor=="PINK"||myColor=="PINK"&& smashColor=="GRAY"){
+            pink_gray_collision++;
+        }
+
+
         return;
     }
+    //end yoel-----------
 
+    //yoel------
+    private boolean needDiagnosis(){
+        if(blue_purple_collision>2){
+            return true;
+        }
+        if(yellow_green_collision>2){
+            return true;
+        }
+        if(pink_gray_collision>4){
+            return true;
+        }
+        return false;
+    }
+    //end yoel--------
 
     public void gameOver(){
         //Stop Time
