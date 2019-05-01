@@ -905,13 +905,13 @@ public class UserGameActivity extends AppCompatActivity {
 
     //yoel------
     private boolean needDiagnosis(){
-        if(protan_collision>2){
+        if(protan_collision>6){
             return true;
         }
-        if(deutan_collision>2){
+        if(deutan_collision>6){
             return true;
         }
-        if(tritan_collision>4){
+        if(tritan_collision>6){
             return true;
         }
         return false;
