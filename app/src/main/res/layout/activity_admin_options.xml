@@ -52,7 +52,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="8dp"
-        android:text="RESET LEADER BOARD"
+        android:text="RESET SCORES"
         android:textSize="36sp" />
 
     <Button

@@ -29,8 +29,11 @@ public class MyDiagnosisActivity extends AppCompatActivity implements View.OnCli
 
     private TextView TVname ;
     private TextView TVresults ;
+    private TextView TVfilteredColors;
     private String name ;
     private Button FullTest ;
+    private Button buttonResetMyColorBlindness;
+    private DatabaseReference mRef;
 
 
 
@@ -41,7 +44,10 @@ public class MyDiagnosisActivity extends AppCompatActivity implements View.OnCli
 
         TVname=(TextView)findViewById(R.id.textViewNameMyDiagnosis);
         TVresults=(TextView)findViewById(R.id.textViewTestResultsMyDiagnosis);
+        TVfilteredColors=(TextView)findViewById(R.id.textViewFilteredColors);
         FullTest=(Button) findViewById(R.id.textViewFullTestMyDiagnosis);
+        buttonResetMyColorBlindness = (Button)findViewById(R.id.ButtonResetMyColorblindness);
+        buttonResetMyColorBlindness.setOnClickListener(this);
         FullTest.setOnClickListener(this);
 
         // get current user uID
@@ -53,18 +59,20 @@ public class MyDiagnosisActivity extends AppCompatActivity implements View.OnCli
             // No user is signed in ?? add Exception ??
         }
 
-        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users").child(uID);
+        mRef = FirebaseDatabase.getInstance().getReference("Users").child(uID);
 
-        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 User user = (User)dataSnapshot.getValue(User.class);
-                name=  "Wellcome : " ;
+                name=  "Welcome : " ;
                 name=name+user.getName();
                 TVname.setText(name);
 
                 TVresults.setText(DiagnosisResults(user.getBadColors()));
+
+                TVfilteredColors.setText(filteredColors(user.getBadColors()));
 
             }
 
@@ -85,6 +93,11 @@ public class MyDiagnosisActivity extends AppCompatActivity implements View.OnCli
             i.setData(Uri.parse(url));
             startActivity(i);
         }
+        else if(view == buttonResetMyColorBlindness){
+            mRef.child("badColors").removeValue();
+        }
+
+
 
     }
     String DiagnosisResults(ArrayList<String> type){
@@ -120,6 +133,27 @@ public class MyDiagnosisActivity extends AppCompatActivity implements View.OnCli
         else{
             msg="\nNo color blindness / not tested\n";
         }
+
+        return msg;
+    }
+
+    String filteredColors(ArrayList<String> type){
+        String msg ="";
+        if (type != null) {
+            msg += "We filtered you this colors from the game:\n";
+            if(type.contains("PROTAN") || type.contains("DEUTAN") ){
+                msg += "GREEN PINK PURPLE ";
+            }
+            if(type.contains("TRITAN")){
+                if(!msg.contains("BLUE")){
+                    msg += "BLUE ";
+                }
+                if(!msg.contains("PURPLE")){
+                    msg += "PURPLE ";
+                }
+            }
+        }
+
 
         return msg;
     }

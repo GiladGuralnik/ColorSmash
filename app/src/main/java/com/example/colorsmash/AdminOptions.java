@@ -15,6 +15,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+
 public class AdminOptions extends AppCompatActivity implements View.OnClickListener {
 
     private Button buttonShowUsers;
@@ -65,7 +67,23 @@ public class AdminOptions extends AppCompatActivity implements View.OnClickListe
         else if ( v == buttonResetLeaderBoard){
             DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("LeaderBoard");
             mRef.removeValue();
-            Toast.makeText(this, "The leader score cleared!", Toast.LENGTH_LONG).show();
+            final DatabaseReference mRef2 = FirebaseDatabase.getInstance().getReference("Users");
+            mRef2.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for(DataSnapshot ds:dataSnapshot.getChildren()){
+                        String key=ds.getKey();
+                        mRef2.child(key).child("highscore").setValue("0");
+                        mRef2.child(key).child("scores").setValue(new HashMap<String,String>());
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+            Toast.makeText(this, "Users scores and leader board cleared!", Toast.LENGTH_LONG).show();
 
         }
         else if (v == buttonChangeUserColors){

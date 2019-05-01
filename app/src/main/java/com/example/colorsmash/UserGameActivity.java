@@ -1164,9 +1164,11 @@ public class UserGameActivity extends AppCompatActivity {
         startActivity(act);
     }
 
+    public void gameInstructions(View view) {
+        Intent act = new Intent(UserGameActivity.this, GameInstructionsActivity.class);
+        startActivity(act);
 
-
-
+    }
 }
 
 

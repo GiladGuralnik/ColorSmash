@@ -1003,6 +1003,12 @@ public class StartGameActivity extends AppCompatActivity {
         startActivity(act);
     }
 
+    public void gameInstructions(View view)
+    {
+        Intent act = new Intent(StartGameActivity.this, GameInstructionsActivity.class);
+        startActivity(act);
+    }
+
 
 }
 
