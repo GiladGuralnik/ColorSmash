@@ -899,19 +899,25 @@ public class UserGameActivity extends AppCompatActivity {
             tritan_collision++;
         }
 
+        //this part for testing you cat remove this
+        if(needDiagnosis()) {
+            Log.d("TTTT", "I HAVE COLOR BLINDNESS");
+        }
+        //-------------------------------------
+
         return;
     }
     //end yoel-----------
 
     //yoel------
     private boolean needDiagnosis(){
-        if(protan_collision>6){
+        if(protan_collision>5){
             return true;
         }
-        if(deutan_collision>6){
+        if(deutan_collision>5){
             return true;
         }
-        if(tritan_collision>6){
+        if(tritan_collision>5){
             return true;
         }
         return false;
@@ -922,21 +928,24 @@ public class UserGameActivity extends AppCompatActivity {
     public ArrayList<String> getColors(User user)
     {
         ArrayList<String> colors = new ArrayList<String>();
-        colors.add("PURPLE");
+
+        colors.add("RED");
         colors.add("YELLOW");
         colors.add("GRAY");
         colors.add("BLACK");
-        if(!user.getBadColors().contains("PROTAN") || !user.getBadColors().contains("DEUTAN")){
+        if(!user.getBadColors().contains("TRITAN")){
+            colors.add("PURPLE");
             colors.add("ORANGE");
-            colors.add("RED");
+
         }
 
-        if(!user.getBadColors().contains("PROTAN"))
-        colors.add("PINK");
-        colors.add("BLUE");
-        colors.add("GREEN");
+        if(!user.getBadColors().contains("PROTAN") && !user.getBadColors().contains("DEUTAN")){
+            colors.add("PINK");
+            colors.add("BLUE");
+            colors.add("GREEN");
+        }
 
-        return;
+        return colors;
     }
     //end yoel-----------
 
