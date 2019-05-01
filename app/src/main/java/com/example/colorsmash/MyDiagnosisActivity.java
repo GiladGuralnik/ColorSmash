@@ -31,6 +31,8 @@ public class MyDiagnosisActivity extends AppCompatActivity implements View.OnCli
     private TextView TVresults ;
     private String name ;
     private Button FullTest ;
+    private Button buttonResetMyColorBlindness;
+    private DatabaseReference mRef;
 
 
 
@@ -42,6 +44,8 @@ public class MyDiagnosisActivity extends AppCompatActivity implements View.OnCli
         TVname=(TextView)findViewById(R.id.textViewNameMyDiagnosis);
         TVresults=(TextView)findViewById(R.id.textViewTestResultsMyDiagnosis);
         FullTest=(Button) findViewById(R.id.textViewFullTestMyDiagnosis);
+        buttonResetMyColorBlindness = (Button)findViewById(R.id.ButtonResetMyColorblindness);
+        buttonResetMyColorBlindness.setOnClickListener(this);
         FullTest.setOnClickListener(this);
 
         // get current user uID
@@ -53,14 +57,14 @@ public class MyDiagnosisActivity extends AppCompatActivity implements View.OnCli
             // No user is signed in ?? add Exception ??
         }
 
-        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users").child(uID);
+        mRef = FirebaseDatabase.getInstance().getReference("Users").child(uID);
 
-        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 User user = (User)dataSnapshot.getValue(User.class);
-                name=  "Wellcome : " ;
+                name=  "Welcome : " ;
                 name=name+user.getName();
                 TVname.setText(name);
 
@@ -85,6 +89,11 @@ public class MyDiagnosisActivity extends AppCompatActivity implements View.OnCli
             i.setData(Uri.parse(url));
             startActivity(i);
         }
+        else if(view == buttonResetMyColorBlindness){
+            mRef.child("badColors").removeValue();
+        }
+
+
 
     }
     String DiagnosisResults(ArrayList<String> type){
