@@ -29,6 +29,7 @@ public class MyDiagnosisActivity extends AppCompatActivity implements View.OnCli
 
     private TextView TVname ;
     private TextView TVresults ;
+    private TextView TVfilteredColors;
     private String name ;
     private Button FullTest ;
     private Button buttonResetMyColorBlindness;
@@ -43,6 +44,7 @@ public class MyDiagnosisActivity extends AppCompatActivity implements View.OnCli
 
         TVname=(TextView)findViewById(R.id.textViewNameMyDiagnosis);
         TVresults=(TextView)findViewById(R.id.textViewTestResultsMyDiagnosis);
+        TVfilteredColors=(TextView)findViewById(R.id.textViewFilteredColors);
         FullTest=(Button) findViewById(R.id.textViewFullTestMyDiagnosis);
         buttonResetMyColorBlindness = (Button)findViewById(R.id.ButtonResetMyColorblindness);
         buttonResetMyColorBlindness.setOnClickListener(this);
@@ -69,6 +71,8 @@ public class MyDiagnosisActivity extends AppCompatActivity implements View.OnCli
                 TVname.setText(name);
 
                 TVresults.setText(DiagnosisResults(user.getBadColors()));
+
+                TVfilteredColors.setText(filteredColors(user.getBadColors()));
 
             }
 
@@ -129,6 +133,27 @@ public class MyDiagnosisActivity extends AppCompatActivity implements View.OnCli
         else{
             msg="\nNo color blindness / not tested\n";
         }
+
+        return msg;
+    }
+
+    String filteredColors(ArrayList<String> type){
+        String msg ="";
+        if (type != null) {
+            msg += "We filtered you this colors from the game:\n";
+            if(type.contains("PROTAN") || type.contains("DEUTAN") ){
+                msg += "GREEN PINK PURPLE ";
+            }
+            if(type.contains("TRITAN")){
+                if(!msg.contains("BLUE")){
+                    msg += "BLUE ";
+                }
+                if(!msg.contains("PURPLE")){
+                    msg += "PURPLE ";
+                }
+            }
+        }
+
 
         return msg;
     }
