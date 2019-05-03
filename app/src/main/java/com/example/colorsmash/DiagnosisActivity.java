@@ -122,7 +122,7 @@ public class DiagnosisActivity extends AppCompatActivity implements View.OnClick
             mRef = FirebaseDatabase.getInstance().getReference("Users").child(uID);
             mRef.child("badColors").setValue(testBedColors);
 
-
+            //goto the result activity
 
 
 
