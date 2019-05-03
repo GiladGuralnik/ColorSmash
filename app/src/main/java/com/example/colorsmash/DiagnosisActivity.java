@@ -2,6 +2,7 @@ package com.example.colorsmash;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,6 +31,7 @@ public class DiagnosisActivity extends AppCompatActivity implements View.OnClick
     private EditText textQuestion1,textQuestion2,textQuestion3,textQuestion4,textQuestion5,textQuestion6 ;//editTextQuestion1Diagnosis
     private Boolean protan ,deutan , tritan;
     private ArrayList<String> testBedColors;
+    private DatabaseReference mRef;
 
 
     @Override
@@ -59,6 +69,7 @@ public class DiagnosisActivity extends AppCompatActivity implements View.OnClick
         textQuestion6=(EditText)findViewById(R.id.editTextQuestion6Diagnosis);
 
 
+
     }
 
 
@@ -85,7 +96,7 @@ public class DiagnosisActivity extends AppCompatActivity implements View.OnClick
             if( !textQuestion6.getText().toString().equals("9") || questionButtonFlags[5]){
                 deutan=true;
             }
-            //textQuestion1.getText().toString();
+
             if(tritan){
                 testBedColors.add("TRITAN");
                 Log.d("TTT","TRITAN!!!!!");
@@ -99,7 +110,22 @@ public class DiagnosisActivity extends AppCompatActivity implements View.OnClick
                 Log.d("TTT", "DEOTAN!!!!");
             }
 
-            //send to data base
+            // get current user uID
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uID = "";
+            if (user != null) {
+                uID = user.getUid();
+            } else {
+                // No user is signed in ?? add Exception ??
+            }
+
+            mRef = FirebaseDatabase.getInstance().getReference("Users").child(uID);
+            mRef.child("badColors").setValue(testBedColors);
+
+
+
+
+
 
         }
         else if(view == buttonQuestion1){
