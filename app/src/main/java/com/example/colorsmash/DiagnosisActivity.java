@@ -18,10 +18,10 @@ public class DiagnosisActivity extends AppCompatActivity implements View.OnClick
 
     private Button submit ;//buttonSubmitDiagnosis
     private Button buttonQuestion1 ,buttonQuestion2,buttonQuestion3,buttonQuestion4,buttonQuestion5,buttonQuestion6;//button Question Diagnosis
-    boolean[] questionButtonFlags = new boolean[6];
+    private boolean[] questionButtonFlags = new boolean[6];
     private EditText textQuestion1,textQuestion2,textQuestion3,textQuestion4,textQuestion5,textQuestion6 ;//editTextQuestion1Diagnosis
-
-
+    private Boolean protan ,deutan , tritan;
+    private ArrayList<String> testBedColors;
 
 
     @Override
@@ -31,6 +31,10 @@ public class DiagnosisActivity extends AppCompatActivity implements View.OnClick
 
         Arrays.fill(questionButtonFlags, Boolean.FALSE);
 
+        protan=false;
+        deutan=false;
+        tritan=false;
+        testBedColors=new ArrayList<String>();
         submit=(Button)findViewById(R.id.buttonSubmitDiagnosis);
         buttonQuestion1=(Button)findViewById(R.id.buttonQuestion1Diagnosis);
         buttonQuestion2=(Button)findViewById(R.id.buttonQuestion2Diagnosis);
@@ -62,49 +66,88 @@ public class DiagnosisActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View view){
         if(view == submit){
+
+            if( !textQuestion1.getText().toString().equals("16") || questionButtonFlags[0]){
+              tritan=true;
+            }
+            if( !textQuestion2.getText().toString().equals("7") || questionButtonFlags[1]){
+                protan=true;
+            }
+            if( !textQuestion3.getText().toString().equals("12") || questionButtonFlags[2]){
+                protan=true;
+            }
+            if( !textQuestion4.getText().toString().equals("8") || questionButtonFlags[3]){
+                deutan=true;
+            }
+            if( !textQuestion5.getText().toString().equals("13") || questionButtonFlags[4]){
+                protan=true;
+            }
+            if( !textQuestion6.getText().toString().equals("9") || questionButtonFlags[5]){
+                deutan=true;
+            }
             //textQuestion1.getText().toString();
-            Log.d("TTT", textQuestion1.getText().toString());
-            Log.d("TTT", textQuestion2.getText().toString());
-            Log.d("TTT", textQuestion3.getText().toString());
-            Log.d("TTT", textQuestion4.getText().toString());
+            if(tritan){
+                testBedColors.add("TRITAN");
+                Log.d("TTT","TRITAN!!!!!");
+            }
+            if(protan){
+                testBedColors.add("PROTAN");
+                Log.d("TTT", "PROTAN!!!");
+            }
+            if(deutan){
+                testBedColors.add("DEUTAN");
+                Log.d("TTT", "DEOTAN!!!!");
+            }
+
+            //send to data base
 
         }
         else if(view == buttonQuestion1){
-            questionButtonFlags[1]=changeButton(buttonQuestion1);
-            Log.d("TTT", String.valueOf(questionButtonFlags[1]));
+            changeButton((Button) view,0);
+
+
         }
 
         else if(view == buttonQuestion2){
-            questionButtonFlags[2]=changeButton(buttonQuestion2);
+            changeButton((Button) view,1);
+
         }
         else if(view == buttonQuestion3){
-            questionButtonFlags[3]=changeButton(buttonQuestion3);
+            changeButton((Button) view,2);
+
         }
+
         else if(view == buttonQuestion4){
-            questionButtonFlags[4]=changeButton(buttonQuestion4);
+            changeButton((Button) view,3);
+
         }
+
         else if(view == buttonQuestion5){
-            questionButtonFlags[5]=changeButton(buttonQuestion5);
+            changeButton((Button) view,4);
         }
+
         else if(view == buttonQuestion6){
-            questionButtonFlags[6]=changeButton(buttonQuestion6);
+            changeButton((Button) view,5);
         }
 
     }
-    Boolean changeButton(Button button)
+
+
+    void changeButton(Button button,int index)
     {
         //This function it to change
-
-        if(button.getText().toString()=="Can not see anything"){
-            button.setBackgroundColor(getResources().getColor(R.color.color_red));
-            button.setText("I see");
-            return true;
+        if( questionButtonFlags[index]){
+            button.setBackgroundColor(getResources().getColor(R.color.color_blue));
+            button.setText("Can not see anything");
+            questionButtonFlags[index]= false;
 
         }
         else{
-            button.setBackgroundColor(getResources().getColor(R.color.color_blue));
-            button.setText("Can not see anything");
-            return false;
+            button.setBackgroundColor(getResources().getColor(R.color.color_red));
+            button.setText("I see");
+            questionButtonFlags[index]= true;
+
+
         }
     }
 
