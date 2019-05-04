@@ -1,0 +1,13 @@
+package com.example.colorsmash;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+
+public class CheckWheterToBeTestedActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_check_wheter_to_be_tested);
+    }
+}
