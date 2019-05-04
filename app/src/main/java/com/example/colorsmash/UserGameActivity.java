@@ -894,7 +894,6 @@ public class UserGameActivity extends AppCompatActivity {
     //yoel-------------
     public void collectCollisionData(String myColor,String smashColor)
     {
-        if(myColor=="BLUE"|| smashColor=="BLUE")
 
         if(myColor=="BLUE"&& smashColor=="PURPLE"||myColor=="PURPLE"&& smashColor=="BLUE"){
             protan_collision=protan_collision+2;
@@ -931,11 +930,6 @@ public class UserGameActivity extends AppCompatActivity {
             tritan_collision++;
         }
 
-        //this part for testing you cat remove this
-        if(needDiagnosis()) {
-            Log.d("TTTT", "I HAVE COLOR BLINDNESS");
-        }
-        //-------------------------------------
 
         return;
     }
@@ -1115,6 +1109,16 @@ public class UserGameActivity extends AppCompatActivity {
                 }
             });
 
+        }
+
+        need_diagnosis = needDiagnosis();
+        if(need_diagnosis)
+        {
+
+            Intent act = new Intent(UserGameActivity.this, DiagnosisActivity.class);
+            startActivity(act);
+            this.finish();
+            return;
         }
 
     }
