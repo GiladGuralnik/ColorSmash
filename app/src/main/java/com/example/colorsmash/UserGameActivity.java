@@ -172,6 +172,13 @@ public class UserGameActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 usr = (User) dataSnapshot.getValue(User.class);
+
+                //Initialize good Colors
+                goodColors = getColors(usr);
+
+                //Calculate Game propability
+                int reduce = 9 - goodColors.size();
+                prop = prop - 50 * reduce;
             }
 
             @Override
@@ -204,9 +211,6 @@ public class UserGameActivity extends AppCompatActivity {
         });
 
 
-        //Initialize good Colors
-        //TODO
-        goodColors = getColors(usr);
 
 
         //SoundPlayer
@@ -215,9 +219,6 @@ public class UserGameActivity extends AppCompatActivity {
         //initializeColorsHash
         initializeColors();
 
-        //Calculate Game propability
-        int reduce = 9 - goodColors.size();
-        prop = prop - 50 * reduce;
 
     }
 
@@ -964,16 +965,29 @@ public class UserGameActivity extends AppCompatActivity {
         colors.add("YELLOW");
         colors.add("GRAY");
         colors.add("BLACK");
-        if(!user.getBadColors().contains("TRITAN")){
+
+        if(user.getBadColors() == null)
+        {
+            Log.d("TTT","OKIF");
             colors.add("PURPLE");
             colors.add("ORANGE");
-
-        }
-
-        if(!user.getBadColors().contains("PROTAN") && !user.getBadColors().contains("DEUTAN")){
             colors.add("PINK");
             colors.add("BLUE");
             colors.add("GREEN");
+        }
+        else {
+            Log.d("TTT","OKELSE");
+            if (!user.getBadColors().contains("TRITAN")) {
+                colors.add("PURPLE");
+                colors.add("ORANGE");
+
+            }
+
+            if (!user.getBadColors().contains("PROTAN") && !user.getBadColors().contains("DEUTAN")) {
+                colors.add("PINK");
+                colors.add("BLUE");
+                colors.add("GREEN");
+            }
         }
 
         return colors;
@@ -1133,12 +1147,10 @@ public class UserGameActivity extends AppCompatActivity {
         if ((keyCode == KeyEvent.KEYCODE_BACK))
         {
             this.finish();
-            Intent act = new Intent(UserGameActivity.this, UserOptionsActivity.class);
-            startActivity(act);
+            return true;
         }
         return super.onKeyDown(keyCode, event);
     }
-
 
 
     public void startGame(View view)
@@ -1257,6 +1269,8 @@ public class UserGameActivity extends AppCompatActivity {
         startActivity(act);
 
     }
+
+
 }
 
 

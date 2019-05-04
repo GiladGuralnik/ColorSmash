@@ -3,6 +3,7 @@ package com.example.colorsmash;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -33,19 +34,26 @@ public class UserOptionsActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         if(v == buttonStartGame) {
-            this.finish();
             Intent act = new Intent(UserOptionsActivity.this, UserGameActivity.class);
             startActivity(act);
         }
         else if ( v == buttonShowLeaderBoard){
-            this.finish();
             Intent act = new Intent(UserOptionsActivity.this, LeaderBoardActivity.class);
             startActivity(act);
         }
         else if ( v == buttonMyDiagnosis){
-            this.finish();
             Intent act = new Intent(UserOptionsActivity.this, MyDiagnosisActivity.class);
             startActivity(act);
         }
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            this.finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
