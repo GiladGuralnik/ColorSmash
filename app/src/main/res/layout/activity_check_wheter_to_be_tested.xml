@@ -35,7 +35,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/ButtonYesTest"
             android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
@@ -45,7 +45,7 @@
             android:text="YES" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/ButtonNoTest"
             android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
