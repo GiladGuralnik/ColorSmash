@@ -860,7 +860,53 @@ public class UserGameActivity extends AppCompatActivity {
         gameFrame.setLayoutParams(params);
     }
     //yoel-------------
+    public void collectCollisionData(String myColor,String smashColor)
+    {
+        if(myColor=="BLUE"|| smashColor=="BLUE")
 
+        if(myColor=="BLUE"&& smashColor=="PURPLE"||myColor=="PURPLE"&& smashColor=="BLUE"){
+            protan_collision=protan_collision+2;
+            deutan_collision=deutan_collision+2;
+        }
+        if(myColor=="YELLOW"&& smashColor=="GREEN"||myColor=="GREEN"&& smashColor=="YELLOW"){
+            deutan_collision=deutan_collision+2;
+            protan_collision=protan_collision+2;
+
+        }
+        if(myColor=="GRAY"&& smashColor=="PINK"||myColor=="PINK"&& smashColor=="GRAY"){
+            deutan_collision=deutan_collision+2;
+            protan_collision++;
+        }
+
+        if(myColor=="GREEN"&& smashColor=="ORANGE"||myColor=="ORANGE"&& smashColor=="GREEN"){
+            protan_collision++;
+
+        }
+        if(myColor=="RED"&& smashColor=="GREEN"||myColor=="GREEN"&& smashColor=="RED"){
+            deutan_collision++;
+
+        }
+
+
+
+        if(myColor=="BLACK"&& smashColor=="PURPLE"||myColor=="PURPLE"&& smashColor=="BLACK"){
+            tritan_collision=tritan_collision+2;
+        }
+        if(myColor=="ORANGE"&& smashColor=="RED"||myColor=="ORANGE"&& smashColor=="RED"){
+            tritan_collision++;
+        }
+        if(myColor=="GREEN"&& smashColor=="BLUE"||myColor=="GREEN"&& smashColor=="BLUE"){
+            tritan_collision++;
+        }
+
+        //this part for testing you cat remove this
+        if(needDiagnosis()) {
+            Log.d("TTTT", "I HAVE COLOR BLINDNESS");
+        }
+        //-------------------------------------
+
+        return;
+    }
     //end yoel-----------
 
     //yoel------
