@@ -163,13 +163,30 @@ public class UserGameActivity extends AppCompatActivity {
             // No user is signed in ?? add Exception ??
         }
 
+        //              GET CURRENT USER            ///
+        //                GILAD AGEVER CHECK THIS OUT
+        DatabaseReference uRef = FirebaseDatabase.getInstance().getReference("Users").child(uID);
+
+        uRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                usr = (User) dataSnapshot.getValue(User.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        /////////////////////////////////////////////////////
+
 /////////////////////////////// PULL HIGH SCORE FROM FIRE BASE BY USER NAME //////////////////////////////
 //High Score
         DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users").child(uID).child("highscore");
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                usr = (User) dataSnapshot.getValue(User.class);
                 if(dataSnapshot.getValue()==null){
                     highScore = 0;
                 }
