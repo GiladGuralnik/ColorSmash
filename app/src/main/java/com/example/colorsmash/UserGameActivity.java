@@ -349,40 +349,8 @@ public class UserGameActivity extends AppCompatActivity {
     }
 
     private String randomizeColor() {
-        int r = rand.nextInt(9);
-
-        switch (r) {
-            case 0: {
-                return "BLACK";
-            }
-            case 1: {
-                return "BLUE";
-            }
-            case 2: {
-                return "GRAY";
-            }
-            case 3: {
-                return "GREEN";
-            }
-            case 4: {
-                return "ORANGE";
-            }
-            case 5: {
-                return "PINK";
-            }
-            case 6: {
-                return "PURPLE";
-            }
-            case 7: {
-                return "RED";
-            }
-            case 8: {
-                return "YELLOW";
-            }
-            default: {
-                return "BLUE";
-            }
-        }
+        int r = rand.nextInt(goodColors.size());
+        return goodColors.get(r);
     }
 
     private void setNewPlayerColor() {
