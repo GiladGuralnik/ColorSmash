@@ -106,6 +106,9 @@ public class UserGameActivity extends AppCompatActivity {
     //Difficulty levels
     private int boxSpeed = 12;
 
+    //Appearence propability
+    int prop = 700;
+
     //Current Player Color
     private String currentColor = "BLUE";
 
@@ -114,6 +117,12 @@ public class UserGameActivity extends AppCompatActivity {
 
     //Random variable
     Random rand = new Random();
+
+    //Good Colors
+    ArrayList<String> goodColors = new ArrayList<String>();
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,6 +150,7 @@ public class UserGameActivity extends AppCompatActivity {
 
         imageBoxLeft = getResources().getDrawable(R.drawable.box_left_blue);
         imageBoxRight = getResources().getDrawable(R.drawable.box_right_blue);
+
 
 //////////////////////////////// PULL LOGGED IN USER FROM FIREBASE //////////////////////////////////////
 
@@ -175,11 +185,24 @@ public class UserGameActivity extends AppCompatActivity {
         });
 
 
+        //Initialize good Colors
+        //TODO
+        //goodColors = getColors();
+        //MOCK
+        goodColors.add("PINK");
+        goodColors.add("BLUE");
+        goodColors.add("BLACK");
+
+
         //SoundPlayer
         soundPlayer = new SoundPlayer(this);
 
         //initializeColorsHash
         initializeColors();
+
+        //Calculate Game propability
+        int reduce = 9 - goodColors.size();
+        prop = prop - 50 * reduce;
 
     }
 
@@ -187,35 +210,60 @@ public class UserGameActivity extends AppCompatActivity {
         //Add Time Count
         timeCount += 1;
 
-        //orangeBox
-        orangeBox();
-
-        //pinkBox
-        pinkBox();
-
-        //blackBox
-        blackBox();
+        for(String color : goodColors)
+        {
+            switch(color)
+            {
+                case "ORANGE":
+                {
+                    orangeBox();
+                    break;
+                }
+                case "PINK":
+                {
+                    pinkBox();
+                    break;
+                }
+                case "BLACK":
+                {
+                    blackBox();
+                    break;
+                }
+                case "PURPLE":
+                {
+                    purpleBox();
+                    break;
+                }
+                case "BLUE":
+                {
+                    blueBox();
+                    break;
+                }
+                case "RED":
+                {
+                    redBox();
+                    break;
+                }
+                case "GRAY":
+                {
+                    grayBox();
+                    break;
+                }
+                case "YELLOW":
+                {
+                    yellowBox();
+                    break;
+                }
+                case "GREEN":
+                {
+                    greenBox();
+                    break;
+                }
+            }
+        }
 
         //bonusBox
         bonusBox();
-
-        //purple
-        purpleBox();
-
-        //blue
-        blueBox();
-
-        //red
-        redBox();
-
-        //gray
-        grayBox();
-
-        //yellow
-        yellowBox();
-
-        //green
-        greenBox();
 
         //_______________________________________________Main Player Box_______________________________
         mainPlayerBox();
@@ -350,7 +398,7 @@ public class UserGameActivity extends AppCompatActivity {
 
     private void orangeBox() {
 
-        if (!orange_flg && timeCount % 700 == (rand.nextInt(700))) // timer for orange to appear
+        if (!orange_flg && timeCount % prop == (rand.nextInt(prop))) // timer for orange to appear
         {
             orange_flg = true;
             orangeY = -100;
@@ -391,7 +439,7 @@ public class UserGameActivity extends AppCompatActivity {
 
     private void blueBox() {
 
-        if (!blue_flg && timeCount % 700 == (rand.nextInt(700))) // timer for blue to appear
+        if (!blue_flg && timeCount % prop == (rand.nextInt(prop))) // timer for blue to appear
         {
             blue_flg = true;
             blueY = -100;
@@ -431,7 +479,7 @@ public class UserGameActivity extends AppCompatActivity {
 
     private void greenBox() {
 
-        if (!green_flg && timeCount % 700 == (rand.nextInt(700))) // timer for blue to appear
+        if (!green_flg && timeCount % prop == (rand.nextInt(prop))) // timer for blue to appear
         {
             green_flg = true;
             greenY = -100;
@@ -491,7 +539,7 @@ public class UserGameActivity extends AppCompatActivity {
 
     private void yellowBox() {
 
-        if (!yellow_flg && timeCount % 700 == (rand.nextInt(700))) // timer for blue to appear
+        if (!yellow_flg && timeCount % prop == (rand.nextInt(prop))) // timer for blue to appear
         {
             yellow_flg = true;
             yellowY = -100;
@@ -533,7 +581,7 @@ public class UserGameActivity extends AppCompatActivity {
 
     private void grayBox() {
 
-        if (!gray_flg && timeCount % 700 == (rand.nextInt(700))) // timer for blue to appear
+        if (!gray_flg && timeCount % prop == (rand.nextInt(prop))) // timer for blue to appear
         {
             gray_flg = true;
             grayY = -100;
@@ -574,7 +622,7 @@ public class UserGameActivity extends AppCompatActivity {
 
     private void redBox() {
 
-        if (!red_flg && timeCount % 700 == (rand.nextInt(700))) // timer for blue to appear
+        if (!red_flg && timeCount % prop == (rand.nextInt(prop))) // timer for blue to appear
         {
             red_flg = true;
             redY = -100;
@@ -655,7 +703,7 @@ public class UserGameActivity extends AppCompatActivity {
 
     private void pinkBox() {
 
-        if (!pink_flg && timeCount % 700 == (rand.nextInt(700))) // timer for pink to appear
+        if (!pink_flg && timeCount % prop == (rand.nextInt(prop))) // timer for pink to appear
         {
             pink_flg = true;
             pinkY = -100;
@@ -696,7 +744,7 @@ public class UserGameActivity extends AppCompatActivity {
 
     private void purpleBox() {
 
-        if (!purple_flag && timeCount % 700 == (rand.nextInt(700))) // timer for pink to appear
+        if (!purple_flag && timeCount % prop == (rand.nextInt(prop))) // timer for pink to appear
         {
             purple_flag = true;
             purpleY = -100;
@@ -739,7 +787,7 @@ public class UserGameActivity extends AppCompatActivity {
     private void blackBox()
     {
 
-        if(!black_flg && timeCount%700 == (rand.nextInt(700)) ) // timer for black to appear
+        if(!black_flg && timeCount%prop == (rand.nextInt(prop)) ) // timer for black to appear
         {
             black_flg = true;
             blackY = -100;
@@ -829,7 +877,7 @@ public class UserGameActivity extends AppCompatActivity {
 
     private void increaseGameDifficulty()
     {
-        if(timeCount%2000 == 0)
+        if(timeCount%1500 == 0)
         {
             boxSpeed = (int)(boxSpeed * 1.2);
         }
