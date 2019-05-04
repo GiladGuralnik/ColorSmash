@@ -32,7 +32,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="556dp">
+        android:layout_height="496dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,10 +42,10 @@
             <TextView
                 android:id="@+id/textViewResultsDiagnosisResults"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/holo_blue_light"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -53,25 +53,20 @@
             <TextView
                 android:id="@+id/textViewResultsDetailsDiagnosisResults"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:textColor="@android:color/black"
-                android:textSize="30sp"
-                android:textStyle="bold" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/textViewCoverDiagnosisResults"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="The color vision test is not a substitute for a complete eye exam.
-                      and, the test is fast and may be inaccurate in its test results
-                      and therefore we recommend doing the complete diagnosis.."
-                android:textColor="@android:color/black"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="15sp" />
 
             <Button
                 android:id="@+id/buttonFullTestDiagnosisResults"
@@ -84,11 +79,10 @@
     </ScrollView>
 
 
-
     <Button
         android:id="@+id/buttonFinishDiagnosisResults"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="103dp"
         android:text=" Finish"
         android:textSize="24sp" />
 
