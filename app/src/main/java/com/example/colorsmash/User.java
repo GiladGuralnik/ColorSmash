@@ -16,7 +16,7 @@ public class User {
 
     public User(String username, String name, int age, String gender,ArrayList<String> scores, ArrayList<String>  badColors) {
         this.scores = (ArrayList<String>) scores.clone();
-        badColors = (ArrayList<String>) badColors.clone();
+        this.badColors = (ArrayList<String>) badColors.clone();
         this.username = username;
         this.name = name;
         this.age = age;

@@ -101,6 +101,7 @@ public class UserGameActivity extends AppCompatActivity {
     //Active User
     private String uID;
     private FirebaseUser user;
+    User usr;
 
 
     //Difficulty levels
@@ -168,6 +169,7 @@ public class UserGameActivity extends AppCompatActivity {
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                usr = (User) dataSnapshot.getValue(User.class);
                 if(dataSnapshot.getValue()==null){
                     highScore = 0;
                 }
@@ -187,11 +189,7 @@ public class UserGameActivity extends AppCompatActivity {
 
         //Initialize good Colors
         //TODO
-        //goodColors = getColors();
-        //MOCK
-        goodColors.add("PINK");
-        goodColors.add("BLUE");
-        goodColors.add("BLACK");
+        goodColors = getColors(usr);
 
 
         //SoundPlayer
