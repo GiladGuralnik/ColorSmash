@@ -31,12 +31,14 @@ public class CheckWheterToBeTestedActivity extends AppCompatActivity implements 
         if (view == buttonYesTest) {
             Intent act = new Intent(this, DiagnosisActivity.class);
             startActivity(act);
+            return;
 
         }
 
         else if (view == buttonNoTest){
-            Intent act = new Intent(this, StartGameActivity.class);
+            Intent act = new Intent(this, UserGameActivity.class);
             startActivity(act);
+            return;
         }
     }
 }
