@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -37,6 +38,8 @@ public class DiagnosisResultsActivity extends AppCompatActivity implements View.
         fullTest = (Button) findViewById(R.id.buttonFullTestDiagnosisResults);
         finish = (Button) findViewById(R.id.buttonFinishDiagnosisResults);
 
+        fullTest.setOnClickListener(this);
+        finish.setOnClickListener(this);
 
         // get current user uID
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -60,6 +63,7 @@ public class DiagnosisResultsActivity extends AppCompatActivity implements View.
 
                 result.setText(DiagnosisResult(user.getBadColors()));//NEED FIXXX
                 resultsDetails.setText(DiagnosisResultsDetails(user.getBadColors()));
+
                 cover.setText("The color vision test is not a substitute for a complete eye exam." +
                               "and, the test is fast and may be inaccurate in its test results" +
                               "and therefore we recommend doing the complete diagnosis.");
@@ -70,6 +74,10 @@ public class DiagnosisResultsActivity extends AppCompatActivity implements View.
 
             }
         });
+
+
+
+
     }
 
     @Override
@@ -89,7 +97,9 @@ public class DiagnosisResultsActivity extends AppCompatActivity implements View.
 
     String DiagnosisResult(ArrayList<String> type) {
         String msg = "";
-        if (type != null) {
+
+        if (!type.isEmpty()) {
+
             if (type.contains("PROTAN")) {
                 msg = msg + "Protan";
             }
@@ -106,9 +116,8 @@ public class DiagnosisResultsActivity extends AppCompatActivity implements View.
                 msg = msg + "Tritan";
 
             }
-            msg=msg="\n";
+            msg=msg+"\n";
         }
-
         return msg;
     }
 
