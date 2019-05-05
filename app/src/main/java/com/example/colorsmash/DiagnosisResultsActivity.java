@@ -54,7 +54,7 @@ public class DiagnosisResultsActivity extends AppCompatActivity implements View.
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 User user = (User) dataSnapshot.getValue(User.class);
-                String s = "Hellow  ";
+                String s = "Hello  ";
                 s = s + user.getName();
                 name.setText(s);
 
