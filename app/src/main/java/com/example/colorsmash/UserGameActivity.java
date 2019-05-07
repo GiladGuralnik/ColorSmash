@@ -955,28 +955,26 @@ public class UserGameActivity extends AppCompatActivity {
         colors.add("YELLOW");
         colors.add("GRAY");
         colors.add("BLACK");
+        colors.add("PURPLE");
+        colors.add("ORANGE");
+        colors.add("PINK");
+        colors.add("BLUE");
+        colors.add("GREEN");
 
-        if(user.getBadColors() == null)
+
+        if(user.getBadColors() != null)
         {
-            Log.d("TTT","OKIF");
-            colors.add("PURPLE");
-            colors.add("ORANGE");
-            colors.add("PINK");
-            colors.add("BLUE");
-            colors.add("GREEN");
-        }
-        else {
-            Log.d("TTT","OKELSE");
-            if (!user.getBadColors().contains("TRITAN")) {
-                colors.add("PURPLE");
-                colors.add("ORANGE");
+            if (user.getBadColors().contains("TRITAN")) {
+                colors.remove("PURPLE");
+                colors.remove("ORANGE");
+
 
             }
 
-            if (!user.getBadColors().contains("PROTAN") && !user.getBadColors().contains("DEUTAN")) {
-                colors.add("PINK");
-                colors.add("BLUE");
-                colors.add("GREEN");
+            if (user.getBadColors().contains("PROTAN") || user.getBadColors().contains("DEUTAN")) {
+                colors.remove("PINK");
+                colors.remove("BLUE");
+                colors.remove("GREEN");
             }
         }
 
