@@ -973,7 +973,7 @@ public class UserGameActivity extends AppCompatActivity {
 
             if (user.getBadColors().contains("PROTAN") || user.getBadColors().contains("DEUTAN")) {
                 colors.remove("PINK");
-                colors.remove("BLUE");
+                colors.remove("PURPLE");
                 colors.remove("GREEN");
             }
         }
@@ -1226,6 +1226,8 @@ public class UserGameActivity extends AppCompatActivity {
             timeCount = 0;
             score = 0;
             scoreLabel.setText("Score : 0");
+
+            setNewPlayerColor();
 
             timer = new Timer();
             timer.schedule(new TimerTask() {
