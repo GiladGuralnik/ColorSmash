@@ -779,8 +779,8 @@ public class UserGameActivity extends AppCompatActivity {
 
             blackY += boxSpeed;
 
-            float blackCenterX = blackX +black.getWidth() /2 ;
-            float blackCenterY = blackY +black.getHeight() /2 ;
+            float blackCenterX = blackX ;
+            float blackCenterY = blackY  ;
 
             if(hitCheck(blackCenterX,blackCenterY))
             {
