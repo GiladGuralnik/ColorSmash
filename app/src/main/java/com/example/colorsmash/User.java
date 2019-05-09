@@ -1,12 +1,12 @@
 package com.example.colorsmash;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class User {
     private String username;
     private String name;
     private String highscore;
+    private String colorblind;
     private int age;
     private ArrayList<String>scores;
     private ArrayList<String>  badColors;
@@ -16,7 +16,7 @@ public class User {
 
     public User(String username, String name, int age, String gender,ArrayList<String> scores, ArrayList<String>  badColors) {
         this.scores = (ArrayList<String>) scores.clone();
-        badColors = (ArrayList<String>) badColors.clone();
+        this.badColors = (ArrayList<String>) badColors.clone();
         this.username = username;
         this.name = name;
         this.age = age;
@@ -79,5 +79,13 @@ public class User {
 
     public void setHighscore(String highscore) {
         this.highscore = highscore;
+    }
+
+    public String getColorblind() {
+        return colorblind;
+    }
+
+    public void setColorblind(String colorblind) {
+        this.colorblind = colorblind;
     }
 }

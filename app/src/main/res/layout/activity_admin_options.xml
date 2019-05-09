@@ -31,8 +31,8 @@
 
     <Button
         android:id="@+id/ButtonShowUsers"
-        android:layout_width="250dp"
-        android:layout_height="150dp"
+        android:layout_width="280dp"
+        android:layout_height="120dp"
         android:layout_gravity="center"
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
@@ -47,21 +47,32 @@
 
     <Button
         android:id="@+id/ButtonResetLeaderBoard"
-        android:layout_width="250dp"
-        android:layout_height="150dp"
+        android:layout_width="280dp"
+        android:layout_height="120dp"
         android:layout_gravity="center"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="8dp"
-        android:text="RESET LEADER BOARD"
+        android:text="RESET SCORES"
         android:textSize="36sp" />
 
     <Button
         android:id="@+id/ButtonChangeUserColors"
-        android:layout_width="250dp"
-        android:layout_height="150dp"
+        android:layout_width="280dp"
+        android:layout_height="120dp"
         android:layout_gravity="center"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="8dp"
         android:text="CHANGE COLORS"
         android:textSize="36sp" />
+
+    <Button
+        android:id="@+id/ButtonStatistics"
+        android:layout_width="280dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"
+        android:text="STATISTICS"
+        android:textSize="36sp" />
+
 </LinearLayout>

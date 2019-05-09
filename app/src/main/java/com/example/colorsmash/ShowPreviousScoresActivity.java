@@ -1,10 +1,12 @@
 package com.example.colorsmash;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -69,5 +71,17 @@ public class ShowPreviousScoresActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            Intent act = new Intent(ShowPreviousScoresActivity.this, UserOptionsActivity.class);
+            startActivity(act);
+            finish();
+            return true;gi
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

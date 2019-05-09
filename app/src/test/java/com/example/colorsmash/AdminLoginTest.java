@@ -33,7 +33,7 @@ public class AdminLoginTest {
 
     @Test
     public void test_incorrectPasswordLength() {
-        assertFalse(act.isPasswordValid("1"));
+        assertFalse(act.isPasswordValid("2"));
     }
 
     @Test
