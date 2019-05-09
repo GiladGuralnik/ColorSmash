@@ -80,7 +80,7 @@ public class ShowPreviousScoresActivity extends AppCompatActivity {
             Intent act = new Intent(ShowPreviousScoresActivity.this, UserOptionsActivity.class);
             startActivity(act);
             finish();
-            return true;gi
+            return true;
         }
         return super.onKeyDown(keyCode, event);
     }
