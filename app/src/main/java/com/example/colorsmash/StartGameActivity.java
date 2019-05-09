@@ -321,10 +321,10 @@ public class StartGameActivity extends AppCompatActivity {
 
             orangeY += boxSpeed;
 
-            float orangeCenterX = orangeX + orange.getWidth() / 2;
-            float orangeCenterY = orangeY + orange.getHeight() / 2;
+            float orangeCenterX = orangeX;
+            float orangeCenterY = orangeY;
 
-            if (hitCheck(orangeCenterX, orangeCenterY)) {
+            if (hitCheck(orangeCenterX, orangeCenterY,orange.getWidth(),orange.getHeight())) {
                 orangeY = frameHeight + 100;
                 if(currentColor == "ORANGE")
                 {
@@ -362,10 +362,10 @@ public class StartGameActivity extends AppCompatActivity {
 
             blueY += boxSpeed;
 
-            float blueCenterX = blueX + blue.getWidth()/2;
-            float blueCenterY = blueY + blue.getHeight()/2;
+            float blueCenterX = blueX;
+            float blueCenterY = blueY;
 
-            if (hitCheck(blueCenterX, blueCenterY)) {
+            if (hitCheck(blueCenterX, blueCenterY,blue.getWidth(),blue.getHeight())) {
                 blueY = frameHeight + 100;
                 if(currentColor == "BLUE")
                 {
@@ -402,10 +402,10 @@ public class StartGameActivity extends AppCompatActivity {
 
             greenY += boxSpeed;
 
-            float greenCenterX = greenX + green.getWidth() / 2;
-            float greenCenterY = greenY + green.getHeight() / 2;
+            float greenCenterX = greenX;
+            float greenCenterY = greenY;
 
-            if (hitCheck(greenCenterX, greenCenterY)) {
+            if (hitCheck(greenCenterX, greenCenterY,green.getWidth(),green.getHeight())) {
                 greenY = frameHeight + 100;
                 if(currentColor == "GREEN")
                 {
@@ -461,10 +461,10 @@ public class StartGameActivity extends AppCompatActivity {
 
             yellowY += boxSpeed;
 
-            float yellowCenterX = yellowX + yellow.getWidth() / 2;
-            float yellowCenterY = yellowY + yellow.getHeight() / 2;
+            float yellowCenterX = yellowX;
+            float yellowCenterY = yellowY;
 
-            if (hitCheck(yellowCenterX, yellowCenterY)) {
+            if (hitCheck(yellowCenterX, yellowCenterY,yellow.getWidth(),yellow.getHeight())) {
                 yellowY = frameHeight + 100;
                 if(currentColor == "YELLOW")
                 {
@@ -503,10 +503,10 @@ public class StartGameActivity extends AppCompatActivity {
 
             grayY += boxSpeed;
 
-            float grayCenterX = grayX + gray.getWidth() / 2;
-            float grayCenterY = grayY + gray.getHeight() / 2;
+            float grayCenterX = grayX;
+            float grayCenterY = grayY;
 
-            if (hitCheck(grayCenterX, grayCenterY)) {
+            if (hitCheck(grayCenterX, grayCenterY,gray.getWidth(),gray.getHeight())) {
                 grayY = frameHeight + 100;
                 if(currentColor == "GRAY")
                 {
@@ -544,10 +544,10 @@ public class StartGameActivity extends AppCompatActivity {
 
             redY += boxSpeed;
 
-            float redCenterX = redX + red.getWidth() / 2;
-            float redCenterY = redY + red.getHeight() / 2;
+            float redCenterX = redX;
+            float redCenterY = redY;
 
-            if (hitCheck(redCenterX, redCenterY)) {
+            if (hitCheck(redCenterX, redCenterY,red.getWidth(),red.getHeight())) {
                 redY = frameHeight + 100;
                 if(currentColor == "RED")
                 {
@@ -585,10 +585,10 @@ public class StartGameActivity extends AppCompatActivity {
 
             bonusY += 25;
 
-            float bonusCenterX = bonusX + bonus.getWidth() / 2;
-            float bonusCenterY = bonusY + bonus.getHeight() / 2;
+            float bonusCenterX = bonusX;
+            float bonusCenterY = bonusY;
 
-            if (hitCheck(bonusCenterX, bonusCenterY)) {
+            if (hitCheck(bonusCenterX, bonusCenterY,bonus.getWidth(),bonus.getHeight())) {
                 bonusY = frameHeight + 100;
                 score += 50;
                 soundPlayer.playHitBonusSound();
@@ -625,10 +625,10 @@ public class StartGameActivity extends AppCompatActivity {
 
             pinkY += boxSpeed;
 
-            float pinkCenterX = pinkX + pink.getWidth() / 2;
-            float pinkCenterY = pinkY + pink.getHeight() / 2;
+            float pinkCenterX = pinkX;
+            float pinkCenterY = pinkY;
 
-            if (hitCheck(pinkCenterX, pinkCenterY)) {
+            if (hitCheck(pinkCenterX, pinkCenterY,pink.getWidth(),pink.getHeight())) {
                 pinkY = frameHeight + 30;
                 if(currentColor == "PINK")
                 {
@@ -666,10 +666,10 @@ public class StartGameActivity extends AppCompatActivity {
 
             purpleY += boxSpeed;
 
-            float purpleCenterX = purpleX + purple.getWidth() / 2;
-            float purpleCenterY = purpleY + purple.getHeight() / 2;
+            float purpleCenterX = purpleX;
+            float purpleCenterY = purpleY;
 
-            if (hitCheck(purpleCenterX, purpleCenterY)) {
+            if (hitCheck(purpleCenterX, purpleCenterY,purple.getWidth(),purple.getHeight())) {
                 purpleY = frameHeight + 30;
                 if(currentColor == "PURPLE")
                 {
@@ -709,10 +709,10 @@ public class StartGameActivity extends AppCompatActivity {
 
             blackY += boxSpeed;
 
-            float blackCenterX = blackX +black.getWidth() /2 ;
-            float blackCenterY = blackY +black.getHeight() /2 ;
+            float blackCenterX = blackX;
+            float blackCenterY = blackY;
 
-            if(hitCheck(blackCenterX,blackCenterY))
+            if(hitCheck(blackCenterX,blackCenterY,black.getWidth(),black.getHeight()))
             {
                 blackY = frameHeight + 30;
                 if(currentColor == "BLACK")
@@ -800,9 +800,9 @@ public class StartGameActivity extends AppCompatActivity {
     }
 
 
-    public boolean hitCheck(float x, float y)
+    public boolean hitCheck(float x, float y, float boxWidth, float boxHeight)
     {
-        if(boxX <= x && x <= boxX + boxSize && boxY <= y && y<= frameHeight)
+        if(boxX + boxSize > x && boxX < x + boxWidth && y + boxHeight > boxY && y < frameHeight)
         {
             return true;
         }

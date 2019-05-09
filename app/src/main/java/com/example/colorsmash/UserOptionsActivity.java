@@ -40,10 +40,12 @@ public class UserOptionsActivity extends AppCompatActivity implements View.OnCli
         else if ( v == buttonShowLeaderBoard){
             Intent act = new Intent(UserOptionsActivity.this, LeaderBoardActivity.class);
             startActivity(act);
+            finish();
         }
         else if ( v == buttonMyDiagnosis){
             Intent act = new Intent(UserOptionsActivity.this, MyDiagnosisActivity.class);
             startActivity(act);
+            finish();
         }
     }
 
