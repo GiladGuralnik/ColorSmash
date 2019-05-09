@@ -795,7 +795,7 @@ public class StartGameActivity extends AppCompatActivity {
 
     private void decreaseGameDifficulty()
     {
-        boxSpeed = (int)(boxSpeed * 0.95);
+        boxSpeed = (int)(boxSpeed * 0.90);
 
     }
 
