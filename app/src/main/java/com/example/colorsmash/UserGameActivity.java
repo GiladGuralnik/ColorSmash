@@ -1143,10 +1143,18 @@ public class UserGameActivity extends AppCompatActivity {
     {
         if ((keyCode == KeyEvent.KEYCODE_BACK))
         {
-            this.finish();
-            return true;
+            Intent act = new Intent(UserGameActivity.this, UserOptionsActivity.class);
+            startActivity(act);
+            finish();
+            System.exit(0);
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
 
 

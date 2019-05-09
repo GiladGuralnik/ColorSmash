@@ -36,6 +36,7 @@ public class UserOptionsActivity extends AppCompatActivity implements View.OnCli
         if(v == buttonStartGame) {
             Intent act = new Intent(UserOptionsActivity.this, UserGameActivity.class);
             startActivity(act);
+            finish();
         }
         else if ( v == buttonShowLeaderBoard){
             Intent act = new Intent(UserOptionsActivity.this, LeaderBoardActivity.class);
