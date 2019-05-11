@@ -33,8 +33,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="8dp"
-        android:background="#EC0D2D"
-        android:textColor="#FFF"
+        android:background="#FA2913"
         android:textStyle="bold"
         android:text="START GAME"
         android:textSize="36sp" />
