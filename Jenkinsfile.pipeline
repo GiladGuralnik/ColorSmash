@@ -16,6 +16,7 @@ pipeline {
     stage('Run Tests'){
           steps{
                sh """
+               (while sleep 3; do echo "y"; done) | $ANDROID_HOME/tools/android update sdk -u
                yes | sdkmanager --update
                yes | sdkmanager --licenses
                 ./gradlew test
