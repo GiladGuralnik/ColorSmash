@@ -17,7 +17,7 @@ pipeline {
           steps{
                sh """
                yes | sdkmanager --licenses
-               yes| tools/bin/sdkmanager 
+                yes | tools/bin/sdkmanager --licenses
                 ./gradlew test
                 """
           }
