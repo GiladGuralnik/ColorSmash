@@ -32,7 +32,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text=" Reset My Color blindness"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:background="#4CAF50"/>
 
             <TextView
                 android:id="@+id/textViewFilteredColors"
@@ -55,10 +57,13 @@
 
     <Button
         android:id="@+id/textViewFullTestMyDiagnosis"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
         android:text=" Full Test"
-        android:textSize="24sp" />
+        android:layout_gravity="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:background="#00BCD4"/>
 
 
 </LinearLayout>

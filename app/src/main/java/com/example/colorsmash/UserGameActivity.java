@@ -175,6 +175,8 @@ public class UserGameActivity extends AppCompatActivity {
                 //Calculate Game propability
                 int reduce = 9 - goodColors.size();
                 prop = prop - 50 * reduce;
+
+                setNewPlayerColor();
             }
 
             @Override
@@ -1234,7 +1236,7 @@ public class UserGameActivity extends AppCompatActivity {
             score = 0;
             scoreLabel.setText("Score : 0");
 
-            setNewPlayerColor();
+            //setNewPlayerColor(); //Delete this incase fix does problems"
 
             timer = new Timer();
             timer.schedule(new TimerTask() {
