@@ -1,37 +1,32 @@
 pipeline {
-    agent { docker { image 'cangol/android-gradle' } }
-    environment {HOME = '/tmp'} 
+    agent { docker { 
+        image 'anthonymonori/android-ci-image'
+        //arugment to execute everything as a sudoer
+        args '-u root:sudo'
+        }
+    }
     stages {
     stage('Git') {
       // Get some code from a GitHub repository
       steps{
-          git 'https://github.com/GiladGuralnik/ColorSmash.git'
+          git 'https://github.com/markrity/android-unit-test-example.git'
       }
-   } 
-<<<<<<< HEAD
-   stage("build") {
-            steps{
-                echo "$USER"
-                sh "chmod 777 gradlew"
-                //sh "chmod a+x /android-sdk-linux/tools/android"
-                 sh './gradlew'
-            }
-=======
-   /*
-    stage('Run app on windows'){
-          steps{
-               bat "gradlew.bat assembleDebug "
-               bat "gradlew.bat assembleRelease"
-          }
-    }*/
-        stage('Run app on ubunto'){
-          steps{
-            sh "chmod 777 gradlew"
-               sh "./gradlew"
-               sh "./gradlew assembleDevelopDebug --offline"
-          }
->>>>>>> backup
-    }
-}
-}
+   }
 
+    stage('Run Tests'){
+          steps{
+               sh """
+               yes | sdkmanager --licenses
+                ./gradlew test
+                """
+          }
+    }
+    
+    stage('Publish Test Results'){
+        steps{
+            publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'app/build/reports/tests/testReleaseUnitTest', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+        }
+    }
+    
+}
+}
