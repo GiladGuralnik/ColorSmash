@@ -1268,9 +1268,10 @@ public class UserGameActivity extends AppCompatActivity {
 
     public void exitGame(View view)
     {
-        this.finish();
         Intent act = new Intent(UserGameActivity.this, UserOptionsActivity.class);
         startActivity(act);
+        finish();
+        System.exit(0);
     }
 
     public void gameInstructions(View view) {
