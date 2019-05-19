@@ -1,4 +1,3 @@
-
  pipeline {
     agent { docker {
         image 'anthonymonori/android-ci-image' 
@@ -7,27 +6,25 @@
         }
     }
      stages {
-     stage('Git') {
-       // Get some code from a GitHub repository
-       steps{
-          git 'https://github.com/GiladGuralnik/ColorSmash.git'
-       }
-     }
-     stage('Run Tests'){
-           steps{
-                sh """
-                chmod 777 gradlew
-                yes | sdkmanager --licenses
-                ./gradlew test
-                """
-
-           } 
-     }
-      stage('Publish Test Results'){
-        steps{
-            publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'app/build/reports/tests/testReleaseUnitTest', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
-        }
-    }
-   
+              stage('Git') {
+                  // Get some code from a GitHub repository
+                  steps{
+                     git 'https://github.com/GiladGuralnik/ColorSmash.git'
+                  }
+              }
+              stage('Run Tests'){
+                    steps{
+                         sh """
+                         chmod 777 gradlew
+                         yes | sdkmanager --licenses
+                         ./gradlew test
+                         """
+                    } 
+              }
+               stage('Publish Test Results'){
+                    steps{
+                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'app/build/reports/tests/testReleaseUnitTest', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+                    }
+             }
    }
 }
