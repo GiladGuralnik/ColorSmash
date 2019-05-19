@@ -16,7 +16,7 @@
            steps{
                 sh """
                 chmod 777 gradlew
-                yes | sdkmanager --licenses
+                yes | sdkmanager --licenses 
                 ./gradlew test
                 """
            } 
