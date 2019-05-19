@@ -20,9 +20,10 @@ public class RegisterActivityTest {
     }
 
     @Test
-    public void test_incorrectEmailAddress() {
+    public void test_incorrectEmailAddress1() {
         assertFalse(act.isEmailValid("namebcemail.com"));
     }
+
 
     @Test
     public void test_correctPasswordLength() {
