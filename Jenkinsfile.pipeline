@@ -11,7 +11,7 @@ pipeline {
    /*
     stage('Run app on windows'){
           steps{
-               bat "gradlew.bat assembleDebug "
+               bat "gradlew.bat assembleDebug " 
                bat "gradlew.bat assembleRelease"
           }
     }*/
