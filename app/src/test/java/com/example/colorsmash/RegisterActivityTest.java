@@ -24,6 +24,10 @@ public class RegisterActivityTest {
         assertFalse(act.isEmailValid("namebcemail.com"));
     }
 
+    @Test
+    public void test_incorrectEmailAddress2() {
+        assertFalse(act.isEmailValid("name@@email.com"));
+    }
 
     @Test
     public void test_correctPasswordLength() {
