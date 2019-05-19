@@ -73,7 +73,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text=" Full Test"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:background="#00BCD4"
+                android:textStyle="bold"/>
 
         </LinearLayout>
     </ScrollView>
@@ -84,7 +86,9 @@
         android:layout_width="match_parent"
         android:layout_height="103dp"
         android:text=" Finish"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:background="#E91E63"/>
 
 
 </LinearLayout>

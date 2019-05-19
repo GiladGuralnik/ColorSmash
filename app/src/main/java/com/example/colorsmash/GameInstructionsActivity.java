@@ -13,4 +13,15 @@ public class GameInstructionsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game_instructions);
     }
 
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            Intent act = new Intent(GameInstructionsActivity.this, UserGameActivity.class);
+            startActivity(act);
+            this.finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

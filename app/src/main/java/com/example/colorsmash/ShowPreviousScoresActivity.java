@@ -77,9 +77,9 @@ public class ShowPreviousScoresActivity extends AppCompatActivity {
     {
         if ((keyCode == KeyEvent.KEYCODE_BACK))
         {
-            Intent act = new Intent(ShowPreviousScoresActivity.this, UserOptionsActivity.class);
+            Intent act = new Intent(ShowPreviousScoresActivity.this, UserGameActivity.class);
             startActivity(act);
-            finish();
+            this.finish();
             return true;
         }
         return super.onKeyDown(keyCode, event);
