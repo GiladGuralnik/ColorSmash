@@ -18,7 +18,6 @@
                 sh """
                 chmod 777 gradlew
                 yes | sdkmanager --licenses
-                ./gradlew jacocoTestReportDebug
                 ./gradlew test
                 """
            } 
