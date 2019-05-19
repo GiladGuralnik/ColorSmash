@@ -1,5 +1,5 @@
  pipeline {
-    agent { docker {
+    agent { docker { 
         image 'anthonymonori/android-ci-image'
        //arugment to execute everything as a sudoer
         args '-u root:sudo'
@@ -12,7 +12,7 @@
           git 'https://github.com/GiladGuralnik/ColorSmash.git'
        }
      }
-     stage('Run Tests'){
+     stage('Run Tests'){ 
            steps{
                 sh """
                 chmod 777 gradlew
@@ -20,6 +20,18 @@
                 ./gradlew test
                 """
            } 
-     }  
+     }
+    stage('Publish Test Results'){
+        steps{
+            publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'app/build/reports/tests/testReleaseUnitTest', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+        }
+    }
+     stage('Coverge Code'){
+        steps{
+         sh """
+              ./gradlew createDebugCoverageReport
+           """
+         }
+       }
    }
 }
