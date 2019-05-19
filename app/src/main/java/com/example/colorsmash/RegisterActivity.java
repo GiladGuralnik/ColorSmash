@@ -1,6 +1,7 @@
 package com.example.colorsmash;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
@@ -27,6 +33,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private ProgressDialog progressDialog;
 
     private FirebaseAuth firebaseAuth;
+
+    private DatabaseReference mRef;
+
+    private FirebaseDatabase mDataBase;
+
+    private int index;
+
 
 
     @Override
@@ -48,6 +61,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         buttonRegister.setOnClickListener(this);
         textViewSignin.setOnClickListener(this);
+
+        mDataBase=FirebaseDatabase.getInstance();
+        mRef = mDataBase.getReference("Users");
     }
 
     private void registerUser()
@@ -66,25 +82,41 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             Toast.makeText(this, "Plase enter password", Toast.LENGTH_LONG).show();
             return;
         }
+        if (!isEmailValid(email)) {
+            //bad email
+            Toast.makeText(this, "Plase enter valid email", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(!isPasswordValid(password)){
+            //bad password
+            Toast.makeText(this, "Plase enter at least 8 characters password", Toast.LENGTH_LONG).show();
+            return;
+        }
+
 
         //incase both validations went well
         //show progress bar
-        progressDialog.setMessage("Registering Users please wait...");
+        progressDialog.setMessage("Registering User please wait...");
         progressDialog.show();
 
         firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                progressDialog.dismiss();
                 if(task.isSuccessful())
                 {
                     //user is succesfully registered and logged in
                     //we will start the profile activity here
-                    //for now we will display a TOAST only
+                    //for now we will display a TOAST only,
                     Toast.makeText(RegisterActivity.this,"Registered Succesfully", Toast.LENGTH_SHORT).show();
+                    createUserAccount();
+                    Intent act = new Intent(RegisterActivity.this, PersonalInfo.class);
+                    startActivity(act);
+
                 }
                 else
                 {
-                    Toast.makeText(RegisterActivity.this,"Could not register...please try again", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this,"Bad email input, Please use valid mail\nOr email is already taken", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -97,13 +129,39 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         if(view == buttonRegister)
             registerUser();
 
-        if(view == textViewSignin)
-            return; // FIX HERE FIX HERE FIX HERE
+        if(view == textViewSignin) {
+            Intent act = new Intent(this, LoginActivity.class);
+            startActivity(act);
+        }
     }
 
 
+    public void createUserAccount(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uID = "";
+        if (user != null) {
+            uID = user.getUid();
+        } else {
+            // No user is signed in
+        }
+        String email = editTextEmail.getText().toString().trim();
+        mRef.child(uID).child("username").setValue(email);
+        mRef.child(uID).child("gender").setValue("none");
+        mRef.child(uID).child("age").setValue(999);
+        mRef.child(uID).child("name").setValue("none");
+        mRef.child(uID).child("scores").setValue(new HashMap<String,String>());
+        mRef.child(uID).child("highscore").setValue("0");
+        mRef.child(uID).child("colorblind").setValue("false");
+        mRef.child(uID).child("badColors").setValue(new HashMap<String,String>());
 
+    }
 
+    public boolean isEmailValid(String email) {
+        return email.contains("@") && email.contains(".");
+    }
 
+    public boolean isPasswordValid(String password) {
+        return password.length() > 7;
+    }
 
 }

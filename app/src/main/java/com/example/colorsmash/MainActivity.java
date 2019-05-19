@@ -3,6 +3,7 @@ package com.example.colorsmash;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -35,30 +36,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-
+    //check
     @Override
     public void onClick(View view)
     {
         if(view==buttonStartGame) {
-            return;
+            this.finish();
+            Intent act = new Intent (MainActivity.this,StartGameActivity.class);
+            startActivity(act);
         }
         else if(view == buttonRegister) {
-            Intent startGame = new Intent(MainActivity.this, RegisterActivity.class);
-            startActivity(startGame);
+            Intent act = new Intent(MainActivity.this, RegisterActivity.class);
+            startActivity(act);
         }
 
         else if(view == buttonLogin) {
-            Intent startGame = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(startGame);
+            Intent act = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(act);
         }
 
         else if (view == buttonAdminLogin) {
-            Intent startGame = new Intent(MainActivity.this, AdminLoginActivity.class);
-            startActivity(startGame);
+            Intent act = new Intent(MainActivity.this, AdminLoginActivity.class);
+            startActivity(act);
         }
         else if (view == buttonExit) {
-            return;
+            this.finish();
+            System.exit(0);
         }
+
+
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            this.finish();
+            System.exit(0);
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 
