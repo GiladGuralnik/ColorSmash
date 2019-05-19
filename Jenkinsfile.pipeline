@@ -19,6 +19,7 @@
                 chmod 777 gradlew
                 yes | sdkmanager --licenses
                 ./gradlew test
+                ./gradlew createDebugCoverageReport
                 """
 
            } 
