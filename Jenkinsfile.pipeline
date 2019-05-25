@@ -29,7 +29,6 @@
      stage('Coverge Code'){
         steps{
          sh """
-          ./gradlew createDebugCoverageReport
            """
          }
        }
