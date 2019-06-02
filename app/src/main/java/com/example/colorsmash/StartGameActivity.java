@@ -861,6 +861,10 @@ public class StartGameActivity extends AppCompatActivity {
             editor.commit();
 
         }
+
+        Intent act = new Intent(StartGameActivity.this, StartGameActivity.class);
+        startActivity(act);
+        this.finish();
     }
 
     @Override
