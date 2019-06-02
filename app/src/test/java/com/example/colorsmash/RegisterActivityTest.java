@@ -3,6 +3,7 @@ package com.example.colorsmash;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -26,7 +27,7 @@ public class RegisterActivityTest {
 
     @Test
     public void test_incorrectEmailAddress2() {
-        assertFalse(act.isEmailValid("name@@email.com"));
+        assertFalse(act.isEmailValid("name@@emailcom"));
     }
 
     @Test
