@@ -19,8 +19,8 @@ public class UserTest {
     @Test
     public void test_username()
     {
-        act.setName("Tamir");
-        assertEquals("Tamir",act.getName());
+        act.setName("Tamir2");
+        assertEquals("Tamir2",act.getName());
     }
 
     @Test

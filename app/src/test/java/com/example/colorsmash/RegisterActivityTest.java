@@ -14,7 +14,6 @@ public class RegisterActivityTest {
         act = new RegisterActivity();
     }
 
-    /* asdasddsasdasd */
     @Test
     public void test_correctEmailAddress() {
         assertTrue(act.isEmailValid("name@email.com"));
