@@ -43,7 +43,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#E9E6306F"/>
 
     <Button
         android:id="@+id/ButtonResetLeaderBoard"
@@ -53,7 +54,8 @@
         android:layout_marginTop="12dp"
         android:layout_marginBottom="8dp"
         android:text="RESET SCORES"
-        android:textSize="36sp" />
+        android:textSize="36sp"
+        android:background="#03A9F4"/>
 
     <Button
         android:id="@+id/ButtonChangeUserColors"
@@ -63,7 +65,8 @@
         android:layout_marginTop="12dp"
         android:layout_marginBottom="8dp"
         android:text="CHANGE COLORS"
-        android:textSize="36sp" />
+        android:textSize="36sp"
+        android:background="#F2FFEB3B"/>
 
     <Button
         android:id="@+id/ButtonStatistics"
@@ -73,6 +76,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginBottom="8dp"
         android:text="STATISTICS"
-        android:textSize="36sp" />
+        android:textSize="36sp"
+        android:background="#E94BE630"/>
 
 </LinearLayout>
