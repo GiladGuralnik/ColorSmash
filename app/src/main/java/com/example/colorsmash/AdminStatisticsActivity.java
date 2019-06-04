@@ -3,6 +3,7 @@ package com.example.colorsmash;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -56,7 +57,7 @@ public class AdminStatisticsActivity extends AppCompatActivity {
                 // filter only colorblind users
                 List<User> colorblidUsers = new ArrayList<>();
                 for(User u: users) {
-                    if(u.getColorblind().equals("true")) {
+                    if(u.getBadColors()!=null && u.getBadColors().get(0)!=null) {
                         colorblidUsers.add(u);
                     }
                 }
@@ -104,8 +105,10 @@ public class AdminStatisticsActivity extends AppCompatActivity {
                 // calc common colors
                 for (User u : colorblidUsers) {
                     ArrayList<String> badColors = u.getBadColors();
-                    for (String color : badColors) {
-                        colors.put(color, colors.get(color) + 1);
+                    if(badColors!=null) {
+                        for (String color : badColors) {
+                            colors.put(color, colors.get(color) + 1);
+                        }
                     }
                 }
 
